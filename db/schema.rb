@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_04_27_134726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adventures", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "category"
+    t.float "avg_rating"
+    t.integer "distance"
+    t.integer "avg_duration"
+    t.boolean "stroller_friendly"
+    t.integer "youngest_age"
+    t.integer "difficulty"
+    t.boolean "parking"
+    t.boolean "public_transport"
+    t.text "directions"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
