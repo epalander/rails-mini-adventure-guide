@@ -1,13 +1,19 @@
 class AdventuresController < ApplicationController
   def index
-    @adventures = Adventure.geocoded  # returns Adventures with coordinates
+    @adventures = Adventure.all
 
-    @markers = @adventures.map do |adventure|
-      {
-        lat: adventure.latitude,
-        lng: adventure.longitude
+    # @adventures = Adventure.geocoded  # returns Adventures with coordinates
 
-      }
-    end
+    # @markers = @adventures.map do |adventure|
+    #   {
+    #     lat: adventure.latitude,
+    #     lng: adventure.longitude
+
+    #   }
+    # end
+  end
+
+  def search
+    @results = Adventure.search_by_title_and_category(params["query"])
   end
 end
