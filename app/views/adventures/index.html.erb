@@ -1,26 +1,28 @@
 
 <h1>Adventures</h1>
 
-<table>
-  <head>
-    <tr>
-      <th>Title</th>
-      <th>Address</th>
-    </tr>
-  </head>
-
-  <tbody>
-    <div id="map"
-       style="width: 100%; height: 600px;"
-       data-markers="<%= @markers.to_json %>"
-       data-mapbox-api-key="<%= ENV['pk.eyJ1IjoiZXBhbGFuZGVyIiwiYSI6ImNrOGs5aHE3cjAzMmozbXA2NjIyY3VtbWsifQ.f96OEiie-0YcCe5xKQgtgw'] %>">
-    </div>
-
-    <% @adventures.each do |adventure| %>
+<div class="container">
+  <table>
+    <head>
       <tr>
-        <td><%= adventure.title %></td>
-        <td><%= adventure.address %></td>
+        <th>Title</th>
+        <th>Address</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </head>
+
+    <tbody>
+      <div id="map"
+         style="width: 100%; height: 600px;"
+         data-markers="<%= @markers.to_json %>"
+         data-mapbox-api-key="<%= ENV['pk.eyJ1IjoiZXBhbGFuZGVyIiwiYSI6ImNrOGs5aHE3cjAzMmozbXA2NjIyY3VtbWsifQ.f96OEiie-0YcCe5xKQgtgw'] %>">
+      </div>
+
+      <% @adventures.each do |adventure| %>
+        <tr>
+          <td><%= adventure.title %></td>
+          <td><%= adventure.address %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
