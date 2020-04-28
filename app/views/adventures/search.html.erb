@@ -1,18 +1,37 @@
-<div class=container>
-  <div class=text-center>
-  <h1>Welcome to the Search Page</h1>
+<div class="text-center m-2">
+  <h1>Search Results</h1>
+</div>
+<div class="d-flex justify-content-center">
+  <div class="filter-buttons"><%= link_to "Parking Available", "#", class: "btn btn-ghost" %></div>
+  <div class="filter-buttons"><%= link_to "Public Transport Accessible", "#", class: "btn btn-ghost" %></div>
+  <div class="filter-buttons"><%= link_to "Stroller Friendly", "#", class: "btn btn-ghost" %></div>
+  <div class="filter-buttons"><%= link_to "More Filters", "#", class: "btn btn-ghost" %></div>
+</div>
+
+<div class="wrapper d-flex justify-content-between">
+
+  <div class="container">
+    <div id="map"
+      style="width: 100%; height: 500px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
   </div>
 
-  <% @results.each do |adventure| %>
-    <div class="card-product">
-      <img src="#">
-        <div class="card-product-infos">
-          <div><%= link_to adventure.title, adventure_path(adventure) %></div>
-          <p>Category: <%= adventure.category %></p>
-          <p>Description: <%= adventure.description %></p>
-        </div>
-    </div>
-  <% end %>
+  <div class="container">
+    <% @results.each do |adventure| %>
+      <div class="card-product">
+        <img src="#">
+          <div class="card-product-infos">
+            <div><%= link_to adventure.title, adventure_path(adventure) %></div>
+            <p>Category: <%= adventure.category %></p>
+            <p>Description: <%= adventure.description %></p>
+            <p>Address: <%= adventure.address %></p>
+          </div>
+      </div>
+    <% end %>
+  </div>
+
 </div>
 
 <hr>
