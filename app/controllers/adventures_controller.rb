@@ -11,6 +11,10 @@ class AdventuresController < ApplicationController
     end
   end
 
+  def show
+    @adventure = Adventure.find(params[:id])
+  end
+
   def new
     @adventure = Adventure.new
     authorize @adventure
