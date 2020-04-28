@@ -10,4 +10,18 @@ class AdventuresController < ApplicationController
       }
     end
   end
+
+  def new
+    @adventure = Adventure.new
+    authorize @adventure
+  end
+
+  def create
+    @adventure = Adventure.new(adventure_params)
+    if @adventure.save
+      redirect_to adventure_path(@adventure)
+    else
+      render :new
+    end
+  end
 end
