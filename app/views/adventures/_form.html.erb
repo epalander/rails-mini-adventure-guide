@@ -21,13 +21,18 @@
     </div>
 
     <div class="form-inputs">
-      <%= f.input :youngest_age %>
+      <%= f.input :youngest_age, hint: 'For babies under one year, select \'0\'', label: "Recommended age of the youngest adventurer", collection: 0..16 %>
     </div>
 
     <div class="form-inputs">
-      <%= f.input :difficulty %>
+      <%= f.input :difficulty, collection: [[1 , 'Easy (didn\'t even break a sweat)'], [2, 'Moderate (a good workout)'], [3, 'Challenging (plan ahead, hard work)']], label_method: :second, value_method: :first  %>
     </div>
-    <p> Tell us a bit about how to get there:</p>
+
+    <div class="form-inputs">
+      <%= f.input :stroller_friendly,label: 'Is this adventure stroller or bike trailer friendly?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
+    </div>
+
+    <p><strong>Tell us a bit about how to get there:</strong></p>
     <div class="form-inputs d-flex">
       <div class="mr-4">
         <%= f.input :public_transport %>
@@ -36,7 +41,7 @@
     </div>
 
     <div class="form-inputs">
-      <%= f.input :directions %>
+      <%= f.input :directions, label: 'Detailed Directions', hint: 'e.g. Where is the parking lot/bus stop/etc.? How to do you get to the adventure? How do you get back?' %>
     </div>
 
     <div class="form-actions btn btn-primary mt-4">
