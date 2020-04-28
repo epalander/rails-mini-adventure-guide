@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-
   resources :adventures do
     resources :reviews, only: [:new, :create]
   end

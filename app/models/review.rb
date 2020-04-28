@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
-  belongs_to :adventures
-  belongs_to :users
+  belongs_to :adventure
+  belongs_to :user
 
   has_many_attached :photos
 end

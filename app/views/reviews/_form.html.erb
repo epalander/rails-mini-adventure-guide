@@ -1,0 +1,23 @@
+<%= simple_form_for [@adventure, @review] do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :tagline, label: 'Tagline of your review', hint: 'e.g. Amazing adventure for the entire family' %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :content, label: 'Add a description of your adventure', hint: 'Tell us a bit more the adventure about the path, points to stop or anything intersting on the way, etc. ' %>
+  </div>
+
+  <div class="form-inputs">
+      <%= f.input :rating, label: 'How did you like the adventure', collection: [[1 , '1 - Not recommended'], [2, '2 - It was ok'], [3, '3 - Might go again'], [4, '4 - Great adventure'], [5, '5 - Amazing! Highly recommended']], hint: 'Please rate the adventure: 1 = not recommended to 5 = amazing', label_method: :second, value_method: :first  %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  </div>
+
+  <div class="form-actions btn btn-primary mt-4">
+    <%= f.button :submit %>
+  </div>
+
+<% end %>
