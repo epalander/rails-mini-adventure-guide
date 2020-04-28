@@ -24,4 +24,10 @@ class AdventuresController < ApplicationController
       render :new
     end
   end
+
+  private
+
+  def adventure_params
+    params.require(:adventure).permit(:title, :description, :category, :distance, :stroller_friendly, :youngest_age, :difficulty, :parking, :public_transport, :directions, :address, photos: [])
+  end
 end
