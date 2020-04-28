@@ -25,6 +25,19 @@ class AdventuresController < ApplicationController
     end
   end
 
+  def edit
+    @adventure = Adventure.find(params[:id])
+  end
+
+  def update
+    @adventure = Adventure.find(params[:id])
+    if @adventure.update(adventure_params)
+        redirect_to adventure_path(@adventure), notice: 'Adventure was successfully updated.'
+      else
+        render :edit
+      end
+  end
+
   private
 
   def adventure_params
