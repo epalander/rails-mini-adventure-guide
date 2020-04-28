@@ -6,6 +6,7 @@ class AdventuresController < ApplicationController
       {
         lat: adventure.latitude,
         lng: adventure.longitude
+
       }
     end
   end
