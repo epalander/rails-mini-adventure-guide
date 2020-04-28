@@ -13,6 +13,7 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.find(params[:id])
+    authorize @adventure
   end
 
   def new
@@ -22,6 +23,7 @@ class AdventuresController < ApplicationController
 
   def create
     @adventure = Adventure.new(adventure_params)
+    authorize @adventure
     if @adventure.save
       redirect_to adventure_path(@adventure)
     else

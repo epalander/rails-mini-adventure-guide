@@ -1,4 +1,4 @@
-<%= simple_form_for(@item) do |f| %>
+<%= simple_form_for(@adventure) do |f| %>
 
     <div class="form-inputs">
       <%= f.input :title, label: 'Tagline for this adventure', hint: 'e.g. Fun hike near Zurich with a waterfall' %>
@@ -38,14 +38,6 @@
 
     <div class="form-inputs">
       <%= f.input :directions %>
-    </div>
-
-    <div class="form-inputs">
-      <%= f.input :distance %>
-    </div>
-
-    <div class="form-inputs">
-      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     </div>
 
     <div class="form-actions btn btn-primary mt-4">
