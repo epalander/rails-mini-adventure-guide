@@ -1,13 +1,15 @@
 class AdventuresController < ApplicationController
   def index
-    @adventures = Adventure.geocoded  # returns Adventures with coordinates
+    @adventures = Adventure.all
 
-    @markers = @adventures.map do |adventure|
-      {
-        lat: adventure.latitude,
-        lng: adventure.longitude
+    # @adventures = Adventure.geocoded  # returns Adventures with coordinates
 
-      }
-    end
+    # @markers = @adventures.map do |adventure|
+    #   {
+    #     lat: adventure.latitude,
+    #     lng: adventure.longitude
+
+    #   }
+    # end
   end
 end
