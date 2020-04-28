@@ -2,6 +2,17 @@
   <div class=text-center>
   <h1>Welcome to the Search Page</h1>
   </div>
+
+  <% @results.each do |adventure| %>
+    <div class="card-product">
+      <img src="#">
+        <div class="card-product-infos">
+          <div><%= link_to adventure.title, adventure_path(adventure) %></div>
+          <p>Category: <%= adventure.category %></p>
+          <p>Description: <%= adventure.description %></p>
+        </div>
+    </div>
+  <% end %>
 </div>
 
 <hr>
