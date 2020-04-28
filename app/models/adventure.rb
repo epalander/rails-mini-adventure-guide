@@ -6,4 +6,11 @@ class Adventure < ApplicationRecord
   def avg_rating
     self.reviews.average(:rating)
   end
+
+  include PgSearch::Model
+  pg_search_scope :search_by_title_and_category,
+    against: [ :title, :category ],
+    using: {
+      tsearch: { prefix: true }
+    }
 end

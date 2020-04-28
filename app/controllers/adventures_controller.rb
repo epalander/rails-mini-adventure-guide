@@ -14,6 +14,6 @@ class AdventuresController < ApplicationController
   end
 
   def search
-    @adventures = Adventure.where(category: params["query"])
+    @results = Adventure.search_by_title_and_category(params["query"])
   end
 end
