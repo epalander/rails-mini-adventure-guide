@@ -9,7 +9,7 @@
     </div>
 
     <div class="form-inputs">
-      <%= f.input :category, collection: ['hiking', 'biking'] %>
+      <%= f.input :category, collection: ['hiking trail', 'biking path'] %>
     </div>
 
     <div class="form-inputs">
@@ -27,13 +27,12 @@
     <div class="form-inputs">
       <%= f.input :difficulty %>
     </div>
-
-    <div class="form-inputs">
+    <p> Tell us a bit about how to get there:</p>
+    <div class="form-inputs d-flex">
+      <div class="mr-4">
+        <%= f.input :public_transport %>
+      </div>
       <%= f.input :parking %>
-    </div>
-
-    <div class="form-inputs">
-      <%= f.input :public_transport %>
     </div>
 
     <div class="form-inputs">
