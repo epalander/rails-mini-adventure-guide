@@ -15,8 +15,12 @@
   transition: background-color 0.3s ease-in, color 0.3s ease-in;
 }
 
-.btn-primary{
+.btn-primary {
   color: $gray;
   border-radius: 50px;
   border: 3px solid;
+}
+
+.filter-buttons {
+  margin: 3px;
 }

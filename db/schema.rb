@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_093744) do
+
+ActiveRecord::Schema.define(version: 2020_04_29_095316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +41,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_093744) do
     t.string "title"
     t.text "description"
     t.string "category"
-    t.float "avg_rating"
-    t.integer "distance"
+    t.float "distance"
     t.integer "avg_duration"
     t.boolean "stroller_friendly"
     t.integer "youngest_age"
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 2020_04_28_093744) do
     t.bigint "adventure_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "difficulty"
+    t.integer "duration"
+    t.integer "youngest_age"
     t.index ["adventure_id"], name: "index_reviews_on_adventure_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
