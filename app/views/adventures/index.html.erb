@@ -16,30 +16,12 @@
 <div class="wrapper d-flex justify-content-between">
 
   <div class="container m-7">
-    <table>
-      <head>
-        <tr>
-          <th>Title</th>
-          <th>Address</th>
-        </tr>
-      </head>
-
-      <tbody>
         <!-- map -->
       <div id="map"
          style="width: 100%; height: 500px;"
          data-markers="<%= @markers.to_json %>"
          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
-
-        <% @adventures.each do |adventure| %>
-          <tr>
-            <td><%= adventure.title %></td>
-            <td><%= adventure.address %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
   </div>
 
   <div class="container m-7">
