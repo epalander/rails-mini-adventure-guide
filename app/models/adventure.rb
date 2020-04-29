@@ -15,4 +15,12 @@ class Adventure < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  scope :filter_by_parking, -> { where parking: true }
+  scope :filter_by_public_transport, -> { where public_transport: true }
+  scope :filter_by_stroller_friendly, -> { where stroller_friendly: true }
+  # scope :filter_by_youngest_age, -> (youngest_age) { where youngest_age: youngest_age }
+  # scope :filter_by_difficulty, -> (difficulty) { where difficulty: difficulty }
+  # scope :filter_by_distance, -> (distance) { where distance: distance }
+
 end
