@@ -1,0 +1,26 @@
+.btn-ghost {
+  color: $gray;
+  border: 1px solid #CF9958;
+  padding: 6px 24px;
+  border-radius: 50px;
+  border: 3px solid;
+  font-weight: lighter;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.btn-ghost:hover, .btn:active {
+  background-color: $yellow;
+  color: $gray;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in;
+}
+
+.btn-primary {
+  color: $gray;
+  border-radius: 50px;
+  border: 3px solid;
+}
+
+.filter-buttons {
+  margin: 3px;
+}
