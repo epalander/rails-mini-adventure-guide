@@ -31,7 +31,6 @@ class ReviewsController < ApplicationController
   # end
 
   def destroy
-
     @review.destroy
     redirect_to adventures_path(@adventure), notice: "Your review was deleted"
   end

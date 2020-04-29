@@ -10,7 +10,7 @@
       <p><strong><%= review.tagline %></strong></p>
       <p><%= review.rating %></p>
       <p><%= review.content %></p>
-      <%= link_to "Delete", review_path(review), method: :delete %>
+      <%= link_to "Delete", review_path(review), method: :delete, class: "btn btn-primary mt-4", data: {confirm: "Are you sure you would like to delete the review?"}%>
     <% end %>
 </div>
 

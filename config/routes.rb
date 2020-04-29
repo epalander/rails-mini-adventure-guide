@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :adventures do
-    resources :reviews, only: [:new, :create, :edit, :update]
+    resources :reviews, only: [:new, :create]
   end
-    resources :reviews, only: [:destroy]
+    resources :reviews, only: [:edit, :update, :destroy]
 
   get "/search" => "adventures#search"
 
