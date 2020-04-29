@@ -2,14 +2,12 @@
   <%= link_to "/", class: "navbar-brand" do %>
     <%= image_tag "logo.png", class: "avatar"%>
     <% end %>
-
-    <%= link_to "Share an adventure!", new_adventure_path, class: "nav-link btn btn-ghost" %>
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+       <%= link_to "Share an adventure!", new_adventure_path, class: "nav-link btn btn-ghost mr-2" %>
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <%= image_tag "menu_icon.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
