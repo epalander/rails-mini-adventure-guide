@@ -13,9 +13,6 @@ class ReviewsController < ApplicationController
     @review.adventure = @adventure
     @review.user = current_user
 
-raise
-
-
     if @review.save
       redirect_to adventures_path(@adventure), notice: "Thank you for submitting your review"
     else
