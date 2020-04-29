@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
-      redirect_to adventures_path(@adventure), notice: "Thank you for submitting your review"
+      redirect_to adventure_path(@adventure), notice: "Thank you for submitting your review"
     else
       render :new
     end
@@ -31,8 +31,9 @@ class ReviewsController < ApplicationController
   # end
 
   def destroy
+
     @review.destroy
-    redirect_to adventures_path(@review.adventure), notice: "Your review was deleted"
+    redirect_to adventures_path(@adventure), notice: "Your review was deleted"
   end
 
   private
