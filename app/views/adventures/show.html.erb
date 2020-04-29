@@ -4,6 +4,16 @@
   <p><%= @adventure.description %></p>
 </div>
 
+<div class="container m-7">
+  <h2>Reviews</h2>
+    <% @adventure.reviews.each do |review|  %>
+      <p><strong><%= review.tagline %></strong></p>
+      <p><%= review.rating %></p>
+      <p><%= review.content %></p>
+    <% end %>
+</div>
+
+
 <div class="container">
   <%= link_to 'Create a review', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
 </div>
