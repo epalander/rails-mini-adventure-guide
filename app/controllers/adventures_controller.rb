@@ -25,11 +25,7 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.find(params[:id])
-<<<<<<< HEAD
     authorize @adventure
-=======
-
->>>>>>> master
   end
 
   def new
