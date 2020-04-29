@@ -2,9 +2,9 @@
   <h1>Search Results</h1>
 </div>
 <div class="d-flex justify-content-center">
-  <div class="filter-buttons"><%= link_to "Parking Available", "#", class: "btn btn-ghost" %></div>
-  <div class="filter-buttons"><%= link_to "Public Transport Accessible", "#", class: "btn btn-ghost" %></div>
-  <div class="filter-buttons"><%= link_to "Stroller Friendly", "#", class: "btn btn-ghost" %></div>
+  <div class="filter-buttons"><%= link_to "Parking Available", @params.merge(parking: true), class: "btn btn-ghost" %></div>
+  <div class="filter-buttons"><%= link_to "Public Transport Accessible", @params.merge(public_transport: true), class: "btn btn-ghost" %></div>
+  <div class="filter-buttons"><%= link_to "Stroller Friendly", @params.merge(stroller_friendly: true), class: "btn btn-ghost" %></div>
   <div class="filter-buttons"><%= link_to "More Filters", "#", class: "btn btn-ghost" %></div>
 </div>
 
