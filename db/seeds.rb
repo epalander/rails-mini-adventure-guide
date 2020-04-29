@@ -28,7 +28,7 @@ bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrib
 ##### Zurich
 ## Top Left: 47.470644, 8.408002
 ## Bottom Right: 47.309827, 8.637376
-puts "Generating random locations in Lausanne"
+puts "Generating random locations in Zurich"
 zurich = []
 10.times do
   zurich << Geocoder.search([rand(47.309827..47.470644).round(6), rand(8.408002..8.637376).round(6)])
@@ -81,8 +81,46 @@ seed_adventures(switzerland, good_adjective)
 seed_adventures(zurich, good_adjective)
 seed_adventures(lausanne, good_adjective)
 
-def seed_reviews
+puts "Seeding reviews for each adventure"
+
+def gen_review_content(adj)
+  noun = %w{activity adventure memory trip experience fun time}
+  phrases = ["We saw a #{Faker::Creature::Animal.name}!!!", "It was a #{adj.sample} #{noun.sample}.", "#{Faker::Creature::Animal.name.capitalize}s were everywhere!", "The #{%w{kids adults dogs grandparents cousins}.sample} had a #{adj.sample} time.", "We had #{%w{lunch dinner breakfast a\ picnic}.sample}.", "#{%w{I We The\ kids The\ grandparents The\ dogs}.sample} felt #{adj.sample} afterwards.", "It was #{adj.sample} through and through."]
+  phrases.sample(3).join(' ')
 end
+
+adventures = Adventure.all
+
+adventures.each do |adventure|
+  rand(3..5).times do
+    good_review_args = {
+      rating:rand(3..5),
+      tagline: ["#{good_adjective.sample.capitalize} #{adventure.category} #{%w{for with}.sample} #{%w{kids the\ family}.sample}", "Could not be more #{good_adjective.sample.upcase}!", "#{%w{Simply Just}.sample} #{good_adjective.sample}", "#{good_adjective.sample.capitalize}!"].sample,
+      content: gen_review_content(good_adjective),
+      user_id: rand(1..3),
+      adventure_id: adventure.id,
+      difficulty: rand(1..3),
+      duration: [(adventure.avg_duration - rand(0..15)), (adventure.avg_duration + rand(0..20))].sample,
+      youngest_age: adventure.youngest_age < 2 ? rand(0..2) : rand(3..5)
+    }
+    Review.create!(good_review_args)
+  end
+  rand(0..2).times do
+    bad_review_args = {
+      rating:rand(3..5),
+      tagline:["#{%w{omg jeez ugh}.sample}...#{bad_adjective.sample} #{%w{activity adventure memories memory trip experience experiences times time}.sample}", "Don't go!", "Just don't.", "Everyone was crying.", "#{%w{omg jeez ugh fml}.sample.capitalize}!", bad_adjective.sample.upcase].sample,
+      content: gen_review_content(bad_adjective),
+      user_id: rand(1..3),
+      adventure_id: adventure.id,
+      difficulty: 3,
+      duration: adventure.avg_duration + rand(20..60),
+      youngest_age: [4, 5].sample,
+    }
+    Review.create!(bad_review_args)
+  end
+end
+
+
 
 # puts "Seeding reviews"
 # Review.create!(rating: 4.5, content: "The kids loved it and it had wonderful views!", tagline: "Wonderful views!", user: user1, adventure: Adventure.last)
