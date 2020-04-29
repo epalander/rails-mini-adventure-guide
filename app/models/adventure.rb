@@ -22,5 +22,6 @@ class Adventure < ApplicationRecord
   # scope :filter_by_youngest_age, -> (youngest_age) { where youngest_age: youngest_age }
   # scope :filter_by_difficulty, -> (difficulty) { where difficulty: difficulty }
   # scope :filter_by_distance, -> (distance) { where distance: distance }
+  # scope :filter_by_category, -> (category) { where category: category }
 
 end
