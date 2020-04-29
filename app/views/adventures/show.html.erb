@@ -3,3 +3,7 @@
   <h2>Description:</h2>
   <p><%= @adventure.description %></p>
 </div>
+
+<div class="container">
+  <%= link_to 'Create a review', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
+</div>
