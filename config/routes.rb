@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :adventures do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
+    resources :reviews, only: [:destroy]
 
   get "/search" => "adventures#search"
 
