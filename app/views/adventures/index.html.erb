@@ -2,14 +2,16 @@
   <div class="container">
     <h1>Mini Adventure Guide</h1>
       <p>Plan mini adventures.</p>
-      <%= simple_form_for :search, url: search_path, method: :get do |f| %>
-        <div class="search-form-control form-group">
-          <input class="form-control string required" type="text" name="query" id="search_query" placeholder="e.g. hiking, biking" />
-          <button name="button" type="submit" class="btn btn-ghost">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      <% end %>
+
+    <%= simple_form_for :search, url: search_path, method: :get do |f| %>
+      <div class="search-form-control form-group">
+        <input class="form-control string required" type="text" name="search[query]" id="search_query" placeholder="e.g. hiking, biking" />
+        <button name="button" type="submit" class="btn btn-ghost">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    <% end %>
+
   </div>
 </div>
 
@@ -24,6 +26,7 @@
   </div>
 
   <div class="container m-7">
+
     <div class="col-12">
       <h2>Top 5 Mini Adventures</h2>
       <% @adventures.each do |adventure| %>
@@ -32,6 +35,7 @@
           <div class="card-product-infos">
             <div><%= link_to adventure.title, adventure_path(adventure) %></div>
           </div>
+
         </div>
       <% end %>
     </div>
