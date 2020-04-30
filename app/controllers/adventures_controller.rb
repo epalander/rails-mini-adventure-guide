@@ -27,6 +27,9 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.find(params[:id])
+    @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
+    @parking = @adventure.parking ? 'Available' : 'Not available'
+    @public_transport = @adventure.public_transport ? 'Available' : 'Not available'
   end
 
   def new

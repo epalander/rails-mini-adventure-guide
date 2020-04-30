@@ -12,10 +12,10 @@
           <p><i class="fas fa-mountain"></i>  <%= @adventure.difficulty %></p>
           <p><i class="fas fa-clock"></i>  <%= @adventure.avg_duration %> min</p>
           <p><i class="fas fa-hiking"></i>  <%= @adventure.distance %> km</p>
-          <p><i class="fas fa-baby-carriage"></i>  <%= @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers' %>
+          <p><i class="fas fa-baby-carriage"></i>  <%= @stroller  %>
           <p><i class="fas fa-child"> </i>  <%= @adventure.youngest_age %> years</p>
-          <p><i class="fas fa-parking"></i>  <%= @adventure.parking ? 'Available' : 'Not available' %></p>
-          <p><i class="fas fa-bus"></i>  <%= @adventure.public_transport ? 'Available' : 'Not available' %></p>
+          <p><i class="fas fa-parking"></i>  <%= @parking %></p>
+          <p><i class="fas fa-bus"></i>  <%= @public_transport %></p>
       </div>
     </div>
 
