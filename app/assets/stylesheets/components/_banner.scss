@@ -23,3 +23,29 @@
   color: #FFF200;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
+
+.banner-show {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 250px;
+  position: relative;
+  padding: 200px 0;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.banner h1 {
+  margin: 0;
+  color: #FFF200;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 2px 2px 3px rgb(144, 144, 144);
+
+}
+
+.banner p {
+  font-size: 20px;
+  color: #FFF200;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}

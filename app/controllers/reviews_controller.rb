@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_review, only: [:edit, :update, :destroy]
 
   def new
@@ -13,7 +14,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
-      redirect_to adventure_path(@adventure), notice: "Thank you for submitting your review"
+      redirect_to adventures_path(@adventure), notice: "Thank you for submitting your review"
     else
       render :new
     end

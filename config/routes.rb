@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: 'pages#home'
+  root to: 'adventures#index'
 
   resources :adventures do
     resources :reviews, only: [:new, :create]
