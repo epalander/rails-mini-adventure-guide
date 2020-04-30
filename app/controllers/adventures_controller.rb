@@ -1,6 +1,7 @@
 class AdventuresController < ApplicationController
   def index
     @adventures = Adventure.all
+    @top_adventures = @adventures.sort_by { |a| a.avg_rating }.last(5)
 
     # @adventures = Adventure.geocoded  # returns Adventures with coordinates
 
@@ -8,14 +9,15 @@ class AdventuresController < ApplicationController
       {
         lat: adventure.latitude,
         lng: adventure.longitude
-
       }
     end
   end
 
   def search
-    @results = Adventure.search_by_title_and_category(params[:query])
-    @params = search_params
+    @params = permitted_params
+    raise
+    search_params = permitted_params[:search]
+    @results = Adventure.search_by_title_and_category(search_params[:query])
     @results = @results.filter_by_parking if search_params[:parking] == "true"
     @results = @results.filter_by_public_transport if search_params[:public_transport] == "true"
     @results = @results.filter_by_stroller_friendly if search_params[:stroller_friendly] == "true"
@@ -58,8 +60,8 @@ class AdventuresController < ApplicationController
 
   private
 
-  def search_params
-    params.permit(:query, :parking, :public_transport, :stroller_friendly, :difficulty, :youngest_age, :distance, :category)
+  def permitted_params
+    params.permit(search:[:query, :parking, :public_transport, :stroller_friendly, :difficulty, :youngest_age, :distance, :category])
   end
 
   def adventure_params
