@@ -42,7 +42,7 @@
           <div class="card-product-infos">
             <p><strong><%= review.tagline %></strong> (<%= review.rating %>*)</p>
             <p><%= review.content %></p>
-            <%= link_to "Delete", review_path, method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
+            <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
           </div>
         </div>
       <% end %>
