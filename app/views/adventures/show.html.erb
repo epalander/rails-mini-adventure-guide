@@ -37,19 +37,19 @@
     <div class="container m-7">
       <h2>Reviews</h2>
       <% @adventure.reviews.each do |review|  %>
-      <div class="card-product">
-        <img src="https://images.pexels.com/photos/3933915/pexels-photo-3933915.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
-        <div class="card-product-infos">
-          <p><strong><%= review.tagline %></strong> (<%= review.rating %>*)</p>
-          <p><%= review.content %></p>
+        <div class="card-product">
+          <img src="https://images.pexels.com/photos/3933915/pexels-photo-3933915.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+          <div class="card-product-infos">
+            <p><strong><%= review.tagline %></strong> (<%= review.rating %>*)</p>
+            <p><%= review.content %></p>
+            <%= link_to "Delete", review_path, method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
+          </div>
         </div>
-      </div>
-    <% end %>
-    <%= link_to "Delete", review_path(review), method: :delete, class: "btn btn-primary mt-4", data: {confirm: "Are you sure you would like to delete the review?"}%>
+      <% end %>
     </div>
+  </div>
 
     <div class="container mb-7">
       <%= link_to 'Create a review', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
     </div>
-  </div>
 </div>
