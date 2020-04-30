@@ -118,7 +118,7 @@ adventures.each do |adventure|
   end
   rand(0..2).times do
     bad_review_args = {
-      rating:rand(3..5),
+      rating:rand(1..2),
       tagline:["#{%w{omg jeez ugh}.sample}...#{bad_adjective.sample} #{%w{activity adventure memories memory trip experience experiences times time}.sample}", "Don't go!", "Just don't.", "Everyone was crying.", "#{%w{omg jeez ugh fml}.sample.capitalize}!", bad_adjective.sample.upcase].sample,
       content: gen_review_content(bad_adjective),
       user_id: rand(1..3),
