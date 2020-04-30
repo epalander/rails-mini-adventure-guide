@@ -2,9 +2,9 @@
   <h1>Search Results</h1>
 </div>
 <div class="d-flex justify-content-center">
-  <div class="filter-buttons"><%= link_to "Parking Available", @params[:search].merge(parking: true), class: "btn btn-ghost" %></div>
-  <div class="filter-buttons"><%= link_to "Public Transport Accessible", @params[:search].merge(public_transport: true), class: "btn btn-ghost" %></div>
-  <div class="filter-buttons"><%= link_to "Stroller Friendly", @params[:search].merge(stroller_friendly: true), class: "btn btn-ghost" %></div>
+  <div class="filter-buttons"><%= link_to "Parking Available", @params.merge(parking: true), class: "btn btn-ghost" %></div>
+  <div class="filter-buttons"><%= link_to "Public Transport Accessible", @params.merge(public_transport: true), class: "btn btn-ghost" %></div>
+  <div class="filter-buttons"><%= link_to "Stroller Friendly", @params.merge(stroller_friendly: true), class: "btn btn-ghost" %></div>
   <div class="filter-buttons"><%= render 'modal', adventure: @adventure %></div>
 </div>
 
@@ -26,7 +26,6 @@
             <div><%= link_to adventure.title, adventure_path(adventure) %></div>
             <p>Category: <%= adventure.category %></p>
             <p>Description: <%= adventure.description %></p>
-            <p>Address: <%= adventure.address %></p>
           </div>
       </div>
     <% end %>
