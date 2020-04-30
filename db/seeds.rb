@@ -129,3 +129,28 @@ end
 
 
 puts "Finished!"
+
+### HOW TO SEED WITH CLOUDINARY...don't do this or find a better way.
+# -1. cloudinaryresources = Cloudinary::Api.resources("max_results" = [number_images_we_have])
+# 0. have to get cloudinary metadata for checksums of images (can only do by Tier 2 membership-fuck that)
+#     OR you know all the checksums in advance in another file.
+# 1. get an image by:
+#     cloudinaryexample = cloundinaryresources["resources"][index]
+# 1. Create Blobs using new_blob = ActiveStorage::Blob.new
+# 2. need to assign:
+#     new_blob.key = cloudinaryexample["public_id"]
+#     new_blob.checksum = "checksum_string...good luck getting this from cloudinary"
+#     new_blob.content_type = "image/jpeg"
+#     new_blob.byte_size = cloudinaryexample["bytes"]
+#     new_blob.filename = "somefilename.jpg"
+# 3. then do new_blob.save
+# 4. get a review by
+#       examplereview = Review.find(:id)
+# 5. create new photo by
+#       addphoto = examplereview.photos.new
+# 6. then add the required values
+#       addphoto.blob_id = new_blob.id
+# 7. now save by
+#       addphoto.save
+#   Voila! What a fucking mess...
+
