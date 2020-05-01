@@ -17,30 +17,28 @@ class AdventuresController < ApplicationController
 
     @results = Adventure.all
     @params = search_params
-    @results = @results.search_by_title_and_category(search_params[:query]) if search_params[:query].present?
+    @results = @results.search_by_title_description_and_category(search_params[:query]) if search_params[:query].present?
     @results = @results.filter_by_parking if search_params[:parking] == "true"
     @results = @results.filter_by_public_transport if search_params[:public_transport] == "true"
     @results = @results.filter_by_stroller_friendly if search_params[:stroller_friendly] == "true"
-    @results = @results.filter_by_category(search_params[:category]) if search_params[:category]
-    # @results = Adventure.search_by_title_and_category(params[:query])
-    # @params = search_params
-    # @results = @results.filter_by_parking if params[:parking] == "true"
-    # @results = @results.filter_by_public_transport if params[:public_transport] == "true"
-    # @results = @results.filter_by_stroller_friendly if params[:stroller_friendly] == "true"
+    @results = @results.filter_by_category(search_params[:category]) if search_params[:category].present?
     # @results = @results.filter_by_difficulty(1, 2, 3)
     # @results = @results.filter_by_youngest_age(1, 2, 3, 4, 5)
     # @results = @results.filter_by_distance(1..100)
-    # @results = @results.filter_by_category('hiking trail', 'biking path')
+    # @results = @results.filter_by_category('hiking trail', 'bike path')
   end
 
   def show
-    @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
     @adventure = Adventure.find(params[:id])
+
+    @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
+    @level = ["Easy", "Moderate", "Challenging"]
     @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
     @parking = @adventure.parking ? 'Available' : 'Not available'
     @public_transport = @adventure.public_transport ? 'Available' : 'Not available'
-    @difficulty = @adventure.difficulty = "1" ? 'Easy' : (@adventure.difficulty = "2" ? "Moderate" : 'Challenging')
-    @youngest_age = @age[@adventure.youngest_age]
+    # @difficulty = @adventure.difficulty == "1" ? 'Easy' : (@adventure.difficulty == "2" ? "Moderate" : 'Challenging')
+    @youngest_age = @age[@adventure.youngest_age - 1]
+    @difficulty = @level[@adventure.difficulty - 1]
 
     @markers = @adventure.address
       {

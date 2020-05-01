@@ -14,6 +14,7 @@
         </button>
       </div>
      <%= simple_form_for :search, url: search_path, method: :get do |f| %>
+      <% f.input :query, as: :hidden, input_html: { name: "query" }, value: @params[:query] %>
       <div class="modal-body">
         <div class="form-inputs">
           <%= f.input :category, collection: ['hiking trail', 'bike path'], input_html: { name: "category" } %>

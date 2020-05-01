@@ -69,7 +69,7 @@ bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrib
 #     adventure_args = {
 #     title: "#{good.sample.capitalize} #{%w{activity adventure memories memory trip experience experiences fun times time}.sample} #{%w{near close\ to in around by}.sample} #{place.first.city}",
 #     address: place.first.address,
-#     description: ["This will be a #{good.sample} time with your mini and you will see #{good.sample} things. Don't feed the #{%w{bears sheep cows gremlins\ after \midnight}.sample}...", "Your #{good.sample} kids can run around free with not a care in the world. Check out the #{%w{trees local\ jams cheese cows chocolate watches bears fish leprechauns}.sample}!", "Enjoy this #{good.sample} #{%w{activity adventure memory trip experience fun time}.sample} with your family. Watch out for wildlife!"].sample,
+#     description: ["This will be a #{good.sample} time with your mini and you will see #{good.sample} things. Don't feed the #{%w{bears sheep cows gremlins\ after\ midnight}.sample}...", "Your #{good.sample} kids can run around free with not a care in the world. Check out the #{%w{trees local\ jams cheese cows chocolate watches bears fish leprechauns}.sample}!", "Enjoy this #{good.sample} #{%w{activity adventure memory trip experience fun time}.sample} with your family. Watch out for wildlife!"].sample,
 #     category: ["hiking trail", "bike path"].sample,
 #     distance: rand(0.1..15.0).round(1),
 #     avg_duration: (20..240).to_a.sample,
