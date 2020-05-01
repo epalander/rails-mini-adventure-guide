@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
-      redirect_to adventures_path(@adventure), notice: "Thank you for submitting your review"
+      redirect_to adventure_path(@adventure), notice: "Thank you for submitting your review"
     else
       render :new
     end
