@@ -13,41 +13,34 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= simple_form_for :search, url: search_path, method: :get do |f| %>
+     <%= simple_form_for :search, url: search_path, method: :get do |f| %>
       <div class="modal-body">
         <div class="form-inputs">
-          <%= f.input :category, collection: ['hiking trail', 'biking path'] %>
+          <%= f.input :category, collection: ['hiking trail', 'bike path'], input_html: { name: "category" } %>
         </div>
-
         <div class="form-inputs">
-          <%= f.input :distance, hint: 'Please use kilometers for now.' %>
+          <%= f.input :distance, hint: 'Please use kilometers for now.', input_html: { name: "distance" } %>
         </div>
-
         <div class="form-inputs">
-          <%= f.input :youngest_age, hint: 'For babies under one year, select \'0\'', label: "Recommended age of the youngest adventurer", collection: [[0 , 'under < 1 year (not able to walk well or at all)'], [1, '1-3 years (walkers in training)'], [2, '4-6 years (can walk well, but probably not far)'], [3, '7-11 years (moderate distances)'], [4, '12-15 (moderate to long distances)'], [5, '16+ years (essentially mini adults)']], label_method: :second, value_method: :first %>
+          <%= f.input :youngest_age, hint: 'For babies under one year, select \'0\'', input_html: { name: "youngest_age" }, label: "Recommended age of the youngest adventurer", collection: [[0 , 'under < 1 year (not able to walk well or at all)'], [1, '1-3 years (walkers in training)'], [2, '4-6 years (can walk well, but probably not far)'], [3, '7-11 years (moderate distances)'], [4, '12-15 (moderate to long distances)'], [5, '16+ years (essentially mini adults)']], label_method: :second, value_method: :first %>
         </div>
-
         <div class="form-inputs">
-          <%= f.input :difficulty, collection: [[1 , 'Easy (didn\'t even break a sweat)'], [2, 'Moderate (a good workout)'], [3, 'Challenging (plan ahead, hard work)']], label_method: :second, value_method: :first  %>
+          <%= f.input :difficulty, input_html: { name: "difficulty" }, collection: [[1 , 'Easy (didn\'t even break a sweat)'], [2, 'Moderate (a good workout)'], [3, 'Challenging (plan ahead, hard work)']], label_method: :second, value_method: :first  %>
         </div>
-
         <div class="form-inputs">
-          <%= f.input :stroller_friendly,label: 'Is this adventure stroller or bike trailer friendly?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
+          <%= f.input :stroller_friendly, input_html: { name: "stroller_friendly" }, label: 'Is this adventure stroller or bike trailer friendly?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
         </div>
-
         <div class="form-inputs">
-          <%= f.input :public_transport,label: 'Is this adventure close to public transport?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
+          <%= f.input :public_transport, input_html: { name: "public_transport" },label: 'Is this adventure close to public transport?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
         </div>
-
         <div class="form-inputs">
-          <%= f.input :parking,label: 'Is this adventure close to parking?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
+          <%= f.input :parking, input_html: { name: "parking" } ,label: 'Is this adventure close to parking?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
         </div>
       </div>
-
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save filters</button>
-        <%= f.button :submit, class: "btn btn-primary" %>
+    <!--     <%= f.button :submit, class: "btn btn-primary" %> -->
       </div>
       <% end %>
     </div>

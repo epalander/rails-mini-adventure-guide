@@ -14,13 +14,19 @@ class AdventuresController < ApplicationController
   end
 
   def search
-    @params = permitted_params
-    # raise
-    search_params = permitted_params[:search]
-    @results = Adventure.search_by_title_and_category(search_params[:query])
+
+    @results = Adventure.all
+    @params = search_params
+    @results = @results.search_by_title_and_category(search_params[:query]) if search_params[:query].present?
     @results = @results.filter_by_parking if search_params[:parking] == "true"
     @results = @results.filter_by_public_transport if search_params[:public_transport] == "true"
     @results = @results.filter_by_stroller_friendly if search_params[:stroller_friendly] == "true"
+    @results = @results.filter_by_category(search_params[:category]) if search_params[:category]
+    # @results = Adventure.search_by_title_and_category(params[:query])
+    # @params = search_params
+    # @results = @results.filter_by_parking if params[:parking] == "true"
+    # @results = @results.filter_by_public_transport if params[:public_transport] == "true"
+    # @results = @results.filter_by_stroller_friendly if params[:stroller_friendly] == "true"
     # @results = @results.filter_by_difficulty(1, 2, 3)
     # @results = @results.filter_by_youngest_age(1, 2, 3, 4, 5)
     # @results = @results.filter_by_distance(1..100)
@@ -71,8 +77,8 @@ class AdventuresController < ApplicationController
 
   private
 
-  def permitted_params
-    params.permit(search:[:query, :parking, :public_transport, :stroller_friendly, :difficulty, :youngest_age, :distance, :category])
+  def search_params
+    params.permit(:query, :parking, :public_transport, :stroller_friendly, :difficulty, :youngest_age, :distance, :category)
   end
 
   def adventure_params
