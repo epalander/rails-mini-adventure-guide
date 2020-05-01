@@ -1,7 +1,7 @@
 class AdventuresController < ApplicationController
   def index
     @adventures = Adventure.all
-    @top_adventures = @adventures.sort_by { |a| a.avg_rating }.last(5)
+    @top_adventures = Adventure.all.first(5) #@adventures.sort_by { |a| a.avg_rating }.last(5)
 
     # @adventures = Adventure.geocoded  # returns Adventures with coordinates
 
