@@ -28,19 +28,19 @@
           <%= f.input :difficulty, input_html: { name: "difficulty" }, collection: [[1 , 'Easy (didn\'t even break a sweat)'], [2, 'Moderate (a good workout)'], [3, 'Challenging (plan ahead, hard work)']], label_method: :second, value_method: :first  %>
         </div>
         <div class="form-inputs">
-          <%= f.input :stroller_friendly, input_html: { name: "difficulty" }, label: 'Is this adventure stroller or bike trailer friendly?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
+          <%= f.input :stroller_friendly, input_html: { name: "stroller_friendly" }, label: 'Is this adventure stroller or bike trailer friendly?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
         </div>
         <div class="form-inputs">
-          <%= f.input :public_transport, input_html: { name: "difficulty" },label: 'Is this adventure close to public transport?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
+          <%= f.input :public_transport, input_html: { name: "public_transport" },label: 'Is this adventure close to public transport?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
         </div>
         <div class="form-inputs">
-          <%= f.input :parking, input_html: { name: "difficulty" } ,label: 'Is this adventure close to parking?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
+          <%= f.input :parking, input_html: { name: "parking" } ,label: 'Is this adventure close to parking?', as: :radio_buttons, collection: [[true , 'Yes'], [false, 'No']], label_method: :second, value_method: :first %>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save filters</button>
-        <%= f.button :submit, class: "btn btn-primary" %>
+    <!--     <%= f.button :submit, class: "btn btn-primary" %> -->
       </div>
       <% end %>
     </div>
