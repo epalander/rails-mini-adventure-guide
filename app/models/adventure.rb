@@ -10,8 +10,8 @@ class Adventure < ApplicationRecord
   end
 
   include PgSearch::Model
-  pg_search_scope :search_by_title_and_category,
-    against: [ :title, :category ],
+  pg_search_scope :search_by_title_description_and_category,
+    against: [ :title, :category, :description ],
     using: {
       tsearch: { prefix: true }
     }
