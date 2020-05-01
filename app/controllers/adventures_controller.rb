@@ -1,10 +1,8 @@
 class AdventuresController < ApplicationController
   def index
     @adventures = Adventure.all
-
     @top_adventures = Adventure.all.first(5) #@adventures.sort_by { |a| a.avg_rating }.last(5)
-
-    # @adventures = Adventure.geocoded  # returns Adventures with coordinates
+    # # @adventures = Adventure.geocoded  # returns Adventures with coordinates
 
     @markers = @adventures.map do |adventure|
       {
@@ -15,7 +13,6 @@ class AdventuresController < ApplicationController
   end
 
   def search
-
     @results = Adventure.all
     @params = search_params
     @results = @results.search_by_title_description_and_category(search_params[:query]) if search_params[:query].present?
@@ -31,7 +28,6 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.find(params[:id])
-
     @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
     @level = ["Easy", "Moderate", "Challenging"]
     @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
@@ -54,6 +50,7 @@ class AdventuresController < ApplicationController
 
   def create
     @adventure = Adventure.new(adventure_params)
+    authorize @adventure
     if @adventure.save
       redirect_to adventure_path(@adventure)
     else

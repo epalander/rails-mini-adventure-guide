@@ -14,9 +14,9 @@ User.destroy_all
 
 
 puts "Seeding users"
-user1 = User.create!(email: "lalala@gmail.com", password: "hellocucumber")
-user2 = User.create!(email: "somebody@gmail.com", password: "password123")
-user3 = User.create!(email: "dallas@hotmail.com", password: "yeehaw2020")
+user1 = User.create!(email: "lalala@gmail.com", password: "hellocucumber", admin: true)
+user2 = User.create!(email: "somebody@gmail.com", password: "password123", admin: false)
+user3 = User.create!(email: "dallas@hotmail.com", password: "yeehaw2020", admin: false)
 
 puts "Seeding original adventures"
 Adventure.create!(title:"Rigi Trail Hike", address:"Naseggstrasse 4-6, 6415 Arth", description: "beautiful views and easy hike", category:"hiking trail", distance: 2, avg_duration: 60, stroller_friendly: true, youngest_age: 3, difficulty: 2, parking: true, public_transport: true, directions: "straight ahead and to the right")
