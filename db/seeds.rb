@@ -102,13 +102,15 @@ end
 
 adventures = Adventure.all
 
+users = User.all
+
 adventures.each do |adventure|
   rand(3..5).times do
     good_review_args = {
       rating:rand(3..5),
       tagline: ["#{good_adjective.sample.capitalize} #{adventure.category} #{%w{for with}.sample} #{%w{kids the\ family}.sample}", "Could not be more #{good_adjective.sample.upcase}!", "#{%w{Simply Just}.sample} #{good_adjective.sample}", "#{good_adjective.sample.capitalize}!"].sample,
       content: gen_review_content(good_adjective),
-      user_id: rand(1..3),
+      user_id: users.sample.id,
       adventure_id: adventure.id,
       difficulty: rand(1..3),
       duration: [(adventure.avg_duration - rand(0..15)), (adventure.avg_duration + rand(0..20))].sample,
@@ -121,7 +123,7 @@ adventures.each do |adventure|
       rating:rand(1..2),
       tagline:["#{%w{omg jeez ugh}.sample}...#{bad_adjective.sample} #{%w{activity adventure memories memory trip experience experiences times time}.sample}", "Don't go!", "Just don't.", "Everyone was crying.", "#{%w{omg jeez ugh fml}.sample.capitalize}!", bad_adjective.sample.upcase].sample,
       content: gen_review_content(bad_adjective),
-      user_id: rand(1..3),
+      user_id: users.sample.id,
       adventure_id: adventure.id,
       difficulty: 3,
       duration: adventure.avg_duration + rand(20..60),
