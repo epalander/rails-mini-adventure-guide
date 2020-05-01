@@ -33,7 +33,7 @@ class AdventuresController < ApplicationController
     @adventure = Adventure.find(params[:id])
 
     @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
-
+    @level = ["Easy", "Moderate", "Challenging"]
     @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
     @parking = @adventure.parking ? 'Available' : 'Not available'
     @public_transport = @adventure.public_transport ? 'Available' : 'Not available'
@@ -50,12 +50,10 @@ class AdventuresController < ApplicationController
 
   def new
     @adventure = Adventure.new
-    authorize @adventure
   end
 
   def create
     @adventure = Adventure.new(adventure_params)
-    authorize @adventure
     if @adventure.save
       redirect_to adventure_path(@adventure)
     else
