@@ -26,6 +26,11 @@
   padding: 16px;
 }
 
+.card-product-infos a {
+  color: rgb(100, 100, 100);
+  font-weight: bold;
+}
+
 .icon-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
