@@ -15,7 +15,7 @@ class AdventuresController < ApplicationController
 
   def search
     @params = permitted_params
-    raise
+    # raise
     search_params = permitted_params[:search]
     @results = Adventure.search_by_title_and_category(search_params[:query])
     @results = @results.filter_by_parking if search_params[:parking] == "true"
