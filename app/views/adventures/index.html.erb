@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url(https://images.unsplash.com/photo-1563543054715-4f60d55bccb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=1350&q=80);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url(https://images.unsplash.com/photo-1563543054715-4f60d55bccb8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=1350&q=80);">
   <div class="container">
     <h1>Mini Adventure Guide</h1>
       <p>Plan mini adventures.</p>
@@ -29,10 +29,10 @@
 
     <div class="col-12">
       <h2>Top 5 Mini Adventures</h2>
-      <% @top_adventures.each do |adventure| %>
+      <% @top_adventures.each_with_index do |adventure, index| %>
         <div class="card-product">
-        <img src="https://images.unsplash.com/photo-1566834945200-3d65598f940c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"/>
-          <div class="card-product-infos">
+        <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+          <div class="card-product-infos", style="width:70%">
             <div><%= link_to adventure.title, adventure_path(adventure) %></div>
           </div>
         </div>
