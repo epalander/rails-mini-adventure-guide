@@ -1,12 +1,12 @@
-<div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.0)), url(https://images.pexels.com/photos/130111/pexels-photo-130111.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);">
+<div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url(https://loremflickr.com/500/200/landscape); color:#fdef01;">
   <div class="container">
     <h1><%= @adventure.title %></h1>
   </div>
 </div>
 
 <div class="container">
-  <div class="container-adventure">
-    <div class="container-main">
+  <div class="container-adventure pb-3">
+    <div class="container-main ">
       <div class="icon-cards">
           <p><i class="fas fa-award"></i>  <%= @adventure.category %></p>
           <p><i class="fas fa-mountain"></i>  <%= @difficulty %></p>
@@ -36,10 +36,10 @@
 
     <div class="container m-7">
       <h2>Reviews</h2>
-      <% @adventure.reviews.each do |review|  %>
+      <% @adventure.reviews.each_with_index do |review, index|  %>
         <div class="card-product">
-          <img src="https://images.pexels.com/photos/3933915/pexels-photo-3933915.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
-          <div class="card-product-infos">
+          <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
+          <div class="card-product-infos", style="width:85%;">
             <p><strong><%= review.tagline %></strong> (<%= review.rating %>*)</p>
             <p><%= review.content %></p>
             <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>

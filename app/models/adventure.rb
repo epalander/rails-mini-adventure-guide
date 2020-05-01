@@ -10,8 +10,8 @@ class Adventure < ApplicationRecord
   end
 
   include PgSearch::Model
-  pg_search_scope :search_by_title_and_category,
-    against: [ :title, :category ],
+  pg_search_scope :search_by_title_description_and_category,
+    against: [ :title, :category, :description ],
     using: {
       tsearch: { prefix: true }
     }
@@ -19,9 +19,9 @@ class Adventure < ApplicationRecord
   scope :filter_by_parking, -> { where parking: true }
   scope :filter_by_public_transport, -> { where public_transport: true }
   scope :filter_by_stroller_friendly, -> { where stroller_friendly: true }
-  # scope :filter_by_youngest_age, -> (youngest_age) { where youngest_age: youngest_age }
-  # scope :filter_by_difficulty, -> (difficulty) { where difficulty: difficulty }
-  # scope :filter_by_distance, -> (distance) { where distance: distance }
-  # scope :filter_by_category, -> (category) { where category: category }
+  scope :filter_by_youngest_age, -> (youngest_age) { where youngest_age: youngest_age }
+  scope :filter_by_difficulty, -> (difficulty) { where difficulty: difficulty }
+  scope :filter_by_distance, -> (distance) { where distance: distance }
+  scope :filter_by_category, -> (category) { where category: category }
 
 end
