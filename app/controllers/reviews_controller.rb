@@ -5,11 +5,13 @@ class ReviewsController < ApplicationController
   def new
     @adventure = Adventure.find(params[:adventure_id])
     @review = Review.new
+    authorize @review
   end
 
   def create
     @adventure = Adventure.find(params[:adventure_id])
     @review = Review.new(review_params)
+    authorize @review
     @review.adventure = @adventure
     @review.user = current_user
 

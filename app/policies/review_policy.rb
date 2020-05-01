@@ -1,10 +1,16 @@
 class ReviewPolicy < ApplicationPolicy
+  # before_action :authenticate_user!
+
   class Scope < Scope
     def resolve
       scope.all
     end
   end
+  def create?
+    return true
+  end
+
   def destroy?
-    user.admin? or not post.published?
+    user.admin?
   end
 end

@@ -42,7 +42,11 @@
           <div class="card-product-infos", style="width:85%;">
             <p><strong><%= review.tagline %></strong> (<%= review.rating %>*)</p>
             <p><%= review.content %></p>
-            <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
+            <% unless current_user.nil? %>
+              <% if policy(Review).destroy? %>
+                <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
+              <% end %>
+            <% end %>
           </div>
         </div>
       <% end %>
