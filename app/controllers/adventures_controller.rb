@@ -14,6 +14,7 @@ class AdventuresController < ApplicationController
   end
 
   def search
+
     @results = Adventure.all
     @params = search_params
     @results = @results.search_by_title_and_category(search_params[:query]) if search_params[:query].present?
