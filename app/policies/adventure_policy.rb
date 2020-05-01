@@ -16,4 +16,7 @@ class AdventurePolicy < ApplicationPolicy
   def show?
     return true
   end
+  def search?
+    return true
+  end
 end

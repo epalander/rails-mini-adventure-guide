@@ -15,6 +15,7 @@ class AdventuresController < ApplicationController
 
   def search
     @results = Adventure.all
+    authorize @results
     @params = search_params
     @results = @results.search_by_title_description_and_category(search_params[:query]) if search_params[:query].present?
     @results = @results.filter_by_parking if search_params[:parking] == "true"
