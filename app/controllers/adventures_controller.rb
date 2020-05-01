@@ -29,13 +29,11 @@ class AdventuresController < ApplicationController
 
   def show
     @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
-    @level = ["Easy", "Moderate", "Challenging"]
     @adventure = Adventure.find(params[:id])
     @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
     @parking = @adventure.parking ? 'Available' : 'Not available'
     @public_transport = @adventure.public_transport ? 'Available' : 'Not available'
-    # @difficulty = @adventure.difficulty = "1" ? 'Easy' : (@adventure.difficulty = "2" ? "Moderate" : 'Challenging')
-    @difficulty = @level[@adventure.difficulty]
+    @difficulty = @adventure.difficulty == "1" ? 'Easy' : (@adventure.difficulty == "2" ? "Moderate" : 'Challenging')
     @youngest_age = @age[@adventure.youngest_age]
 
     @markers = @adventure.address
