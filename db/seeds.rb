@@ -123,7 +123,7 @@ adventures.each do |adventure|
       rating:rand(1..2),
       tagline:["#{%w{omg jeez ugh}.sample}...#{bad_adjective.sample} #{%w{activity adventure memories memory trip experience experiences times time}.sample}", "Don't go!", "Just don't.", "Everyone was crying.", "#{%w{omg jeez ugh fml}.sample.capitalize}!", bad_adjective.sample.upcase].sample,
       content: gen_review_content(bad_adjective),
-      user_id: user.sample.id,
+      user_id: users.sample.id,
       adventure_id: adventure.id,
       difficulty: 3,
       duration: adventure.avg_duration + rand(20..60),
