@@ -29,10 +29,10 @@
 
     <div class="col-12">
       <h2>Top 5 Mini Adventures</h2>
-      <% @top_adventures.each do |adventure| %>
+      <% @top_adventures.each_with_index do |adventure, index| %>
         <div class="card-product">
-        <img src="https://images.unsplash.com/photo-1566834945200-3d65598f940c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"/>
-          <div class="card-product-infos">
+        <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>", height="120, width ="120" >
+          <div class="card-product-infos", style="width:70%">
             <div><%= link_to adventure.title, adventure_path(adventure) %></div>
           </div>
         </div>
