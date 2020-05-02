@@ -9,6 +9,10 @@
     </div>
 
     <div class="form-inputs">
+      <%= f.input :photo, as: :file, hint: "This will be the main adventure picture so pick a good one!", label: "Upload one AMAZING picture of this adventure." %>
+    </div>
+
+    <div class="form-inputs">
       <%= f.input :category, collection: ['hiking trail', 'biking path'] %>
     </div>
 

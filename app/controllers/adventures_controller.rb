@@ -80,6 +80,6 @@ class AdventuresController < ApplicationController
   end
 
   def adventure_params
-    params.require(:adventure).permit(:title, :description, :category, :distance, :stroller_friendly, :youngest_age, :difficulty, :parking, :public_transport, :directions, :address, photos: [])
+    params.require(:adventure).permit(:title, :description, :category, :distance, :avg_duration, :stroller_friendly, :youngest_age, :difficulty, :parking, :public_transport, :directions, :address, :photo)
   end
 end
