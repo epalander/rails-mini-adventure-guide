@@ -1,6 +1,12 @@
 <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url(https://loremflickr.com/500/200/landscape); color:#fdef01;">
   <div class="container">
     <h1><%= @adventure.title %></h1>
+      <% @avg_rating.times do  %>
+        <span class="fas fa-star"></span>
+      <% end %>
+      <% (5 - @avg_rating).times do  %>
+          <span class="far fa-star"></span>
+      <% end %>
   </div>
 </div>
 
