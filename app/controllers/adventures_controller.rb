@@ -17,18 +17,17 @@ class AdventuresController < ApplicationController
   end
 
   def search
-
     @results = Adventure.all
     @params = search_params
-    @results = @results.search_by_title_description_and_category(search_params[:query]) if search_params[:query].present?
+    @results = @results.search_by_title_description_address_and_category(search_params[:query]) if search_params[:query].present?
     @results = @results.filter_by_parking if search_params[:parking] == "true"
     @results = @results.filter_by_public_transport if search_params[:public_transport] == "true"
     @results = @results.filter_by_stroller_friendly if search_params[:stroller_friendly] == "true"
     @results = @results.filter_by_category(search_params[:category]) if search_params[:category].present?
-    # @results = @results.filter_by_difficulty(1, 2, 3)
-    # @results = @results.filter_by_youngest_age(1, 2, 3, 4, 5)
-    # @results = @results.filter_by_distance(1..100)
-    # @results = @results.filter_by_category('hiking trail', 'bike path')
+    @results = @results.filter_by_avg_duration(search_params[:avg_duration]) if search_params[:avg_duration].present?
+    @results = @results.filter_by_youngest_age(search_params[:youngest_age]) if search_params[:youngest_age].present?
+    @results = @results.filter_by_difficulty(search_params[:difficulty]) if search_params[:difficulty].present?
+    @results = @results.filter_by_distance(search_params[:distance]) if search_params[:distance].present?
 
     # @markers = Adventure.near([40.71, 100.23], 20)
     @markers = @results.map do |adventure|
@@ -43,7 +42,6 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.find(params[:id])
-
 
     @reviews = @adventure.reviews
     avg_rating = Adventure
@@ -110,7 +108,7 @@ class AdventuresController < ApplicationController
   private
 
   def search_params
-    params.permit(:query, :parking, :public_transport, :stroller_friendly, :difficulty, :youngest_age, :distance, :category)
+    params.permit(:query, :parking, :public_transport, :stroller_friendly, :difficulty, :youngest_age, :distance, :category, :address, :avg_duration)
   end
 
   def adventure_params

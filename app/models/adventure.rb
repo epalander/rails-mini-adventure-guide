@@ -14,8 +14,8 @@ class Adventure < ApplicationRecord
   end
 
   include PgSearch::Model
-  pg_search_scope :search_by_title_description_and_category,
-    against: [ :title, :category, :description ],
+  pg_search_scope :search_by_title_description_address_and_category,
+    against: [ :title, :category, :description, :address ],
     using: {
       tsearch: { prefix: true }
     }
@@ -27,5 +27,6 @@ class Adventure < ApplicationRecord
   scope :filter_by_difficulty, -> (difficulty) { where difficulty: difficulty }
   scope :filter_by_distance, -> (distance) { where distance: distance }
   scope :filter_by_category, -> (category) { where category: category }
-
+  scope :filter_by_address, -> (address) { where address: address }
+  scope :filter_by_avg_duration, -> (avg_duration) { where avg_duration: avg_duration }
 end
