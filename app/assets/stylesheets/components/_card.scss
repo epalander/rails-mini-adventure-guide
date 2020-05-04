@@ -8,6 +8,10 @@
   margin: 10px;
 }
 
+.card-product:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+}
+
 .card-product img {
   height: 100%;
   width: 120px;
@@ -29,6 +33,10 @@
 .card-product-infos a {
   color: rgb(100, 100, 100);
   font-weight: bold;
+}
+
+.card-product-infos a:hover {
+  text-decoration: none;
 }
 
 .icon-cards {
