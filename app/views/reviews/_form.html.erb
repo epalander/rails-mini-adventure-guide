@@ -1,11 +1,11 @@
 <%= simple_form_for [@adventure, @review] do |f| %>
 
   <div class="form-inputs">
-    <%= f.input :tagline, label: 'Tagline of your review', hint: 'e.g. Amazing adventure for the entire family' %>
+    <%= f.input :tagline, label: 'Enter a title for your review', hint: 'e.g. Amazing adventure for the entire family' %>
   </div>
 
   <div class="form-inputs">
-    <%= f.input :content, label: 'Add a description of your adventure', hint: 'Tell us a bit more the adventure about the path, points to stop or anything intersting on the way, etc. ' %>
+    <%= f.input :content, label: 'Enter a description of the adventure you would like to review', hint: 'Tell us a bit more the adventure about the path, points to stop or anything intersting on the way, etc. ' %>
   </div>
 
   <div class="form-inputs">
@@ -25,7 +25,7 @@
   </div>
 
   <div class="form-inputs">
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.input :photos, as: :file, label: "You can attach a few AMAZING photos to your review.", input_html: { multiple: true } %>
   </div>
 
   <div class="form-actions btn btn-primary mt-4">

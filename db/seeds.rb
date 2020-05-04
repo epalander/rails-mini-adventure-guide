@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require_relative "adventures_seed"
+require_relative "longer_descriptdirect_adventures_seed"
 
 puts "Cleaning reviews, adventures, users"
 Review.destroy_all
@@ -43,9 +43,9 @@ bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrib
 # end
 # puts "Finished generating random locations in Zurich"
 
-# # #### Lausanne
-# # ## Top Left: 46.625335, 6.570462
-# # ## Bottom Right: 46.512499, 6.760876
+# # # #### Lausanne
+# # # ## Top Left: 46.625335, 6.570462
+# # # ## Bottom Right: 46.512499, 6.760876
 # puts "Generating random locations in Lausanne"
 # lausanne = []
 # 30.times do
@@ -53,9 +53,9 @@ bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrib
 # end
 # puts "Finished generating random locations in Lausanne"
 
-# #### Switzerland
-# ## 47.691867, 5.901837
-# ## 46.3328867,10.4005823
+# # #### Switzerland
+# # ## 47.691867, 5.901837
+# # ## 46.3328867,10.4005823
 # puts "Generating random locations in Switzerland"
 # switzerland = []
 # 40.times do
@@ -69,7 +69,7 @@ bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrib
 #     adventure_args = {
 #     title: "#{good.sample.capitalize} #{%w{activity adventure memories memory trip experience experiences fun times time}.sample} #{%w{near close\ to in around by}.sample} #{place.first.city}",
 #     address: place.first.address,
-#     description: ["This will be a #{good.sample} time with your mini and you will see #{good.sample} things. Don't feed the #{%w{bears sheep cows gremlins\ after\ midnight}.sample}...", "Your #{good.sample} kids can run around free with not a care in the world. Check out the #{%w{trees local\ jams cheese cows chocolate watches bears fish leprechauns}.sample}!", "Enjoy this #{good.sample} #{%w{activity adventure memory trip experience fun time}.sample} with your family. Watch out for wildlife!"].sample,
+#     description: "#{["This will be a #{good.sample} time with your mini and you will see #{good.sample} things. Don't feed the #{%w{bears sheep cows gremlins\ after\ midnight}.sample}...", "Your #{good.sample} kids can run around free with not a care in the world. Check out the #{%w{trees local\ jams cheese cows chocolate watches bears fish leprechauns}.sample}!", "Enjoy this #{good.sample} #{%w{activity adventure memory trip experience fun time}.sample} with your family. Watch out for wildlife!"].sample} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote}",
 #     category: ["hiking trail", "bike path"].sample,
 #     distance: rand(0.1..15.0).round(1),
 #     avg_duration: (20..240).to_a.sample,
@@ -78,19 +78,22 @@ bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrib
 #     difficulty: [1, 2, 3].sample,
 #     parking: [true, false].sample,
 #     public_transport: [true, false].sample,
-#     directions: "#{%w{Go Look Walk Twenty\ steps}.sample} #{%w{straight left right straight straight\ ahead east west north south}.sample}. #{["Don't get lost!", "You can't miss it!"].sample}",
+#     directions: "#{%w{Go Look Walk Twenty\ steps}.sample} #{%w{straight left right straight straight\ ahead east west north south}.sample}. #{["Don't get lost!", "You can't miss it!"].sample} #{Faker::TvShows::TwinPeaks.quote} #{Faker::TvShows::TwinPeaks.quote} #{Faker::TvShows::TwinPeaks.quote}",
 #     latitude: place.first.latitude,
 #     longitude: place.first.longitude
 #     }
 #     # Adventure.create!(adventure_args)
+#     adventure_args[:description] = adventure_args[:description][0..599]
+#     adventure_args[:directions] = adventure_args[:directions][0..299]
 #     adventures << adventure_args
 #   end
 #   return adventures
 # end
 # puts "Seeding random Adventures"
-# seed_adventures(switzerland, good_adjective)
-# seed_adventures(zurich, good_adjective)
-# seed_adventures(lausanne, good_adjective)
+# swiss_adv = seed_adventures(switzerland, good_adjective)
+# zurich_adv = seed_adventures(zurich, good_adjective)
+# lausanne_adv = seed_adventures(lausanne, good_adjective)
+# all_adv = swiss_adv + zurich_adv + lausanne_adv
 
 puts "Seeding reviews for each adventure"
 
