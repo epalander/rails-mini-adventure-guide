@@ -1,7 +1,10 @@
 class Adventure < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
+  validates :description, length: { maximum: 600 }
+  validates :directions, length: { maximum: 300 }
   validates :title, :description, :category, :address, :distance, :youngest_age, :difficulty, :stroller_friendly, presence: true
+
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
