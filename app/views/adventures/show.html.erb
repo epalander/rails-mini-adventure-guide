@@ -46,10 +46,11 @@
 
     <div class="container m-7">
       <h2>Reviews</h2>
-      <% @adventure.reviews.each_with_index do |review, index|  %>
+      <% @newest_review_first.each_with_index do |review, index|  %>
         <div class="card-product">
           <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
           <div class="card-product-infos", style="width:85%;">
+            
             <p><strong><%= review.tagline %></strong>
               <% review.rating.to_i.times do  %>
                 <span class="fas fa-star"></span>
@@ -57,6 +58,8 @@
               <% (5 - review.rating.to_i).times do  %>
                 <span class="far fa-star"></span>
               <% end %>
+              <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
+
             <p><%= review.content %></p>
             <%= link_to 'Edit a review', edit_review_path(review) %> |
             <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
