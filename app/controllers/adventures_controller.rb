@@ -31,7 +31,21 @@ class AdventuresController < ApplicationController
   def show
     @adventure = Adventure.find(params[:id])
 
-    # show right value in the icon overview on the show page
+
+    @reviews = @adventure.reviews
+    avg_rating = Adventure
+
+    # average rating
+    ratings = []
+    @adventure.reviews.each_with_index do |review, index|
+      ratings << review.rating.to_i
+    end
+    ratings_count = ratings.count
+    ratings_sum = ratings.sum
+    @avg_rating = ratings_sum / ratings_count
+
+
+     # show right value in the icon overview on the show page
     @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
     @level = ["Easy", "Moderate", "Challenging"]
     @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
@@ -85,6 +99,6 @@ class AdventuresController < ApplicationController
   end
 
   def adventure_params
-    params.require(:adventure).permit(:title, :description, :category, :distance, :stroller_friendly, :youngest_age, :difficulty, :parking, :public_transport, :directions, :address, photos: [])
+    params.require(:adventure).permit(:title, :description, :category, :distance, :avg_duration, :stroller_friendly, :youngest_age, :difficulty, :parking, :public_transport, :directions, :address, :photo)
   end
 end
