@@ -30,8 +30,6 @@ class AdventuresController < ApplicationController
     # @results = @results.filter_by_distance(1..100)
     # @results = @results.filter_by_category('hiking trail', 'bike path')
 
-
-
     # @markers = Adventure.near([40.71, 100.23], 20)
     @markers = @results.map do |adventure|
       {
