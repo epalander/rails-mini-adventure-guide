@@ -37,11 +37,11 @@ bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrib
 # ## Top Left: 47.470644, 8.408002
 # ## Bottom Right: 47.309827, 8.637376
 # puts "Generating random locations in Zurich"
-# zurich = []
-# 30.times do
-#   zurich << Geocoder.search([rand(47.309827..47.470644).round(6), rand(8.408002..8.637376).round(6)])
-# end
-# puts "Finished generating random locations in Zurich"
+zurich = []
+2.times do
+  zurich << Geocoder.search([rand(47.309827..47.470644).round(6), rand(8.408002..8.637376).round(6)])
+end
+puts "Finished generating random locations in Zurich"
 
 # # #### Lausanne
 # # ## Top Left: 46.625335, 6.570462
@@ -63,30 +63,30 @@ bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrib
 # end
 # puts "Finished generating random locations in Switzerland"
 
-# def seed_adventures(local, good)
-#   adventures = []
-#   local.each do |place|
-#     adventure_args = {
-#     title: "#{good.sample.capitalize} #{%w{activity adventure memories memory trip experience experiences fun times time}.sample} #{%w{near close\ to in around by}.sample} #{place.first.city}",
-#     address: place.first.address,
-#     description: ["This will be a #{good.sample} time with your mini and you will see #{good.sample} things. Don't feed the #{%w{bears sheep cows gremlins\ after\ midnight}.sample}...", "Your #{good.sample} kids can run around free with not a care in the world. Check out the #{%w{trees local\ jams cheese cows chocolate watches bears fish leprechauns}.sample}!", "Enjoy this #{good.sample} #{%w{activity adventure memory trip experience fun time}.sample} with your family. Watch out for wildlife!"].sample,
-#     category: ["hiking trail", "bike path"].sample,
-#     distance: rand(0.1..15.0).round(1),
-#     avg_duration: (20..240).to_a.sample,
-#     stroller_friendly: [true, false].sample,
-#     youngest_age: (0..5).to_a.sample,
-#     difficulty: [1, 2, 3].sample,
-#     parking: [true, false].sample,
-#     public_transport: [true, false].sample,
-#     directions: "#{%w{Go Look Walk Twenty\ steps}.sample} #{%w{straight left right straight straight\ ahead east west north south}.sample}. #{["Don't get lost!", "You can't miss it!"].sample}",
-#     latitude: place.first.latitude,
-#     longitude: place.first.longitude
-#     }
-#     # Adventure.create!(adventure_args)
-#     adventures << adventure_args
-#   end
-#   return adventures
-# end
+def seed_adventures(local, good)
+  adventures = []
+  local.each do |place|
+    adventure_args = {
+    title: "#{good.sample.capitalize} #{%w{activity adventure memories memory trip experience experiences fun times time}.sample} #{%w{near close\ to in around by}.sample} #{place.first.city}",
+    address: place.first.address,
+    description: "#{["This will be a #{good.sample} time with your mini and you will see #{good.sample} things. Don't feed the #{%w{bears sheep cows gremlins\ after\ midnight}.sample}...", "Your #{good.sample} kids can run around free with not a care in the world. Check out the #{%w{trees local\ jams cheese cows chocolate watches bears fish leprechauns}.sample}!", "Enjoy this #{good.sample} #{%w{activity adventure memory trip experience fun time}.sample} with your family. Watch out for wildlife!"].sample} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote} #{Faker::TvShows::GameOfThrones.quote}",
+    category: ["hiking trail", "bike path"].sample,
+    distance: rand(0.1..15.0).round(1),
+    avg_duration: (20..240).to_a.sample,
+    stroller_friendly: [true, false].sample,
+    youngest_age: (0..5).to_a.sample,
+    difficulty: [1, 2, 3].sample,
+    parking: [true, false].sample,
+    public_transport: [true, false].sample,
+    directions: "#{%w{Go Look Walk Twenty\ steps}.sample} #{%w{straight left right straight straight\ ahead east west north south}.sample}. #{["Don't get lost!", "You can't miss it!"].sample} #{Faker::TvShows::TwinPeaks.quote} #{Faker::TvShows::TwinPeaks.quote} #{Faker::TvShows::TwinPeaks.quote}",
+    latitude: place.first.latitude,
+    longitude: place.first.longitude
+    }
+    # Adventure.create!(adventure_args)
+    adventures << adventure_args
+  end
+  return adventures
+end
 # puts "Seeding random Adventures"
 # seed_adventures(switzerland, good_adjective)
 # seed_adventures(zurich, good_adjective)
