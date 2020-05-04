@@ -29,4 +29,5 @@ class Adventure < ApplicationRecord
   scope :filter_by_distance, -> (distance) { where distance: distance }
   scope :filter_by_category, -> (category) { where category: category }
   scope :filter_by_address, -> (address) { where address: address }
+  scope :filter_by_avg_duration, -> (avg_duration) { where avg_duration: avg_duration }
 end
