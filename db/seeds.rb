@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require_relative "longer_descriptdirect_adventures_seed.rb"
+require_relative "longer_descriptdirect_adventures_seed"
 
 puts "Cleaning reviews, adventures, users"
 Review.destroy_all

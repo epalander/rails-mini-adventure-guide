@@ -4,7 +4,8 @@ class Adventure < ApplicationRecord
 
   validates :description, length: { maximum: 600 }
   validates :directions, length: { maximum: 300 }
-  validates :title, :description, :category, :address, :distance, :youngest_age, :difficulty, :stroller_friendly, presence: true
+  validates :title, :description, :category, :address, :distance, :youngest_age, :difficulty, presence: true
+  validates :stroller_friendly, inclusion: { in: [true, false] }
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
