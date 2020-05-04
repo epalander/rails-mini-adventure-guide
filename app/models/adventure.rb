@@ -10,7 +10,11 @@ class Adventure < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
 
   def avg_rating
-    self.reviews.average(:rating)
+    if self.reviews.empty?
+      0
+    else
+      self.reviews.average(:rating)
+    end
   end
 
   include PgSearch::Model
