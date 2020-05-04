@@ -20,16 +20,17 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # def edit
-  # end
+  def edit
+  end
 
-  # def update
-  #   if @review.update(review_params)
-  #     redirect_to adventure_path, notice: 'Your review was successfully updated.'
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+
+    if @review.update(review_params)
+      redirect_to adventure_path(@review.adventure), notice: 'Your review was successfully updated.'
+    else
+      render :edit
+    end
+  end
 
   def destroy
     @review.destroy

@@ -54,6 +54,7 @@
                 <span class="far fa-star"></span>
               <% end %>
             <p><%= review.content %></p>
+            <%= link_to 'Edit a review', edit_review_path(review) %> |
             <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
           </div>
         </div>
