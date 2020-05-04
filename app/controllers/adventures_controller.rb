@@ -3,12 +3,15 @@ class AdventuresController < ApplicationController
     @adventures = Adventure.all
     @top_adventures = Adventure.all.first(5) #@adventures.sort_by { |a| a.avg_rating }.last(5)
 
-    # @adventures = Adventure.geocoded  # returns Adventures with coordinates
+    @adventures_geo = Adventure.geocoded  # returns Adventures with coordinates
+    # @adventures = Adventures.where.not(latitude: nil, longitude: nil)
 
-    @markers = @adventures.map do |adventure|
+    @markers = @adventures_geo.map do |adventure|
       {
         lat: adventure.latitude,
-        lng: adventure.longitude
+        lng: adventure.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
+        image_url: helpers.asset_url('logo_smcompass1.png'),
       }
     end
   end
