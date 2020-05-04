@@ -4,19 +4,23 @@ class Adventure < ApplicationRecord
 
   validates :description, length: { maximum: 600 }
   validates :directions, length: { maximum: 300 }
-  validates :title, :description, :category, :address, :distance, :youngest_age, :difficulty, :stroller_friendly, presence: true
+  validates :title, :description, :category, :address, :distance, :youngest_age, :difficulty, presence: true
+  validates :stroller_friendly, inclusion: { in: [true, false] }
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
-  has_many :reviews
 
   def avg_rating
-    self.reviews.average(:rating)
+    if self.reviews.empty?
+      0
+    else
+      self.reviews.average(:rating)
+    end
   end
 
   include PgSearch::Model
-  pg_search_scope :search_by_title_description_and_category,
-    against: [ :title, :category, :description ],
+  pg_search_scope :search_by_title_description_address_and_category,
+    against: [ :title, :category, :description, :address ],
     using: {
       tsearch: { prefix: true }
     }
@@ -28,5 +32,6 @@ class Adventure < ApplicationRecord
   scope :filter_by_difficulty, -> (difficulty) { where difficulty: difficulty }
   scope :filter_by_distance, -> (distance) { where distance: distance }
   scope :filter_by_category, -> (category) { where category: category }
-
+  scope :filter_by_address, -> (address) { where address: address }
+  scope :filter_by_avg_duration, -> (avg_duration) { where avg_duration: avg_duration }
 end

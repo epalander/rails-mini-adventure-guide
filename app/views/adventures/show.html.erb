@@ -1,12 +1,17 @@
 <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url(https://loremflickr.com/500/200/landscape); color:#fdef01;">
   <div class="container">
     <h1><%= @adventure.title %></h1>
-      <% @avg_rating.times do  %>
-        <span class="fas fa-star"></span>
-      <% end %>
-      <% (5 - @avg_rating).times do  %>
-          <span class="far fa-star"></span>
-      <% end %>
+      <% if @avg_rating == 0 %>
+         <%= link_to 'Be the first to review this adventure!', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
+      <% else %>
+        <% @avg_rating.round.times do  %>
+           <span class="fas fa-star"></span>
+         <% end %>
+         <% (5 - @avg_rating.round).times do  %>
+           <span class="far fa-star"></span>
+         <% end %>
+         (<%= @avg_rating.round(1) %>)
+        <% end %>
   </div>
 </div>
 
@@ -15,12 +20,12 @@
     <div class="container-main ">
       <div class="icon-cards">
           <p><i class="fas fa-award"></i>  <%= @adventure.category %></p>
-          <p><i class="fas fa-mountain"></i>  <%= @difficulty %></p>
           <p><i class="fas fa-clock"></i>  <%= @adventure.avg_duration %> min</p>
-          <p><i class="fas fa-hiking"></i>  <%= @adventure.distance %> km</p>
-          <p><i class="fas fa-baby-carriage"></i>  <%= @stroller  %>
           <p><i class="fas fa-child"> </i>  From <%= @youngest_age %></p>
           <p><i class="fas fa-parking"></i>  <%= @parking %></p>
+          <p><i class="fas fa-mountain"></i>  <%= @difficulty %></p>
+          <p><i class="fas fa-hiking"></i>  <%= @adventure.distance %> km</p>
+          <p><i class="fas fa-baby-carriage"></i>  <%= @stroller  %>
           <p><i class="fas fa-bus"></i>  <%= @public_transport %></p>
       </div>
     </div>
@@ -41,6 +46,7 @@
           <!-- <p><%= "#{@adventure.description[0..600]}..." %><br><%= link_to "(Read more)", adventures_path %></p> -->
         <h2>Directions:</h2>
           <p><%= @adventure.directions %></p>
+          <p><%= render 'show_modal', adventure: @adventure %></p>
       </div>
     </div>
 
@@ -50,7 +56,7 @@
         <div class="card-product">
           <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
           <div class="card-product-infos", style="width:85%;">
-            
+
             <p><strong><%= review.tagline %></strong>
               <% review.rating.to_i.times do  %>
                 <span class="fas fa-star"></span>
@@ -61,6 +67,7 @@
               <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
 
             <p><%= review.content %></p>
+            <p><%= render 'review_modal', review: @review %></p>
             <%= link_to 'Edit a review', edit_review_path(review) %> |
             <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
           </div>
