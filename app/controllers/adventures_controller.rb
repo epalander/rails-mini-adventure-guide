@@ -31,7 +31,6 @@ class AdventuresController < ApplicationController
   def show
     @adventure = Adventure.find(params[:id])
 
-
     @reviews = @adventure.reviews
     avg_rating = Adventure
 
