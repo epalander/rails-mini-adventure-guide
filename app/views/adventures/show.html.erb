@@ -1,6 +1,12 @@
 <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url(https://loremflickr.com/500/200/landscape); color:#fdef01;">
   <div class="container">
     <h1><%= @adventure.title %></h1>
+      <% @avg_rating.times do  %>
+        <span class="fas fa-star"></span>
+      <% end %>
+      <% (5 - @avg_rating).times do  %>
+          <span class="far fa-star"></span>
+      <% end %>
   </div>
 </div>
 
@@ -40,7 +46,13 @@
         <div class="card-product">
           <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
           <div class="card-product-infos", style="width:85%;">
-            <p><strong><%= review.tagline %></strong> (<%= review.rating %>*)</p>
+            <p><strong><%= review.tagline %></strong>
+              <% review.rating.to_i.times do  %>
+                <span class="fas fa-star"></span>
+              <% end %>
+              <% (5 - review.rating.to_i).times do  %>
+                <span class="far fa-star"></span>
+              <% end %>
             <p><%= review.content %></p>
             <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
           </div>

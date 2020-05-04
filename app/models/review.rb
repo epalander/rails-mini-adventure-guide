@@ -4,4 +4,5 @@ class Review < ApplicationRecord
   validates :tagline, :content, :rating, presence: true
 
   has_many_attached :photos
+
 end
