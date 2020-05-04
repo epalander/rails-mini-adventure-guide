@@ -11,7 +11,11 @@ class Adventure < ApplicationRecord
   has_many :reviews
 
   def avg_rating
-    self.reviews.average(:rating)
+    if self.reviews.empty?
+      0
+    else
+      self.reviews.average(:rating)
+    end
   end
 
   include PgSearch::Model
