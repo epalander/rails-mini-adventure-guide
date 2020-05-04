@@ -14,16 +14,21 @@
         </button>
       </div>
      <%= simple_form_for :search, url: search_path, method: :get do |f| %>
-      <% f.input :query, as: :hidden, input_html: { name: "query" }, value: @params[:query] %>
       <div class="modal-body">
+        <div class="form-inputs">
+          <%= f.input :query, input_html: { name: "query", value: @params[:query] } %>
+        </div>
         <div class="form-inputs">
           <%= f.input :category, collection: ['hiking trail', 'bike path'], input_html: { name: "category" } %>
         </div>
         <div class="form-inputs">
-          <%= f.input :distance, hint: 'Please use kilometers for now.', input_html: { name: "distance" } %>
+          <%= f.input :avg_duration, label: 'Duration of this adventure', hint: 'Please enter total minutes (1 hour = 60 minutes, 2 hours = 120 minutes, etc.)', input_html: { name: "avg_duration" } %>
         </div>
         <div class="form-inputs">
-          <%= f.input :youngest_age, hint: 'For babies under one year, select \'0\'', input_html: { name: "youngest_age" }, label: "Recommended age of the youngest adventurer", collection: [[0 , 'under < 1 year (not able to walk well or at all)'], [1, '1-3 years (walkers in training)'], [2, '4-6 years (can walk well, but probably not far)'], [3, '7-11 years (moderate distances)'], [4, '12-15 (moderate to long distances)'], [5, '16+ years (essentially mini adults)']], label_method: :second, value_method: :first %>
+          <%= f.input :distance, hint: 'Please use kilometers.', input_html: { name: "distance" } %>
+        </div>
+        <div class="form-inputs">
+          <%= f.input :youngest_age, input_html: { name: "youngest_age" }, label: "Recommended age of the youngest adventurer", collection: [[0 , 'under < 1 year (not able to walk well or at all)'], [1, '1-3 years (walkers in training)'], [2, '4-6 years (can walk well, but probably not far)'], [3, '7-11 years (moderate distances)'], [4, '12-15 years (moderate to long distances)'], [5, '16+ years (essentially mini adults)']], label_method: :second, value_method: :first %>
         </div>
         <div class="form-inputs">
           <%= f.input :difficulty, input_html: { name: "difficulty" }, collection: [[1 , 'Easy (didn\'t even break a sweat)'], [2, 'Moderate (a good workout)'], [3, 'Challenging (plan ahead, hard work)']], label_method: :second, value_method: :first  %>
@@ -41,7 +46,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save filters</button>
-    <!--     <%= f.button :submit, class: "btn btn-primary" %> -->
+<!--         <%= f.button :submit, class: "btn btn-primary" %> -->
       </div>
       <% end %>
     </div>
