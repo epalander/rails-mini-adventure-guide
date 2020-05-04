@@ -29,6 +29,18 @@ class AdventuresController < ApplicationController
     # @results = @results.filter_by_youngest_age(1, 2, 3, 4, 5)
     # @results = @results.filter_by_distance(1..100)
     # @results = @results.filter_by_category('hiking trail', 'bike path')
+
+
+
+    # @markers = Adventure.near([40.71, 100.23], 20)
+    @markers = @results.map do |adventure|
+      {
+        lat: adventure.latitude,
+        lng: adventure.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
+        image_url: helpers.asset_url('logo_smcompass1.png'),
+      }
+    end
   end
 
   def show
@@ -47,8 +59,7 @@ class AdventuresController < ApplicationController
     ratings_sum = ratings.sum
     @avg_rating = ratings_sum / ratings_count
 
-
-     # show right value in the icon overview on the show page
+    # show right value in the icon overview on the show page
     @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
     @level = ["Easy", "Moderate", "Challenging"]
     @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
@@ -58,11 +69,14 @@ class AdventuresController < ApplicationController
     @youngest_age = @age[@adventure.youngest_age - 1]
     @difficulty = @level[@adventure.difficulty - 1]
 
-    @markers = @adventure.address
-      {
-        lat: @adventure.latitude,
-        lng: @adventure.longitude
-      }
+    # marker for the map
+    @markers = [{
+      lat: @adventure.latitude,
+      lng: @adventure.longitude,
+      # infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure}),
+      image_url: helpers.asset_url('logo_smcompass1.png')
+    }]
+
 
     # newest review shown on top
     @newest_review_first = @adventure.reviews.order(created_at: :desc)
