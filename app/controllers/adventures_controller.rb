@@ -17,7 +17,7 @@ class AdventuresController < ApplicationController
 
     @results = Adventure.all
     @params = search_params
-    @results = @results.search_by_title_description_and_category(search_params[:query]) if search_params[:query].present?
+    @results = @results.search_by_title_description_address_and_category(search_params[:query]) if search_params[:query].present?
     @results = @results.filter_by_parking if search_params[:parking] == "true"
     @results = @results.filter_by_public_transport if search_params[:public_transport] == "true"
     @results = @results.filter_by_stroller_friendly if search_params[:stroller_friendly] == "true"
@@ -95,7 +95,7 @@ class AdventuresController < ApplicationController
   private
 
   def search_params
-    params.permit(:query, :parking, :public_transport, :stroller_friendly, :difficulty, :youngest_age, :distance, :category)
+    params.permit(:query, :parking, :public_transport, :stroller_friendly, :difficulty, :youngest_age, :distance, :category, :address)
   end
 
   def adventure_params
