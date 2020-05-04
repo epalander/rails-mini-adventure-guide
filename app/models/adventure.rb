@@ -3,6 +3,7 @@ class Adventure < ApplicationRecord
 
   validates :description, length: { maximum: 600 }
   validates :directions, length: { maximum: 300 }
+  validates :title, :description, :category, :address, :distance, :youngest_age, :difficulty, :stroller_friendly, presence: true
 
 
   geocoded_by :address
