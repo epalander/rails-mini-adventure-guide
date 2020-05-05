@@ -21,11 +21,11 @@
     </div>
 
     <div class="form-inputs">
-      <%= f.input :distance, hint: 'Please use kilometers for now.' %>
+      <%= f.input :distance, collection: 1..10, hint: 'Please use kilometers for now.' %>
     </div>
 
     <div class="form-inputs">
-      <%= f.input :avg_duration, label: 'How long did it take you to do this adventure?', hint: 'Please enter total minutes (1 hour = 60 minutes, 2 hours = 120 minutes, etc.)' %>
+      <%= f.input :avg_duration, collection: [15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 270, 300], label: 'How long did it take you to do this adventure?', hint: 'Please enter total minutes (1 hour = 60 minutes, 2 hours = 120 minutes, etc.)' %>
     </div>
 
     <div class="form-inputs">
