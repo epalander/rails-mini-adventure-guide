@@ -57,7 +57,7 @@ class AdventuresController < ApplicationController
     @parking = @adventure.parking ? 'Available' : 'Not available'
     @public_transport = @adventure.public_transport ? 'Available' : 'Not available'
     # @difficulty = @adventure.difficulty == "1" ? 'Easy' : (@adventure.difficulty == "2" ? "Moderate" : 'Challenging')
-    @youngest_age = @age[@adventure.youngest_age - 1]
+    @youngest_age = @age[@adventure.youngest_age]
     @difficulty = @level[@adventure.difficulty - 1]
 
     # marker for the map

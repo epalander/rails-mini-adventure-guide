@@ -2,8 +2,8 @@ class Adventure < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_one_attached :photo
 
-  validates :description, length: { maximum: 600 }
-  validates :directions, length: { maximum: 300 }
+  validates :description, length: { maximum: 1000 }
+  validates :directions, length: { maximum: 600 }
   validates :title, :description, :category, :address, :distance, :youngest_age, :difficulty, presence: true
   validates :stroller_friendly, inclusion: { in: [true, false] }
 
