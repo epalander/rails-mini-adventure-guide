@@ -9,9 +9,10 @@ require_relative "even_longer_adventurereviews"
 
 puts "Cleaning reviews, adventures, users, and my adventure lists"
 Review.destroy_all
+MyAdventure.destroy_all
 Adventure.destroy_all
 User.destroy_all
-MyAdventure.destroy_all
+
 
 puts "Seeding users"
 user1 = User.create!(email: "lalala@gmail.com", password: "hellocucumber")
