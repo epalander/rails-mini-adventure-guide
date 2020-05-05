@@ -1,4 +1,8 @@
-<div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url(https://loremflickr.com/500/200/landscape); color:#fdef01;">
+<% if @adventure.photo.present? %>
+  <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('<%= cl_image_path @adventure.photo.key %>'); color:#fdef01;">
+<% else %>
+  <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('https://loremflickr.com/500/200/landscape'); color:#fdef01;">
+<% end %>
   <div class="container">
     <h1><%= @adventure.title %></h1>
       <% if @avg_rating == 0 %>
@@ -46,8 +50,6 @@
           <p class="overflow"><%= "#{@adventure.description}" %></p>
         <h3>Directions</h3>
           <p><%= "#{@adventure.directions}" %></p>
-
-
       </div>
 
 
@@ -57,9 +59,12 @@
       <h2>Reviews <span style=" font-size: 16pt">(<%= @ratings_count %> reviews)<span></h2>
       <% @newest_review_first.each_with_index do |review, index|  %>
         <div class="card-product">
-          <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
+          <% if review.photos.present? %>
+            <%= cl_image_tag review.photos.first.key %>
+          <% else %>
+            <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+          <% end %>
           <div class="card-product-infos", style="width:85%;">
-
             <p><strong><%= review.tagline %></strong>
               <% review.rating.to_i.times do %>
                 <span class="fas fa-star"></span>
@@ -69,7 +74,7 @@
               <% end %>
               <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
 
-            <p><%= "#{review.content[0..125]}..." %><br><%= render partial: 'review_modal', locals: {adventure: @adventure, review: review} %></p>
+            <p><%= "#{review.content[0..125]}..." %><br><%= render 'review_modal', review: review, index: index %></p>
             <%= link_to 'Edit a review', edit_review_path(review) %> |
             <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
           </div>

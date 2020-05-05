@@ -33,7 +33,11 @@
       <h2>Top 5 Mini Adventures</h2>
       <% @top_adventures.each_with_index do |adventure, index| %>
         <div class="card-product">
-        <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+          <% if adventure.photo.present? %>
+            <%= cl_image_tag adventure.photo.key %>
+          <% else %>
+            <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+          <% end %>
           <div class="card-product-infos", style="width:70%">
             <div><%= link_to adventure.title, adventure_path(adventure) %>
               <div>
