@@ -66,7 +66,6 @@ class AdventuresController < ApplicationController
 
     # newest review shown on top
     @newest_review_first = @adventure.reviews.order(created_at: :desc)
-    @review = @adventure.reviews.where(params[:id])
   end
 
   def new
