@@ -11,7 +11,7 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('logo_smcompass1.png'),
+        image_url: helpers.asset_url('map_point_yellowoutline.png'),
       }
     end
   end
@@ -35,7 +35,7 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('logo_smcompass1.png'),
+        image_url: helpers.asset_url('map_point_yellowoutline.png'),
       }
     end
   end
@@ -65,8 +65,8 @@ class AdventuresController < ApplicationController
     @markers = [{
       lat: @adventure.latitude,
       lng: @adventure.longitude,
-      # infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure}),
-      image_url: helpers.asset_url('logo_smcompass1.png')
+      infoWindow: render_to_string(partial: "info_window", locals: { adventure: @adventure}),
+      image_url: helpers.asset_url('map_point_yellowoutline.png')
     }]
 
 
