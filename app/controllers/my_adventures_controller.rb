@@ -8,9 +8,11 @@ class MyAdventuresController < ApplicationController
   def new
     @adventure = Adventure.find(params[:adventure_id])
     @my_adventure = MyAdventure.new
+    puts 'I am in the new method for my adventure!'
   end
 
   def create
+    puts 'I am in the CREATE method of my adventure!'
     @my_adventure = My_Adventure.new
     @adventure = Adventure.find(params[:adventure_id])
     @my_adventure.user_id = current_user.id
