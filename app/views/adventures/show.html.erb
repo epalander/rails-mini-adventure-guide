@@ -4,13 +4,13 @@
       <% if @avg_rating == 0 %>
          <%= link_to 'Be the first to review this adventure!', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
       <% else %>
-        <% @avg_rating.round.times do  %>
+        (<%= @avg_rating.round(1) %>) <% @avg_rating.round.times do  %>
            <span class="fas fa-star"></span>
          <% end %>
          <% (5 - @avg_rating.round).times do  %>
            <span class="far fa-star"></span>
          <% end %>
-         (<%= @avg_rating.round(1) %>)
+          <span>(<%= @ratings_count %> reviews)<span>
         <% end %>
   </div>
 </div>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="container m-7">
-      <h2>Reviews</h2>
+      <h2>Reviews <span style=" font-size: 16pt">(<%= @ratings_count %> reviews)<span></h2>
       <% @newest_review_first.each_with_index do |review, index|  %>
         <div class="card-product">
           <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
