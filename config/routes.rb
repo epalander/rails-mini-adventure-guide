@@ -5,9 +5,10 @@ Rails.application.routes.draw do
 
   resources :adventures do
     resources :reviews, only: [:new, :create]
-    resources :my_adventures, only: [:new, :create, :destroy, :index]
+    resources :my_adventures, only: [:new, :create]
   end
   resources :reviews, only: [:edit, :update, :destroy]
+  resources :my_adventures, only: [:destroy, :index]
 
   get "/search" => "adventures#search"
 

@@ -1,6 +1,8 @@
 class MyAdventuresController < ApplicationController
   def index
-<<<<<<< HEAD
+    @myadventures = MyAdventure.where(user_id: current_user)
+    @done_adventures = @myadventures.select{ |myadv| myadv[:done] == true }
+    @saved_adventures = @myadventures.select{ |myadv| myadv[:done] == false }
   end
 
   def new
@@ -23,10 +25,4 @@ class MyAdventuresController < ApplicationController
   def destroy
   end
 
-=======
-    @myadventures = MyAdventure.where(user_id: current_user)
-    @done_adventures = @myadventures.select{ |myadv| myadv[:done] == true }
-    @saved_adventures = @myadventures.select{ |myadv| myadv[:done] == false }
-  end
->>>>>>> master
 end
