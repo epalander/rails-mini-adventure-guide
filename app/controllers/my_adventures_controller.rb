@@ -15,6 +15,7 @@ class MyAdventuresController < ApplicationController
     @adventure = Adventure.find(params[:adventure_id])
     @my_adventure.user_id = current_user.id
     @my_adventure.adventure_id = @adventure.id
+    render 'adventures/show'
     if @my_adventure.save
       redirect_to adventure_path(@adventure)
     else
