@@ -67,7 +67,7 @@
               <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
 
             <p><%= review.content %></p>
-            <p><%= render 'review_modal', review: @review %></p>
+            <p><%= render partial: 'review_modal', locals: {adventure: @adventure, review: review} %></p>
             <%= link_to 'Edit a review', edit_review_path(review) %> |
             <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
           </div>
