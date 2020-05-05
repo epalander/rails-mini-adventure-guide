@@ -38,11 +38,12 @@
             <div><%= link_to adventure.title, adventure_path(adventure) %>
               <div>
               <% adventure.avg_rating.round.times do %>
-                  <span class="fas fa-star"></span>
+                  <span style="font-size: 9pt" class="fas fa-star"></span>
                 <% end %>
                 <% (5 - adventure.avg_rating.round).times do  %>
-                  <span class="far fa-star"></span>
+                  <span style="font-size: 9pt" class="far fa-star"></span>
                 <% end %>
+                <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
               </div>
             </div>
           </div>
