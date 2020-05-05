@@ -80,6 +80,7 @@ class AdventuresController < ApplicationController
 
   def create
     @adventure = Adventure.new(adventure_params)
+    @adventure.user_id = current_user.id
     if @adventure.save
       redirect_to adventure_path(@adventure)
     else
