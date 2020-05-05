@@ -44,7 +44,7 @@
 
         <h3>Starting Point</h3>
           <p><%= @adventure.address  %></p>
-       
+
         <h3>Description:</h3>
           <p class="overflow"><%= "#{@adventure.description[0..600]}..." %></p>
         <h3>Directions:</h3>
@@ -72,7 +72,7 @@
               <% end %>
               <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
 
-            <p><%= "#{review.content[0..125]}..." %><br><%= render partial: 'review_modal', locals: {adventure: @adventure, review: review} %></p>
+            <p><%= "#{review.content[0..125]}..." %><br><%= render 'review_modal', review: review, index: index %></p>
             <%= link_to 'Edit a review', edit_review_path(review) %> |
             <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
           </div>
