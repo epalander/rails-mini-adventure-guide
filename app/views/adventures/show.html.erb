@@ -41,12 +41,19 @@
 
 
       <div class="container mt-3 n">
-        <h2>Description:</h2>
+
+        <h3>Starting Point</h3>
+          <p><%= @adventure.address  %></p>
+       
+        <h3>Description:</h3>
           <p class="overflow"><%= "#{@adventure.description[0..600]}..." %></p>
-        <h2>Directions:</h2>
+        <h3>Directions:</h3>
           <p><%= "#{@adventure.directions[0..300]}..." %></p>
           <p><%= render 'show_modal', adventure: @adventure %></p>
+
       </div>
+
+
     </div>
 
     <div class="container m-7">
