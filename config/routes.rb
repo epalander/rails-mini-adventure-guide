@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get "/search" => "adventures#search"
 
-  resources :my_adventures
+  resources :my_adventures, only: [:new, :create, :destroy, :index]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
