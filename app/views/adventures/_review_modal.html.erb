@@ -1,11 +1,11 @@
 <!-- Button trigger modal -->
 
-<button type="button" data-toggle="modal" data-target="#exampleModalLong1">
+<button type="button" data-toggle="modal" data-target="#exampleModalLong<%= review.id %>">
   View More
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalLong<%= review.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -18,6 +18,14 @@
         <div class="review-information">
           <h4>Content:</h4>
           <%= review.content %>
+          <h4>Photos:</h4>
+          <% if review.photos.present? %>
+            <% review.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+          <% end %>
+          <% else %>
+            <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
+          <% end %>
         </div>
       </div>
       <div class="modal-footer">

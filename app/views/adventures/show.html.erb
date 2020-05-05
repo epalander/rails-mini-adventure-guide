@@ -1,4 +1,8 @@
-<div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url(https://loremflickr.com/500/200/landscape); color:#fdef01;">
+<% if @adventure.photo.present? %>
+  <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('<%= cl_image_path @adventure.photo.key %>'); color:#fdef01;">
+<% else %>
+  <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('https://loremflickr.com/500/200/landscape'); color:#fdef01;">
+<% end %>
   <div class="container">
     <h1><%= @adventure.title %></h1>
       <% if @avg_rating == 0 %>
@@ -37,20 +41,16 @@
           data-markers="<%= @markers.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
+        <h3>Location</h3>
+          <p><%= @adventure.address  %></p>
       </div>
-
 
       <div class="container mt-3 n">
 
-        <h3>Starting Point</h3>
-          <p><%= @adventure.address  %></p>
-
-        <h3>Description:</h3>
-          <p class="overflow"><%= "#{@adventure.description[0..600]}..." %></p>
-        <h3>Directions:</h3>
-          <p><%= "#{@adventure.directions[0..300]}..." %></p>
-          <p><%= render 'show_modal', adventure: @adventure %></p>
-
+        <h3>Description</h3>
+          <p class="overflow"><%= "#{@adventure.description}" %></p>
+        <h3>Directions</h3>
+          <p><%= "#{@adventure.directions}" %></p>
       </div>
 
 
@@ -60,9 +60,12 @@
       <h2>Reviews <span style=" font-size: 16pt">(<%= @ratings_count %> reviews)<span></h2>
       <% @newest_review_first.each_with_index do |review, index|  %>
         <div class="card-product">
-          <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
+          <% if review.photos.present? %>
+            <%= cl_image_tag review.photos.first.key %>
+          <% else %>
+            <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+          <% end %>
           <div class="card-product-infos", style="width:85%;">
-
             <p><strong><%= review.tagline %></strong>
               <% review.rating.to_i.times do %>
                 <span style="font-size: 9pt" class="fas fa-star"></span>
@@ -73,7 +76,7 @@
             <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
 
             <p><%= "#{review.content[0..125]}..." %></p>
-            <%= render partial: 'review_modal', locals: {adventure: @adventure, review: review} %>
+              <%= render 'review_modal', review: review, index: index %>
 
               <%= link_to edit_review_path(review),
                   method: :get do %>
