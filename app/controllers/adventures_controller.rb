@@ -72,7 +72,6 @@ class AdventuresController < ApplicationController
 
     # newest review shown on top
     @newest_review_first = @adventure.reviews.order(created_at: :desc)
-
   end
 
   def new

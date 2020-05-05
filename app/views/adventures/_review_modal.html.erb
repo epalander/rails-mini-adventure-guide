@@ -1,10 +1,11 @@
 <!-- Button trigger modal -->
-<button type="button" data-toggle="modal" data-target="#exampleModalLong">
+
+<button type="button" data-toggle="modal" data-target="#exampleModalLong1">
   View More
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,7 +16,8 @@
       </div>
       <div class="modal-body">
         <div class="review-information">
-          <%= @adventure.title %>
+          <h4>Content:</h4>
+          <%= review.content %>
         </div>
       </div>
       <div class="modal-footer">
