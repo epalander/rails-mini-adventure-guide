@@ -9,6 +9,7 @@ class MyAdventuresController < ApplicationController
 
   def create
     @my_adventure = My_Adventure.new
+    @adventure = Adventure.find(params[:adventure_id])
     @my_adventure.user_id = current_user.id
     @my_adventure.adventure_id = @adventure.id
     if @my_adventure.save
