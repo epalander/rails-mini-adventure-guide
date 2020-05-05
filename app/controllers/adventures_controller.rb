@@ -11,7 +11,7 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('logo_smcompass1.png'),
+        image_url: helpers.asset_url('map_point_yellowoutline.png'),
       }
     end
   end
@@ -35,7 +35,7 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('logo_smcompass1.png'),
+        image_url: helpers.asset_url('map_point_yellowoutline.png'),
       }
     end
   end
@@ -44,8 +44,14 @@ class AdventuresController < ApplicationController
     @adventure = Adventure.find(params[:id])
     @avg_rating = @adventure.avg_rating
 
-    # show right value in the icon overview on the show page
+    # number of ratings
+    ratings = []
+    @adventure.reviews.each do |review|
+      ratings << review.rating.to_i
+    end
+    @ratings_count = ratings.count
 
+    # show right value in the icon overview on the show page
     @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
     @level = ["Easy", "Moderate", "Challenging"]
     @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
@@ -59,14 +65,13 @@ class AdventuresController < ApplicationController
     @markers = [{
       lat: @adventure.latitude,
       lng: @adventure.longitude,
-      # infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure}),
-      image_url: helpers.asset_url('logo_smcompass1.png')
+      infoWindow: render_to_string(partial: "info_window", locals: { adventure: @adventure}),
+      image_url: helpers.asset_url('map_point_yellowoutline.png')
     }]
 
 
     # newest review shown on top
     @newest_review_first = @adventure.reviews.order(created_at: :desc)
-
   end
 
   def new

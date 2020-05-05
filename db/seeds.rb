@@ -7,10 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require_relative "even_longer_adventurereviews"
 
-puts "Cleaning reviews, adventures, users"
+puts "Cleaning reviews, adventures, users, and my adventure lists"
 Review.destroy_all
+MyAdventure.destroy_all
 Adventure.destroy_all
 User.destroy_all
+
 
 puts "Seeding users"
 user1 = User.create!(email: "lalala@gmail.com", password: "hellocucumber")
@@ -28,6 +30,12 @@ ADVENTURES.each do |adventure_args|
   new_adv.user_id = User.all.sample.id
   new_adv.save!
 end
+
+puts "Seeding My Adventures"
+myadv1 = MyAdventure.create!(user_id: User.first.id, adventure_id: Adventure.first.id, done: true)
+myadv2 = MyAdventure.create!(user_id: (User.first.id + 1), adventure_id: (Adventure.first.id + 1), done: false)
+myadv3 = MyAdventure.create!(user_id: (User.first.id + 1), adventure_id: Adventure.first.id, done: true)
+myadv4 = MyAdventure.create!(user_id: User.first.id, adventure_id: (Adventure.first.id + 2), done: false)
 
 good_adjective = %w{adventurous amazing awesome breath-taking excellent fabulous fantastic gorgeous incredible ineffable outstanding perfect remarkable spectaular splendid stellar stupendous unbelievable wonderous}
 bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrible unfortunate depressing disappointing ugly}
