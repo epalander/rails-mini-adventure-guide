@@ -1,4 +1,8 @@
-<div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('<%= cl_image_path @adventure.photo.key %>'); color:#fdef01;">
+<% if @adventure.photo.present? %>
+  <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('<%= cl_image_path @adventure.photo.key %>'); color:#fdef01;">
+<% else %>
+  <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('https://loremflickr.com/500/200/landscape'); color:#fdef01;">
+<% end %>
   <div class="container">
     <h1><%= @adventure.title %></h1>
       <% if @avg_rating == 0 %>
@@ -44,7 +48,7 @@
 
         <h3>Starting Point</h3>
           <p><%= @adventure.address  %></p>
-       
+
         <h3>Description:</h3>
           <p class="overflow"><%= "#{@adventure.description[0..600]}..." %></p>
         <h3>Directions:</h3>
