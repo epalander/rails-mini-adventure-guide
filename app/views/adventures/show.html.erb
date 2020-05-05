@@ -8,13 +8,13 @@
       <% if @avg_rating == 0 %>
          <%= link_to 'Be the first to review this adventure!', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
       <% else %>
-        (<%= @avg_rating.round(1) %>) <% @avg_rating.round.times do  %>
+         <% @avg_rating.round.times do  %>
            <span class="fas fa-star"></span>
          <% end %>
          <% (5 - @avg_rating.round).times do  %>
            <span class="far fa-star"></span>
          <% end %>
-          <span>(<%= @ratings_count %> reviews)<span>
+          <span>(<%= @avg_rating.round(1) %>)<span>
         <% end %>
   </div>
 </div>
@@ -46,6 +46,7 @@
       </div>
 
       <div class="container mt-3 n">
+
         <h3>Description</h3>
           <p class="overflow"><%= "#{@adventure.description}" %></p>
         <h3>Directions</h3>
@@ -67,16 +68,26 @@
           <div class="card-product-infos", style="width:85%;">
             <p><strong><%= review.tagline %></strong>
               <% review.rating.to_i.times do %>
-                <span class="fas fa-star"></span>
+                <span style="font-size: 9pt" class="fas fa-star"></span>
               <% end %>
               <% (5 - review.rating.to_i).times do  %>
-                <span class="far fa-star"></span>
+                <span style="font-size: 9pt" class="far fa-star"></span>
               <% end %>
-              <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
+            <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
 
-            <p><%= "#{review.content[0..125]}..." %><br><%= render 'review_modal', review: review, index: index %></p>
-            <%= link_to 'Edit a review', edit_review_path(review) %> |
-            <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
+            <p><%= "#{review.content[0..125]}..." %></p>
+              <%= render 'review_modal', review: review, index: index %>
+
+              <%= link_to edit_review_path(review),
+                  method: :get do %>
+                <i style="font-size: 9pt" class=" fas fa-pencil-alt"></i>
+                <% end %> |
+              <%= link_to review_path(review),
+                  method: :delete,
+                  data: {confirm: "Are you sure you would like to delete the review?"} do %>
+              <i style="font-size: 9pt" class="fas fa-trash-alt"></i>
+              <% end %>
+
           </div>
         </div>
       <% end %>
