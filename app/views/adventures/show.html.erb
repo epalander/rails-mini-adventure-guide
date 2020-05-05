@@ -4,7 +4,9 @@
   <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('https://loremflickr.com/500/200/landscape'); color:#fdef01;">
 <% end %>
   <div class="container">
-      <%= link_to '+ My Adventures', new_adventure_my_adventure_path(@adventure), remote: true %>
+    <% if current_user.present? %>
+      <%= link_to 'Add to My Adventures List ', new_adventure_my_adventure_path(@adventure), remote: true %>
+    <% end %>
     <h1><%= @adventure.title %></h1>
       <% if @avg_rating == 0 %>
          <%= link_to 'Be the first to review this adventure!', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
