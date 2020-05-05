@@ -1,12 +1,32 @@
-<% @done_adventures.each do |a| %>
-  <h1>DONE</h1>
-  <%= a.user_id %>
-  <%= a.adventure_id %>
-  <%= a.done %>
-<% end %>
+<div class="container col-12 mt-3">
+  <div class="card p-2">
+  <h1>Dashboard</h1>
+  </div>
+</div>
+<div class="container d-flex justify-content-between mt-3">
+  <div class="card col-4">
+    <h1>SAVED</h1>
+    <% @saved_adventures.each do |a| %>
+      <div class="card-product">
+        <%= a.user_id %>
+        <%= a.adventure_id %>
+        <%= a.done %>
+      </div>
+    <% end %>
+  </div>
 
-<% @saved_adventures.each do |a| %>
-  <%= a.user_id %>
-  <%= a.adventure_id %>
-  <%= a.done %>
-<% end %>
+  <div class="card col-4">
+    <% @done_adventures.each do |a| %>
+      <h1>DONE</h1>
+      <%= a.user_id %>
+      <%= a.adventure_id %>
+      <%= a.done %>
+    <% end %>
+  </div>
+
+  <div class="card col-4">
+   <h1>My Adventure Contributions</h1>
+  </div>
+
+
+</div>
