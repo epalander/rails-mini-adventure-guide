@@ -37,15 +37,15 @@
           data-markers="<%= @markers.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
-        <h3>Starting Point</h3>
+        <h3>Location</h3>
           <p><%= @adventure.address  %></p>
       </div>
 
       <div class="container mt-3 n">
-        <h3>Description:</h3>
-          <p class="overflow"><%= "#{@adventure.description}..." %></p>
-        <h3>Directions:</h3>
-          <p><%= "#{@adventure.directions}..." %></p>
+        <h3>Description</h3>
+          <p class="overflow"><%= "#{@adventure.description}" %></p>
+        <h3>Directions</h3>
+          <p><%= "#{@adventure.directions}" %></p>
 
 
       </div>
