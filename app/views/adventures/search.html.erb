@@ -24,8 +24,19 @@
         <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
           <div class="card-product-infos", style="width:70%">
             <div><%= link_to "#{adventure.title.length < 56 ? adventure.title : adventure.title[0..55] + "..."}", adventure_path(adventure) %></div>
-            <p>Category: <%= adventure.category %></p>
-            <p><%= "#{adventure.description[0..37]}..." %><br><%= link_to "(Read more)", adventure_path(adventure) %></p>
+
+            <div>
+              <% adventure.avg_rating.round.times do %>
+                <span style="font-size: 9pt" class="fas fa-star"></span>
+              <% end %>
+              <% (5 - adventure.avg_rating.round).times do  %>
+                <span style="font-size: 9pt" class="far fa-star"></span>
+              <% end %>
+              <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
+            </div>
+ 
+            <p><%= "#{adventure.description[0..60]}..." %><br><%= link_to "(Read more)", adventure_path(adventure) %></p>
+
           </div>
       </div>
     <% end %>
