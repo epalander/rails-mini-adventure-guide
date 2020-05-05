@@ -18,9 +18,9 @@ user2 = User.create!(email: "somebody@gmail.com", password: "password123")
 user3 = User.create!(email: "dallas@hotmail.com", password: "yeehaw2020")
 
 puts "Seeding original adventures"
-Adventure.create!(title:"Rigi Trail Hike", address:"Naseggstrasse 4-6, 6415 Arth", description: "beautiful views and easy hike", category:"hiking trail", distance: 2, avg_duration: 60, stroller_friendly: true, youngest_age: 3, difficulty: 2, parking: true, public_transport: true, directions: "straight ahead and to the right")
-Adventure.create!(title:"Interlaken Hike", address:"Kammistrasse 13, 3800 Interlaken", description: "perfect hike for a weekend with the kids", category:"hiking trail", distance: 3, avg_duration: 80, stroller_friendly: false, youngest_age: 4, difficulty: 3, parking: true, public_transport: true, directions: "straight ahead and to the left")
-Adventure.create!(title:"Geneva Bike Trail", address:"Quai Gustave-Ador, 1207 Genève", description: "peaceful biking trail by the lake", category:"bike path", distance: 5.5, avg_duration: 120, stroller_friendly: true, youngest_age: 2, difficulty: 1, parking: true, public_transport: true, directions: "straight ahead")
+Adventure.create!(user_id: user1.id, title:"Rigi Trail Hike", address:"Naseggstrasse 4-6, 6415 Arth", description: "beautiful views and easy hike", category:"hiking trail", distance: 2, avg_duration: 60, stroller_friendly: true, youngest_age: 3, difficulty: 2, parking: true, public_transport: true, directions: "straight ahead and to the right")
+Adventure.create!(user_id: user2.id, title:"Interlaken Hike", address:"Kammistrasse 13, 3800 Interlaken", description: "perfect hike for a weekend with the kids", category:"hiking trail", distance: 3, avg_duration: 80, stroller_friendly: false, youngest_age: 4, difficulty: 3, parking: true, public_transport: true, directions: "straight ahead and to the left")
+Adventure.create!(user_id: user3.id, title:"Geneva Bike Trail", address:"Quai Gustave-Ador, 1207 Genève", description: "peaceful biking trail by the lake", category:"bike path", distance: 5.5, avg_duration: 120, stroller_friendly: true, youngest_age: 2, difficulty: 1, parking: true, public_transport: true, directions: "straight ahead")
 
 puts "Seeding other adventures from adventures seed"
 ADVENTURES.each do |adventure_args|
