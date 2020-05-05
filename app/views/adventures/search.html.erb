@@ -25,7 +25,7 @@
           <div class="card-product-infos", style="width:70%">
             <div><%= link_to "#{adventure.title.length < 56 ? adventure.title : adventure.title[0..55] + "..."}", adventure_path(adventure) %></div>
             <p>Category: <%= adventure.category %></p>
-            <p><%= "#{adventure.description[0..37]}..." %><br><%= link_to "(Read more)", adventure_path(adventure) %></p>
+            <p><%= "#{adventure.description[0..60]}..." %><br><%= link_to "(Read more)", adventure_path(adventure) %></p>
           </div>
       </div>
     <% end %>
