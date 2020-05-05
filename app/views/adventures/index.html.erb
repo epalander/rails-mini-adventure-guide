@@ -35,7 +35,16 @@
         <div class="card-product">
         <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
           <div class="card-product-infos", style="width:70%">
-            <div><%= link_to adventure.title, adventure_path(adventure) %></div>
+            <div><%= link_to adventure.title, adventure_path(adventure) %>
+              <div>
+              <% adventure.avg_rating.round.times do %>
+                  <span class="fas fa-star"></span>
+                <% end %>
+                <% (5 - adventure.avg_rating.round).times do  %>
+                  <span class="far fa-star"></span>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
         <% end %>
