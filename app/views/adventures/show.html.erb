@@ -86,13 +86,13 @@
             <p><%= "#{review.content[0..125]}..." %><%= render 'review_modal', review: review, index: index %></p>
 
               <% unless current_user.nil? %>
-                <% if policy(Review).edit? %>
+                <% if policy(review).edit? %>
                   <%= link_to edit_review_path(review),
                       method: :get do %>
                     <i style="font-size: 9pt" class=" fas fa-pencil-alt"></i>
                   <% end %>
                 <% end %>
-                <% if policy(Review).destroy? %>
+                <% if policy(review).destroy? %>
                     |
                   <%= link_to review_path(review),
                       method: :delete,
