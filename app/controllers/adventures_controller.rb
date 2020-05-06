@@ -13,7 +13,7 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('map_point_gray_yellowcenter.png'),
+        image_url: helpers.asset_url('map_point_gray_yellowcenter.svg'),
       }
     end
   end
@@ -38,7 +38,7 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('map_point_gray_yellowcenter.png'),
+        image_url: helpers.asset_url('map_point_gray_yellowcenter.svg'),
       }
     end
   end
@@ -73,7 +73,7 @@ class AdventuresController < ApplicationController
       lat: @adventure.latitude,
       lng: @adventure.longitude,
       infoWindow: render_to_string(partial: "info_window", locals: { adventure: @adventure}),
-      image_url: helpers.asset_url('map_point_gray_yellowcenter.png')
+      image_url: helpers.asset_url('map_point_gray_yellowcenter.svg')
     }]
 
 

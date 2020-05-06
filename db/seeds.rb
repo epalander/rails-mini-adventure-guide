@@ -19,11 +19,6 @@ user1 = User.create!(email: "lalala@gmail.com", password: "hellocucumber", admin
 user2 = User.create!(email: "somebody@gmail.com", password: "password123", admin: false)
 user3 = User.create!(email: "dallas@hotmail.com", password: "yeehaw2020", admin: false)
 
-puts "Seeding original adventures"
-Adventure.create!(user_id: user1.id, title:"Rigi Trail Hike", address:"Naseggstrasse 4-6, 6415 Arth", description: "beautiful views and easy hike", category:"hiking trail", distance: 2, avg_duration: 60, stroller_friendly: true, youngest_age: 3, difficulty: 2, parking: true, public_transport: true, directions: "straight ahead and to the right")
-Adventure.create!(user_id: user2.id, title:"Interlaken Hike", address:"Kammistrasse 13, 3800 Interlaken", description: "perfect hike for a weekend with the kids", category:"hiking trail", distance: 3, avg_duration: 80, stroller_friendly: false, youngest_age: 4, difficulty: 3, parking: true, public_transport: true, directions: "straight ahead and to the left")
-Adventure.create!(user_id: user3.id, title:"Geneva Bike Trail", address:"Quai Gustave-Ador, 1207 Genève", description: "peaceful biking trail by the lake", category:"bike path", distance: 5.5, avg_duration: 120, stroller_friendly: true, youngest_age: 2, difficulty: 1, parking: true, public_transport: true, directions: "straight ahead")
-
 puts "Seeding other adventures from adventures seed"
 ADVENTURES.each do |adventure_args|
   new_adv = Adventure.new(adventure_args)
@@ -83,6 +78,19 @@ adventures.each do |adventure|
     Review.create!(bad_review_args)
   end
 end
+
+puts "Seeding original adventures"
+file = URI.open('https://img1.oastatic.com/img2/37379725/max/t.jpg')
+rigi = Adventure.create!(user_id: user1.id, title:"Classic Rigi Hike", address:"Rigi Kulm, 6410 Arth", description: "One of the top 5 hikes around Mount Rigi!  This is an easy walk that doesn't present any particular challenges. It's all downhill and there's a decrease in altitude of around 300 metres. The section between Rigi Kulm and Rigi Staffel features an asphalt path. This easy high-altitude walk features magnificent views out over the Swiss plateau to the Black Forest, the Vosges mountains and the Alps, as well as a breathtaking bird's-eye view over the Lake Lucerne and Lake Zug. Minimum effort for maximum reward – the entire trail is a light descent. The panoramic view from the lookout at Kaenzeli is simply fantastic. Even Queen Victoria of England had nothing but praise for this spectacular location when she visited back in 1868.", category:"hiking trail", distance: 4, avg_duration: 60, stroller_friendly: true, youngest_age: 2, difficulty: 1, parking: true, public_transport: true, directions: "You can reach Rigi Kulm station by cogwheel train from Vitznau or Goldau.  Rigi Kulm (1748 m) – Rigi Staffel (1604 m) – Staffelhoehe (1565 m) – Kaenzeli (1464 m) – Rigi Kaltbad (1436 m)")
+rigi.photo.attach(io: file, filename: 'rigi.jpeg', content_type: 'image/jpeg')
+
+Adventure.create!(user_id: user2.id, title:"Interlaken Hike", address:"Kammistrasse 13, 3800 Interlaken", description: "perfect hike for a weekend with the kids", category:"hiking trail", distance: 3, avg_duration: 80, stroller_friendly: false, youngest_age: 4, difficulty: 3, parking: true, public_transport: true, directions: "straight ahead and to the left")
+Adventure.create!(user_id: user3.id, title:"Geneva Bike Trail", address:"Quai Gustave-Ador, 1207 Genève", description: "peaceful biking trail by the lake", category:"bike path", distance: 5.5, avg_duration: 120, stroller_friendly: true, youngest_age: 2, difficulty: 1, parking: true, public_transport: true, directions: "straight ahead")
+
+puts "Seeding reviews for original adventures"
+rigiReview1 = Review.create!(rating: 5, tagline: "Lovley Hike", content: "Lovely place to go.  Unfortunately we went on a cloudy day.  But still had a beautiful time hiking down the the panorama path.", user_id: user1.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
+rigiReview2 = Review.create!(rating: 5, tagline: "Amazing Views", content: "Rigi the tourist place and one hour away from Zurich. Take a chair lift and train to reach the mountain. Amazing views of Lake and whole Switzerland. It's quiet chilly up their. Do bring warm clothes.", user_id: user2.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
+rigiReview3 = Review.create!(rating: 5, tagline: "Great Day Trip", content: "It is a great day trip starting in Lucern Ferry Terminal, then take cable car from Weggis. Fantastic view from the top on surrounding mountains. I think it will be one of the most beautiful train station on the earth. We did it with young Children and it was an easy walk without difficulties.", user_id: user3.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
 
 puts "Finished!"
 

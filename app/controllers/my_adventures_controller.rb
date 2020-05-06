@@ -4,8 +4,8 @@ class MyAdventuresController < ApplicationController
   def index
     @myadventures = MyAdventure.where(user_id: current_user)
     authorize @myadventures
-    @done_adventures = @myadventures.select{ |myadv| myadv[:done] == true }
     @saved_adventures = @myadventures.select{ |myadv| myadv[:done] == false }
+    @done_adventures = @myadventures.select{ |myadv| myadv[:done] == true }
   end
 
   def new
@@ -26,8 +26,7 @@ class MyAdventuresController < ApplicationController
       redirect_to my_adventures_path, notice: 'Your adventure was added to your list!'
       puts "we saved my adventure!"
     else
-      # render :new, notice: 'Your adventure was NOT added. Something went wrong.'
-      redirect_to my_adventures_path, notice: "something went wrong"
+      redirect_to adventure_path(my_adventure_params[:adventure_id]), notice: "Something went wrong. Adventure NOT saved."
     end
   end
 
