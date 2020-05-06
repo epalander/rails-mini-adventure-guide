@@ -1,8 +1,8 @@
 class MyAdventuresController < ApplicationController
   def index
     @myadventures = MyAdventure.where(user_id: current_user)
-    @saved_adventures = MyAdventure.all
-    @done_adventures = MyAdventure.where(:done == true)
+    @saved_adventures = @myadventures.select{ |myadv| myadv[:done] == false }
+    @done_adventures = @myadventures.select{ |myadv| myadv[:done] == true }
   end
 
   def new
