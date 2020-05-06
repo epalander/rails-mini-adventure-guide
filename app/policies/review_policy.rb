@@ -15,6 +15,6 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? || record.user == user
+    user.admin?
   end
 end
