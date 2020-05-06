@@ -6,6 +6,8 @@ class MyAdventuresController < ApplicationController
     authorize @myadventures
     @saved_adventures = @myadventures.select{ |myadv| myadv[:done] == false }
     @done_adventures = @myadventures.select{ |myadv| myadv[:done] == true }
+    @writtenadventures = Adventure.where(user_id: current_user.id)
+    @myreviews = Review.where(user_id: current_user)
   end
 
   def new
