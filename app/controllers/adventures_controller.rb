@@ -13,7 +13,7 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('logo_smcompass1.png'),
+        image_url: helpers.asset_url('map_point_gray_yellowcenter.png'),
       }
     end
   end
@@ -38,7 +38,7 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('logo_smcompass1.png'),
+        image_url: helpers.asset_url('map_point_gray_yellowcenter.png'),
       }
     end
   end
@@ -49,6 +49,14 @@ class AdventuresController < ApplicationController
     authorize @adventure
 
     @avg_rating = @adventure.avg_rating
+
+    # number of ratings
+    ratings = []
+    @adventure.reviews.each do |review|
+      ratings << review.rating.to_i
+    end
+    @ratings_count = ratings.count
+
 
     # show right value in the icon overview on the show page
     @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
@@ -64,14 +72,13 @@ class AdventuresController < ApplicationController
     @markers = [{
       lat: @adventure.latitude,
       lng: @adventure.longitude,
-      # infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure}),
-      image_url: helpers.asset_url('logo_smcompass1.png')
+      infoWindow: render_to_string(partial: "info_window", locals: { adventure: @adventure}),
+      image_url: helpers.asset_url('map_point_gray_yellowcenter.png')
     }]
 
 
     # newest review shown on top
     @newest_review_first = @adventure.reviews.order(created_at: :desc)
-
   end
 
   def new
@@ -82,6 +89,7 @@ class AdventuresController < ApplicationController
   def create
     @adventure = Adventure.new(adventure_params)
     authorize @adventure
+    @adventure.user_id = current_user.id
     if @adventure.save
       redirect_to adventure_path(@adventure)
     else

@@ -1,16 +1,23 @@
-<div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url(https://loremflickr.com/500/200/landscape); color:#fdef01;">
+<% if @adventure.photo.present? %>
+  <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('<%= cl_image_path @adventure.photo.key %>'); color:#fdef01;">
+<% else %>
+  <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('https://loremflickr.com/500/200/landscape'); color:#fdef01;">
+<% end %>
   <div class="container">
+    <% if current_user.present? %>
+      <%= link_to 'Add to My Adventures List ', new_adventure_my_adventure_path(@adventure), remote: true %>
+    <% end %>
     <h1><%= @adventure.title %></h1>
       <% if @avg_rating == 0 %>
          <%= link_to 'Be the first to review this adventure!', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
       <% else %>
-        <% @avg_rating.round.times do  %>
+         <% @avg_rating.round.times do  %>
            <span class="fas fa-star"></span>
          <% end %>
          <% (5 - @avg_rating.round).times do  %>
            <span class="far fa-star"></span>
          <% end %>
-         (<%= @avg_rating.round(1) %>)
+          <span>(<%= @avg_rating.round(1) %>)<span>
         <% end %>
   </div>
 </div>
@@ -37,44 +44,57 @@
           data-markers="<%= @markers.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
+        <h3>Location</h3>
+          <p><%= @adventure.address  %></p>
       </div>
-
 
       <div class="container mt-3 n">
-        <h2>Description:</h2>
-          <p class="overflow"><%= @adventure.description %></p>
-          <!-- <p><%= "#{@adventure.description[0..600]}..." %><br><%= link_to "(Read more)", adventures_path %></p> -->
-        <h2>Directions:</h2>
-          <p><%= @adventure.directions %></p>
-          <p><%= render 'show_modal', adventure: @adventure %></p>
+
+        <h3>Description</h3>
+          <p class="overflow"><%= "#{@adventure.description}" %></p>
+        <h3>Directions</h3>
+          <p><%= "#{@adventure.directions}" %></p>
       </div>
+
+
     </div>
 
     <div class="container m-7">
-      <h2>Reviews</h2>
+      <h2>Reviews <span style=" font-size: 16pt">(<%= @ratings_count %> reviews)<span></h2>
       <% @newest_review_first.each_with_index do |review, index|  %>
         <div class="card-product">
-          <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
+          <% if review.photos.present? %>
+            <%= cl_image_tag review.photos.first.key %>
+          <% else %>
+            <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+          <% end %>
           <div class="card-product-infos", style="width:85%;">
-
             <p><strong><%= review.tagline %></strong>
-              <% review.rating.to_i.times do  %>
-                <span class="fas fa-star"></span>
+              <% review.rating.to_i.times do %>
+                <span style="font-size: 9pt" class="fas fa-star"></span>
               <% end %>
               <% (5 - review.rating.to_i).times do  %>
-                <span class="far fa-star"></span>
+                <span style="font-size: 9pt" class="far fa-star"></span>
               <% end %>
-              <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
+            <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
 
-            <p><%= review.content %></p>
+            <p><%= "#{review.content[0..125]}..." %><%= render 'review_modal', review: review, index: index %></p>
 
-            <p><%= render 'review_modal', review: @review %></p>
-            <%= link_to 'Edit a review', edit_review_path(review) %> |
-            <% unless current_user.nil? %>
-              <% if policy(Review).destroy? %>
-                <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure you would like to delete the review?"}%>
+
+              <%= link_to edit_review_path(review),
+                  method: :get do %>
+                <i style="font-size: 9pt" class=" fas fa-pencil-alt"></i>
+                <% end %>
+              <% unless current_user.nil? %>
+                <% if policy(Review).destroy? %>
+                    |
+                  <%= link_to review_path(review),
+                      method: :delete,
+                      data: {confirm: "Are you sure you would like to delete the review?"} do %>
+                  <i style="font-size: 9pt" class="fas fa-trash-alt"></i>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% end %>
           </div>
         </div>
       <% end %>
