@@ -23,6 +23,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    authorize @review
   end
 
   def update
