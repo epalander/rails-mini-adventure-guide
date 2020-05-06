@@ -19,3 +19,12 @@
   text-align: center;
   background-color: #F8F8F5;
 }
+
+.marker {
+  background-image: url('map_point_gray_yellowcenter.svg');
+  background-size: cover;
+  width: 18px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
