@@ -22,9 +22,6 @@
             <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
-                <%= a.user_id %>
-                <%= a.adventure_id %>
-                <%= a.done %>
                 <p><%= check_box_tag 'a.adventure_id', a.done, a.done? ? true : false, disabled: a.done? %> <%= a.done == true ? "Been there, done that!" : "Saved for later" %></p>
               </div>
           </div>
@@ -43,9 +40,6 @@
               <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
-                <%= a.user_id %>
-                <%= a.adventure_id %>
-                <%= a.done %>
               </div>
           </div>
         <% end %>
