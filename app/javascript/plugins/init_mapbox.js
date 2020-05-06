@@ -46,7 +46,6 @@ const fitMapToMarkers = (map, markers) => {
     fitMapToMarkers(map, markers);
 
   };
-
 };
 
 const addressInput = document.getElementById("adventure_address");
