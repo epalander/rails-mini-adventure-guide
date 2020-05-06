@@ -3,9 +3,6 @@
   margin-bottom: 10px;
  }
 
-.p {
-  font: 'Open Sans', sans-serif;
-}
 .mapboxgl-popup {
   width: 180px;
   border-radius: 7px;
@@ -18,6 +15,7 @@
 .mapboxgl-popup-content {
   text-align: center;
   background-color: #F8F8F5;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .marker {

@@ -47,8 +47,15 @@ const fitMapToMarkers = (map, markers) => {
     fitMapToMarkers(map, markers);
 
   };
-
 };
 
+const addressInput = document.getElementById("adventure_address");
+
+if (addressInput) {
+  const places = require('places.js');
+  const placesAutocomplete = places({
+    container: addressInput
+  });
+}
 
 export { initMapbox };
