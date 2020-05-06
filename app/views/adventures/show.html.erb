@@ -4,15 +4,9 @@
   <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('https://loremflickr.com/500/200/landscape'); color:#fdef01;">
 <% end %>
   <div class="container">
-
-      <form class="simple_form" id="new_my_adventure" action="/my_adventures" accept-charset="UTF-8" method="post">
-        <input type="hidden" id="user_id" name="user_id" value=<%= current_user.id %>>
-        <input type="hidden" id="adventure_id" name="adventure_id" value= <%= @adventure.id %>>
-        <input type="submit" value="Submit">
-      </form>
-
-
-      <%= simple_form_for(MyAdventure.new(user: current_user, adventure_id: @adventure.id)) do |f| %>
+      <%= simple_form_for(@my_adventure = MyAdventure.new(user_id: current_user.id, adventure_id: @adventure.id)) do |f| %>
+        <% f.input :user_id, value: params[:user_id] %>
+        <% f.input :adventure_id, value: params[:adventure_id] %>
         <div class="form-actions btn btn-primary mt-4">
           <%= f.button :submit , remote: true %>
         </div>
