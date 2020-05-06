@@ -75,8 +75,7 @@
               <% end %>
             <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
 
-            <p><%= "#{review.content[0..125]}..." %></p>
-              <%= render 'review_modal', review: review, index: index %>
+            <p><%= "#{review.content[0..125]}..." %><%= render 'review_modal', review: review, index: index %></p>
 
               <%= link_to edit_review_path(review),
                   method: :get do %>
