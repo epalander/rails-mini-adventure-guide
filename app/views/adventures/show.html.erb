@@ -4,7 +4,7 @@
   <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('https://loremflickr.com/500/200/landscape'); color:#fdef01;">
 <% end %>
 <div id="bookmark">
-   <%= simple_form_for(@my_adventure = MyAdventure.new(user_id: current_user.id, adventure_id: @adventure.id)) do |f| %>
+   <%= simple_form_for(@my_adventure = MyAdventure.new(adventure_id: @adventure.id)) do |f| %>
         <%= f.input :adventure_id, value: params[:adventure_id], as: :hidden %>
         <div class="form-actions btn btn-primary mt-4">
           <%= f.button :submit , "Save this adventure!", remote: true %>
