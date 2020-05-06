@@ -1,5 +1,14 @@
 
-  <img class="info-window-image" src="https://loremflickr.com/120/120/forest?random=">
+<% adventures.each_with_index do |adventure, index| %>
+   <!--  <% if adventure.photo.present? %>
+      <%= cl_image_tag adventure.photo.key %>
+    <% else %> -->
+      <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+
+<% end %>
+
+
+  <!-- <img class="info-window-image" src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>"> -->
   <h6><%= adventure.title %></h6>
   <p><%= adventure.category.capitalize %></p>
 
