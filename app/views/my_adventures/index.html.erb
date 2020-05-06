@@ -22,7 +22,12 @@
             <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
-                <p><%= check_box_tag 'a.adventure_id', a.done, a.done? ? true : false, disabled: a.done? %> <%= a.done == true ? "Been there, done that!" : "Saved for later" %></p>
+                <% check_box_tag 'a.adventure_id', a.done, a.done ? true : false %>
+                <p><%=
+                  check_box_tag 'done', true, a.done,
+                  onchange: "$(this).data('params', 'done=' + this.checked)",
+                  data: { remote: true, url: my_adventure_path(a), method: :patch }
+                %> Done </p>
               </div>
           </div>
         <% end %>
@@ -31,7 +36,6 @@
       <div class="container col-4">
         <h1>DONE</h1>
           <% @done_adventures.each do |a| %>
-            <% if a.done == true %>
             <div class="card-product">
               <% if a.adventure.photo.present? %>
                 <%= cl_image_tag a.adventure.photo.key %>
@@ -43,20 +47,25 @@
               </div>
           </div>
         <% end %>
-        <% end %>
       </div>
 
 
       <div class="container col-4">
         <h1>PUBLISHED</h1>
-        <div class="card-product">
-          <img src="https://loremflickr.com/120/120/nature?random">
-            <div class="card-product-infos", style="width:70%">
-            </div>
-        </div>
-      </div>
-
+        <% @writtenadventures.each do |a| %>
+            <div class="card-product">
+              <% if a.photo.present? %>
+                <%= cl_image_tag a.photo.key %>
+              <% else %>
+                <img src="https://loremflickr.com/120/120/nature?random">
+              <% end %>
+              <div class="card-product-infos", style="width:70%">
+                <a><%= link_to a.title, adventure_path(a) %></a>
+              </div>
+          </div>
+        <% end %>
     </div>
+
   </div>
 
 </div>
