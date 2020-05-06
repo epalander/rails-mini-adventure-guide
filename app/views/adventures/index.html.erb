@@ -17,8 +17,10 @@
 </div>
 
 <div class="container">
+
   <div class="container-adventure-index pt-4 pb-4">
     <div class="container-fluid d-flex justify-content-between">
+
       <div class="container m-7">
         <div id="map"
           style="width: 100%; height: 678px;"
@@ -27,16 +29,29 @@
         </div>
       </div>
 
-      <div class="container m-7">
-
+    <div class="container m-7">
 
     <div class="col-12">
       <h2>Top 5 Mini Adventures</h2>
       <% @top_adventures.each_with_index do |adventure, index| %>
         <div class="card-product">
-        <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+          <% if adventure.photo.present? %>
+            <%= cl_image_tag adventure.photo.key %>
+          <% else %>
+            <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+          <% end %>
           <div class="card-product-infos", style="width:70%">
-            <div><%= link_to adventure.title, adventure_path(adventure) %></div>
+            <div><%= link_to adventure.title, adventure_path(adventure) %>
+              <div>
+              <% adventure.avg_rating.round.times do %>
+                  <span style="font-size: 9pt" class="fas fa-star"></span>
+                <% end %>
+                <% (5 - adventure.avg_rating.round).times do  %>
+                  <span style="font-size: 9pt" class="far fa-star"></span>
+                <% end %>
+                <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
+              </div>
+            </div>
           </div>
         </div>
         <% end %>

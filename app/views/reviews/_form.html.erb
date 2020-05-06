@@ -13,11 +13,11 @@
   </div>
 
   <div class="form-inputs">
-      <%= f.input :duration, hint: 'Please let us know about the approximate hiking time in minutes.' %>
+      <%= f.input :duration, collection: [15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 270, 300], label: 'How long did it take you to do this adventure?', hint: 'Please enter total minutes (1 hour = 60 minutes, 2 hours = 120 minutes, etc.)'  %>
   </div>
 
   <div class="form-inputs">
-      <%= f.input :youngest_age, hint: 'For babies under one year, select \'0\'', label: "Recommended age of the youngest adventurer", collection: [[0 , 'under < 1 year (not able to walk well or at all)'], [1, '1-3 years (walkers in training)'], [2, '4-6 years (can walk well, but probably not far)'], [3, '7-11 years (moderate distances)'], [4, '12-15 (moderate to long distances)'], [5, '16+ years (essentially mini adults)']], label_method: :second, value_method: :first %>
+      <%= f.input :youngest_age, label: "Recommended age of the youngest adventurer", collection: [[0 , 'under < 1 year (not able to walk well or at all)'], [1, '1-3 years (walkers in training)'], [2, '4-6 years (can walk well, but probably not far)'], [3, '7-11 years (moderate distances)'], [4, '12-15 years (moderate to long distances)'], [5, '16+ years (essentially mini adults)']], label_method: :second, value_method: :first %>
     </div>
 
   <div class="form-inputs">

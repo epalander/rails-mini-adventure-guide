@@ -18,7 +18,7 @@ const fitMapToMarkers = (map, markers) => {
     // create map
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/epalander/ck9jryk1r0m9e1io4wn5vyhjk'
+      style: 'mapbox://styles/epalander/ck9v45yjd0msa1iql9fg5c5wp'
     });
 
     // add the markers
@@ -33,8 +33,8 @@ const fitMapToMarkers = (map, markers) => {
       element.className = 'marker';
       element.style.backgroundImage = `url('${marker.image_url}')`;
       element.style.backgroundSize = 'contain';
-      element.style.width = '25px';
-      element.style.height = '25px';
+      element.style.width = '19px';
+      element.style.height = '30px';
 
       // Pass the element as an argument to the new marker
       new mapboxgl.Marker(element)
@@ -42,12 +42,20 @@ const fitMapToMarkers = (map, markers) => {
         .setPopup(popup)
         .addTo(map);
     });
+
     // call the function to fit the map to the marker
     fitMapToMarkers(map, markers);
 
   };
-
 };
 
+const addressInput = document.getElementById("adventure_address");
+
+if (addressInput) {
+  const places = require('places.js');
+  const placesAutocomplete = places({
+    container: addressInput
+  });
+}
 
 export { initMapbox };

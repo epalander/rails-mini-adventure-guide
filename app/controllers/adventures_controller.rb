@@ -1,6 +1,8 @@
 class AdventuresController < ApplicationController
+  before_action :authenticate_user!, only: :new
   def index
     @adventures = Adventure.all
+
     @top_adventures = @adventures.sort_by { |a| a.avg_rating }.last(5)
 
     @adventures_geo = Adventure.geocoded  # returns Adventures with coordinates
@@ -11,13 +13,14 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('logo_smcompass1.png'),
+        image_url: helpers.asset_url('map_point_gray_yellowcenter.svg'),
       }
     end
   end
 
   def search
     @results = Adventure.all
+    authorize @results
     @params = search_params
     @results = @results.search_by_title_description_address_and_category(search_params[:query]) if search_params[:query].present?
     @results = @results.filter_by_parking if search_params[:parking] == "true"
@@ -35,46 +38,58 @@ class AdventuresController < ApplicationController
         lat: adventure.latitude,
         lng: adventure.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure }),
-        image_url: helpers.asset_url('logo_smcompass1.png'),
+        image_url: helpers.asset_url('map_point_gray_yellowcenter.svg'),
       }
     end
   end
 
   def show
     @adventure = Adventure.find(params[:id])
+
+    authorize @adventure
+
     @avg_rating = @adventure.avg_rating
 
-    # show right value in the icon overview on the show page
+    # number of ratings
+    ratings = []
+    @adventure.reviews.each do |review|
+      ratings << review.rating.to_i
+    end
+    @ratings_count = ratings.count
 
+
+    # show right value in the icon overview on the show page
     @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
     @level = ["Easy", "Moderate", "Challenging"]
     @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
     @parking = @adventure.parking ? 'Available' : 'Not available'
     @public_transport = @adventure.public_transport ? 'Available' : 'Not available'
     # @difficulty = @adventure.difficulty == "1" ? 'Easy' : (@adventure.difficulty == "2" ? "Moderate" : 'Challenging')
-    @youngest_age = @age[@adventure.youngest_age - 1]
+    @youngest_age = @age[@adventure.youngest_age]
     @difficulty = @level[@adventure.difficulty - 1]
 
     # marker for the map
     @markers = [{
       lat: @adventure.latitude,
       lng: @adventure.longitude,
-      # infoWindow: render_to_string(partial: "info_window", locals: { adventure: adventure}),
-      image_url: helpers.asset_url('logo_smcompass1.png')
+      infoWindow: render_to_string(partial: "info_window", locals: { adventure: @adventure}),
+      image_url: helpers.asset_url('map_point_gray_yellowcenter.svg')
     }]
 
 
     # newest review shown on top
     @newest_review_first = @adventure.reviews.order(created_at: :desc)
-
   end
 
   def new
     @adventure = Adventure.new
+    authorize @adventure
   end
 
   def create
     @adventure = Adventure.new(adventure_params)
+    authorize @adventure
+    @adventure.user_id = current_user.id
     if @adventure.save
       redirect_to adventure_path(@adventure)
     else
