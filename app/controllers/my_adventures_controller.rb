@@ -13,15 +13,13 @@ class MyAdventuresController < ApplicationController
 
   def create
     puts 'I am in the CREATE method of my adventure!'
-    @my_adventure = My_Adventure.new
-    @adventure = Adventure.find(params[:adventure_id])
-    @my_adventure.user_id = current_user.id
-    @my_adventure.adventure_id = @adventure.id
-    render 'adventures/show'
+    @my_adventure = MyAdventure.new
+    # @my_adventure.user_id = current_user.id
+    # @my_adventure.adventure_id = @adventure.id
     if @my_adventure.save
-      redirect_to adventure_path(@adventure)
+      notice: 'Your adventure was added to your list!'
     else
-      render :new
+      notice: 'Your adventure was NOT added. Something went wrong.'
     end
   end
 
