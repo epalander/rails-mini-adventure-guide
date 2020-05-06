@@ -1,7 +1,8 @@
 
-  <img class="info-window-image" src="https://loremflickr.com/120/120/forest?random=">
-  <h6><%= adventure.title %></h6>
-  <p><%= adventure.category.capitalize %></p>
+
+<img class="info-window-image" src="https://loremflickr.com/120/120/nature?random=<%= rand(1..100) %>">
+<h6><%= adventure.title %></h6>
+<p><%= adventure.category.capitalize %></p>
 
 <% adventure.avg_rating.round.times do %>
     <span class="fas fa-star"></span>
