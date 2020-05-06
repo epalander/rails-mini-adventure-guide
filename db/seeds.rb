@@ -44,6 +44,7 @@ def gen_review_content(adj)
   3.times { ending_pre << Faker::TvShows::DrWho.quote }
   ending = ending_pre.join(' ')
   content = phrases.sample(3).join(' ') + " " + ending + " " + phrases.sample(3).join(' ')
+  return content[0..599]
 end
 
 adventures = Adventure.all
