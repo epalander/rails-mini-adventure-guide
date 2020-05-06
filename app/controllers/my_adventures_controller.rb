@@ -14,14 +14,9 @@ class MyAdventuresController < ApplicationController
   def create
     puts 'I am in the CREATE method of my adventure!'
     @my_adventure = MyAdventure.new
-    puts "printing params"
-    p my_adventure_params
-    p params[:user_id]
-    p params[:adventure_id]
-    p current_user
     @my_adventure.user_id = current_user.id
-    @my_adventure.adventure_id = params[:adventure_id]
-    p @my_adventure
+    @my_adventure.adventure_id = my_adventure_params[:adventure_id]
+    @my_adventure.done = false
     if @my_adventure.save
       redirect_to my_adventures_path, notice: 'Your adventure was added to your list!'
       puts "we saved my adventure!"
@@ -36,7 +31,7 @@ class MyAdventuresController < ApplicationController
 
   private
   def my_adventure_params
-    params.permit(:user_id, :adventure_id, :authenticity_token, :commit)
+    params.require(:my_adventure).permit(:user_id, :adventure_id, :authenticity_token, :commit)
   end
 
 end

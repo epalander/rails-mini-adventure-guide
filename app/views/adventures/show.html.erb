@@ -5,8 +5,7 @@
 <% end %>
   <div class="container">
       <%= simple_form_for(@my_adventure = MyAdventure.new(user_id: current_user.id, adventure_id: @adventure.id)) do |f| %>
-        <% f.input :user_id, value: params[:user_id] %>
-        <% f.input :adventure_id, value: params[:adventure_id] %>
+        <%= f.input :adventure_id, value: params[:adventure_id] %>
         <div class="form-actions btn btn-primary mt-4">
           <%= f.button :submit , remote: true %>
         </div>
