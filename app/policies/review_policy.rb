@@ -13,4 +13,8 @@ class ReviewPolicy < ApplicationPolicy
   def destroy?
     user.admin?
   end
+
+  def edit?
+    user.admin? || record.user == user
+  end
 end
