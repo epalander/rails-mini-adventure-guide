@@ -1,6 +1,8 @@
 class AdventuresController < ApplicationController
+  before_action :authenticate_user!, only: :new
   def index
     @adventures = Adventure.all
+
     @top_adventures = @adventures.sort_by { |a| a.avg_rating }.last(5)
 
     @adventures_geo = Adventure.geocoded  # returns Adventures with coordinates
@@ -18,6 +20,7 @@ class AdventuresController < ApplicationController
 
   def search
     @results = Adventure.all
+    authorize @results
     @params = search_params
     @results = @results.search_by_title_description_address_and_category(search_params[:query]) if search_params[:query].present?
     @results = @results.filter_by_parking if search_params[:parking] == "true"
@@ -42,6 +45,9 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.find(params[:id])
+
+    authorize @adventure
+
     @avg_rating = @adventure.avg_rating
 
     # number of ratings
@@ -50,6 +56,7 @@ class AdventuresController < ApplicationController
       ratings << review.rating.to_i
     end
     @ratings_count = ratings.count
+
 
     # show right value in the icon overview on the show page
     @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
@@ -76,10 +83,12 @@ class AdventuresController < ApplicationController
 
   def new
     @adventure = Adventure.new
+    authorize @adventure
   end
 
   def create
     @adventure = Adventure.new(adventure_params)
+    authorize @adventure
     @adventure.user_id = current_user.id
     if @adventure.save
       redirect_to adventure_path(@adventure)

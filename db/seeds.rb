@@ -15,9 +15,9 @@ User.destroy_all
 
 
 puts "Seeding users"
-user1 = User.create!(email: "lalala@gmail.com", password: "hellocucumber")
-user2 = User.create!(email: "somebody@gmail.com", password: "password123")
-user3 = User.create!(email: "dallas@hotmail.com", password: "yeehaw2020")
+user1 = User.create!(email: "lalala@gmail.com", password: "hellocucumber", admin: true)
+user2 = User.create!(email: "somebody@gmail.com", password: "password123", admin: false)
+user3 = User.create!(email: "dallas@hotmail.com", password: "yeehaw2020", admin: false)
 
 puts "Seeding other adventures from adventures seed"
 ADVENTURES.each do |adventure_args|

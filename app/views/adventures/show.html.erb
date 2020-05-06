@@ -85,16 +85,22 @@
 
             <p><%= "#{review.content[0..125]}..." %><%= render 'review_modal', review: review, index: index %></p>
 
-              <%= link_to edit_review_path(review),
-                  method: :get do %>
-                <i style="font-size: 9pt" class=" fas fa-pencil-alt"></i>
-                <% end %> |
-              <%= link_to review_path(review),
-                  method: :delete,
-                  data: {confirm: "Are you sure you would like to delete the review?"} do %>
-              <i style="font-size: 9pt" class="fas fa-trash-alt"></i>
+              <% unless current_user.nil? %>
+                <% if policy(Review).edit? %>
+                  <%= link_to edit_review_path(review),
+                      method: :get do %>
+                    <i style="font-size: 9pt" class=" fas fa-pencil-alt"></i>
+                  <% end %>
+                <% end %>
+                <% if policy(Review).destroy? %>
+                    |
+                  <%= link_to review_path(review),
+                      method: :delete,
+                      data: {confirm: "Are you sure you would like to delete the review?"} do %>
+                  <i style="font-size: 9pt" class="fas fa-trash-alt"></i>
+                  <% end %>
+                <% end %>
               <% end %>
-
           </div>
         </div>
       <% end %>
