@@ -9,17 +9,21 @@
   </div>
 
   <div class="container-adventure-index pt-4 pb-4">
-    <div class="container d-flex ">
+    <div class="container d-flex">
 
       <div class="container col-4">
         <h1>SAVED</h1>
         <% @saved_adventures.each do |a| %>
           <div class="card-product">
-            <img src="https://loremflickr.com/120/120/nature?random">
+            <% if a.adventure.photo.present? %>
+              <%= cl_image_tag a.adventure.photo.key %>
+            <% else %>
+              <img src="https://loremflickr.com/120/120/nature?random">
+            <% end %>
               <div class="card-product-infos", style="width:70%">
-                <%= a.user_id %>
-                <%= a.adventure_id %>
-                <%= a.done %>
+                <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
+                <br>
+                <p><i class="fas fa-heart"></i> <%= a.done == true ? "Been there, done that!" : "Saved for later" %></p>
               </div>
           </div>
         <% end %>
