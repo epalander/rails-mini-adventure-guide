@@ -1,11 +1,26 @@
 <div class="container">
 
-  <div class="container-adventure-index text-center mt-4">
-    <h1>Dashboard</h1>
-      <p>Detail Placeholder</p>
-      <p>Detail Placeholder</p>
-      <p>Detail Placeholder</p>
-      <p>Detail Placeholder</p>
+  <div class="container-adventure-index text-center mt-4 mb-4 pt-4 pb-4">
+    <h1>My Adventures Dashboard</h1>
+      <ul id="dashboard-list">
+        <li><strong>Saved for tomorrrow:</strong> <%= @saved_adventures.count %></li>
+        <li><strong> Been there, Done that:</strong> <%= @saved_adventures.count %></li>
+        <li><strong>Adventures I've shared:</strong> <%= @writtenadventures.count %></li>
+        <li><strong>Reviews I've left:</strong> <%= @myreviews.count %></li>
+        <li><strong>Adventure points (Reviews=0.5, Shared Adventures = 1):</strong> <%= @myreviews.count.fdiv(2) + @writtenadventures.count %></li>
+        <li> <strong>Status:</strong>
+          <% case @myreviews.count.fdiv(2) + @writtenadventures.count%>
+            <% when 0..2 %>
+            <%= 'NEWBIE' %>
+            <% when 3..20 %>
+              <%= 'INTERMEDIATE' %>
+            <% when 21..50 %>
+              <%= 'ADVANCED' %>
+            <% else %>
+              <%= 'MASTER' %>
+            <% end %>
+          </li>
+      </ul>
   </div>
 
   <div class="container-adventure-index pt-4 pb-4">
