@@ -45,6 +45,32 @@
         <% end %>
       </div>
 
+       <div class="card mt-4 mb-4 p-4">
+        <h1>MY MINI ADVENTURES (<%= @writtenadventures.count %>)</h1>
+        <% @writtenadventures.each do |a| %>
+            <div class="card-product">
+              <% if a.photo.present? %>
+                <%= cl_image_tag a.photo.key %>
+              <% else %>
+                <img src="https://loremflickr.com/120/120/nature?random">
+              <% end %>
+              <div class="card-product-infos", style="width:70%">
+                <a><%= link_to a.title, adventure_path(a) %></a>
+              </div>
+
+              <% unless current_user.nil? %>
+                  <% if policy(a).edit? %>
+                    <%= link_to edit_adventure_path(a),
+                       method: :get do %>
+                      <i style="font-size: 9pt; color: gray;" class=" fas fa-pencil-alt"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
       <div class="card mt-4 mb-4 p-4">
         <h1>MY REVIEWS (<%= @myreviews.count %>)</h1>
           <%= "Go on some adventures and leave some reviews." if @myreviews.empty?  %>
@@ -77,33 +103,5 @@
           </div>
         <% end %>
       </div>
-
-
-      <div class="card mt-4 mb-4 p-4">
-        <h1>MY MINI ADVENTURES (<%= @writtenadventures.count %>)</h1>
-        <% @writtenadventures.each do |a| %>
-            <div class="card-product">
-              <% if a.photo.present? %>
-                <%= cl_image_tag a.photo.key %>
-              <% else %>
-                <img src="https://loremflickr.com/120/120/nature?random">
-              <% end %>
-              <div class="card-product-infos", style="width:70%">
-                <a><%= link_to a.title, adventure_path(a) %></a>
-              </div>
-
-              <% unless current_user.nil? %>
-                  <% if policy(a).edit? %>
-                    <%= link_to edit_adventure_path(a),
-                       method: :get do %>
-                      <i style="font-size: 9pt; color: gray;" class=" fas fa-pencil-alt"></i>
-                    <% end %>
-                  <% end %>
-                <% end %>
-          </div>
-        <% end %>
-    </div>
-
-  </div>
 
 </div>
