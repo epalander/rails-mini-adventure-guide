@@ -46,6 +46,10 @@ class MyAdventuresController < ApplicationController
   end
 
   def destroy
+    @my_adventure = MyAdventure.find(params[:id])
+    authorize @my_adventure
+    @my_adventure.destroy
+    redirect_to my_adventures_path, notice: "Your adventure was unsaved."
   end
 
   private
