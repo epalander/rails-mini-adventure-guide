@@ -18,8 +18,8 @@ class MyAdventurePolicy < ApplicationPolicy
   end
 
 ## For update function later
-  # def update?
-  #   record.user == user
-  # end
+  def update?
+    true
+  end
 
 end
