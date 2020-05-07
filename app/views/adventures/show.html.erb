@@ -9,8 +9,8 @@
     <div id="bookmark">
       <%= simple_form_for(@my_adventure = MyAdventure.new(adventure_id: @adventure.id)) do |f| %>
         <%= f.input :adventure_id, value: params[:adventure_id], as: :hidden %>
-          <div class="form-actions m-4" style="color: white;">
-            <i class="fas fa-bookmark"></i>
+          <div class="form-actions m-4" style="color: $yellow;">
+            <i class="fas fa-heart"></i>
             <%= f.button :submit , "Save for later!", class: "btn btn-default", remote: true %>
           </div>
       <% end %>
