@@ -18,17 +18,15 @@ class MyAdventuresController < ApplicationController
   end
 
   def create
-    puts 'I am in the CREATE method of my adventure!'
     @my_adventure = MyAdventure.new
     authorize @my_adventure
     @my_adventure.user_id = current_user.id
     @my_adventure.adventure_id = my_adventure_params[:adventure_id]
     @my_adventure.done = false
     if @my_adventure.save
-      redirect_to my_adventures_path, notice: 'Your adventure was added to your list!'
-      puts "we saved my adventure!"
+      redirect_to adventure_path(my_adventure_params[:adventure_id]), notice: 'Your adventure was added to your list!'
     else
-      redirect_to adventure_path(my_adventure_params[:adventure_id]), notice: "Something went wrong. Adventure NOT saved."
+      redirect_to adventure_path(my_adventure_params[:adventure_id]), notice: "You already saved this adventure."
     end
   end
 
