@@ -3,7 +3,7 @@ class AdventuresController < ApplicationController
   def index
     @adventures = Adventure.all
 
-    @top_adventures = @adventures.sort_by { |a| a.avg_rating }.last(5)
+    @top_adventures = @adventures.sort_by { |a| a.avg_rating }.last(5).reverse
 
     @adventures_geo = Adventure.geocoded  # returns Adventures with coordinates
     # @adventures = Adventures.where.not(latitude: nil, longitude: nil)
