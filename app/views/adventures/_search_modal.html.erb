@@ -22,7 +22,7 @@
           <%= f.input :category, collection: ['hiking trail', 'bike path'], input_html: { name: "category" } %>
         </div>
         <div class="form-inputs">
-          <%= f.input :avg_duration, collection: [15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 270, 300], label: 'Duration of this adventure', hint: 'Please enter total minutes (1 hour = 60 minutes, 2 hours = 120 minutes, etc.)', input_html: { name: "avg_duration" } %>
+          <%= f.input :avg_duration, collection: [[15, '15 mins'], [30, '30 mins'], [45, '45 mins'], [60, '1 hr'], [90, '1.5 hrs'], [120, '2 hrs'], [150, '2 hrs 30 mins'], [180, '3 hrs'], [210, '3 hrs 30 mins'], [240, '4 hrs'], [270, '4 hrs 30 mins'], [300, '5 hrs+']], label: 'Duration:', label_method: :second, value_method: :first %>
         </div>
         <div class="form-inputs">
           <%= f.input :distance, collection: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30], label: "Distance (in kilometers)", input_html: { name: "distance" } %>
