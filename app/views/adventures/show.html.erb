@@ -9,7 +9,7 @@
     <div id="bookmark">
       <%= simple_form_for(@my_adventure = MyAdventure.new(adventure_id: @adventure.id)) do |f| %>
         <%= f.input :adventure_id, value: params[:adventure_id], as: :hidden %>
-          <div class="form-actions btn btn-primary mt-4">
+          <div class="form-actions badge badge-danger mt-4">
             <%= f.button :submit , "Save this adventure!", remote: true %>
           </div>
       <% end %>
