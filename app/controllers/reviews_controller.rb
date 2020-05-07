@@ -18,6 +18,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to adventure_path(@adventure), notice: "Thank you for submitting your review"
     else
+      flash[:notice] = "You already left a review for this adventure."
       render :new
     end
   end
