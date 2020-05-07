@@ -44,7 +44,7 @@
                   <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
                 </div>
 
-                  <p><%= "#{adventure.description[0..60]}..." %><br><%= link_to "(Read more)", adventure_path(adventure) %>
+                  <p><%= "#{adventure.description[0..60]}..." %> <%= link_to "(Read more)", adventure_path(adventure) %>
                   </p>
               </div>
             </div>
