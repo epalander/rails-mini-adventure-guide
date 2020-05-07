@@ -1,0 +1,5 @@
+meta_product_name: "Mini Adventure Guide"
+meta_title: "Mini Adventure Guide - Plan your mini adventures"
+meta_description: "A digital guide to help parents plan outdoor adventures that are child friendly."
+meta_image: "logo_smcompass1.png" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
