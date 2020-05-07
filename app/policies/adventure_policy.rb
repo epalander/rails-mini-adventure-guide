@@ -19,4 +19,10 @@ class AdventurePolicy < ApplicationPolicy
   def search?
     return true
   end
+  def edit?
+    user.admin? || record.user_id == user.id
+  end
+  def update?
+    user.admin? || record.user_id == user.id
+  end
 end
