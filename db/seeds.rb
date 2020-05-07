@@ -18,6 +18,13 @@ puts "Seeding users"
 user1 = User.create!(email: "lalala@gmail.com", password: "hellocucumber", admin: true)
 user2 = User.create!(email: "somebody@gmail.com", password: "password123", admin: false)
 user3 = User.create!(email: "dallas@hotmail.com", password: "yeehaw2020", admin: false)
+user4 = User.create!(email: "reviewer1@adventurer.org", password: "zurich383", admin: false)
+user5 = User.create!(email: "reviewer2@gmx.de", password: "zurich383", admin: false)
+user6 = User.create!(email: "reviewer3@grumpy.edu", password: "zurich383", admin: false)
+user7 = User.create!(email: "reviewer4@sneezy.edu", password: "zurich383", admin: false)
+user8 = User.create!(email: "reviewer5@happy.edu", password: "zurich383", admin: false)
+user9 = User.create!(email: "reviewer6@sleepy.edu", password: "zurich383", admin: false)
+user10 = User.create!(email: "reviewer7@dopey.edu", password: "zurich383", admin: false)
 
 puts "Seeding other adventures from adventures seed"
 ADVENTURES.each do |adventure_args|
@@ -52,12 +59,17 @@ adventures = Adventure.all
 users = User.all
 
 adventures.each do |adventure|
-  rand(3..5).times do
+  num_good = rand(3..5)
+  num_bad = rand(0..2)
+  reviewer_pool = users[2..-1].sample(num_good + num_bad)
+  good_reviewers = reviewer_pool[0..(num_good-1)]
+  bad_reviewers = reviewer_pool[num_good..-1]
+  good_reviewers.each do |reviewer|
     good_review_args = {
       rating:rand(3..5),
       tagline: ["#{good_adjective.sample.capitalize} #{adventure.category} #{%w{for with}.sample} #{%w{kids the\ family}.sample}", "Could not be more #{good_adjective.sample.upcase}!", "#{%w{Simply Just}.sample} #{good_adjective.sample}", "#{good_adjective.sample.capitalize}!"].sample,
       content: gen_review_content(good_adjective),
-      user_id: users.sample.id,
+      user_id: reviewer.id,
       adventure_id: adventure.id,
       difficulty: rand(1..3),
       duration: [(adventure.avg_duration - rand(0..15)), (adventure.avg_duration + rand(0..20))].sample,
@@ -65,12 +77,12 @@ adventures.each do |adventure|
     }
     Review.create!(good_review_args)
   end
-  rand(0..2).times do
+  bad_reviewers.each do |reviewer|
     bad_review_args = {
       rating:rand(1..2),
       tagline:["#{%w{omg jeez ugh}.sample}...#{bad_adjective.sample} #{%w{activity adventure memories memory trip experience experiences times time}.sample}", "Don't go!", "Just don't.", "Everyone was crying.", "#{%w{omg jeez ugh fml}.sample.capitalize}!", bad_adjective.sample.upcase].sample,
       content: gen_review_content(bad_adjective),
-      user_id: users.sample.id,
+      user_id: reviewer.id,
       adventure_id: adventure.id,
       difficulty: 3,
       duration: adventure.avg_duration + rand(20..60),
@@ -94,11 +106,11 @@ planet.photo.attach(io: planetfile, filename: 'planet.jpeg', content_type: 'imag
 # Adventure.create!(user_id: user3.id, title:"Geneva Bike Trail", address:"Quai Gustave-Ador, 1207 Genève", description: "peaceful biking trail by the lake", category:"bike path", distance: 5.5, avg_duration: 120, stroller_friendly: true, youngest_age: 2, difficulty: 1, parking: true, public_transport: true, directions: "straight ahead")
 
 puts "Seeding reviews for original adventures"
-rigiReview1 = Review.create!(rating: 5, tagline: "Lovley Hike", content: "Lovely place to go.  Unfortunately we went on a cloudy day.  But still had a beautiful time hiking down the the panorama path.", user_id: user1.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
-rigiReview2 = Review.create!(rating: 5, tagline: "Amazing Views", content: "Rigi the tourist place and one hour away from Zurich. Take a chair lift and train to reach the mountain. Amazing views of Lake and whole Switzerland. It's quiet chilly up their. Do bring warm clothes.", user_id: user2.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
+rigiReview1 = Review.create!(rating: 5, tagline: "Lovley Hike", content: "Lovely place to go.  Unfortunately we went on a cloudy day.  But still had a beautiful time hiking down the the panorama path.", user_id: user6.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
+rigiReview2 = Review.create!(rating: 5, tagline: "Amazing Views", content: "Rigi the tourist place and one hour away from Zurich. Take a chair lift and train to reach the mountain. Amazing views of Lake and whole Switzerland. It's quiet chilly up their. Do bring warm clothes.", user_id: user7.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
 rigiReview3 = Review.create!(rating: 5, tagline: "Great Day Trip", content: "It is a great day trip starting in Lucern Ferry Terminal, then take cable car from Weggis. Fantastic view from the top on surrounding mountains. I think it will be one of the most beautiful train station on the earth. We did it with young Children and it was an easy walk without difficulties.", user_id: user3.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
 
-planetReview1 = Review.create!(rating: 5, tagline: "Very fun! I would do it again!", content: "It was a really nice hike that was very easy in the beginning, but there is some uphill towards the end. We took our time and stopped to picnic on some benches mid-way. While we carried our 18 month old in a hiking carrier, we could've totally brought a stroller here as the paths were fine for that as we saw plenty of other families with strollers. The planet info stations were very interesting and the aerial tram at the end was a nice treat.", user_id: user1.id, adventure_id: planet.id, difficulty: 2, duration: 180, youngest_age: 0)
+planetReview1 = Review.create!(rating: 5, tagline: "Very fun! I would do it again!", content: "It was a really nice hike that was very easy in the beginning, but there is some uphill towards the end. We took our time and stopped to picnic on some benches mid-way. While we carried our 18 month old in a hiking carrier, we could've totally brought a stroller here as the paths were fine for that as we saw plenty of other families with strollers. The planet info stations were very interesting and the aerial tram at the end was a nice treat.", user_id: user9.id, adventure_id: planet.id, difficulty: 2, duration: 180, youngest_age: 0)
 puts "Finished!"
 
 ### HOW TO SEED WITH CLOUDINARY...don't do this or find a better way.
