@@ -1,50 +1,56 @@
 <div class="container">
-  <div class="container-adventure-search pt-4 pb-4">
-    <div class="text-center m-7">
-      <h1>Search Results</h1>
-    </div>
-    <div class="d-flex justify-content-center">
-      <div class="filter-buttons"><%= link_to "Parking Available", @params.merge(parking: true), class: "btn btn-ghost" %></div>
-      <div class="filter-buttons"><%= link_to "Public Transport Accessible", @params.merge(public_transport: true), class: "btn btn-ghost" %></div>
-      <div class="filter-buttons"><%= link_to "Stroller Friendly", @params.merge(stroller_friendly: true), class: "btn btn-ghost" %></div>
-      <div class="filter-buttons"><%= render 'search_modal', adventure: @adventure %></div>
-    </div>
+  <div class="row container-fluid-index center d-flex justify-content-between">
+    <div class="col-sm-12 col-md-12">
+      <h1 style="text-align: center">Search Results</h1>
 
-    <div class="wrapper d-flex justify-content-between">
-      <div class="container mt-3">
-        <div id="map"
-          style="width: 100%; height: 500px;"
-          data-markers="<%= @markers.to_json %>"
-          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-        </div>
+      <!-- Search filters -->
+      <div class="d-flex justify-content-center">
+        <div class="filter-buttons"><%= link_to "Parking Available", @params.merge(parking: true), class: "btn btn-ghost" %></div>
+        <div class="filter-buttons"><%= link_to "Public Transport Accessible", @params.merge(public_transport: true), class: "btn btn-ghost" %></div>
+        <div class="filter-buttons"><%= link_to "Stroller Friendly", @params.merge(stroller_friendly: true), class: "btn btn-ghost" %></div>
+        <div class="filter-buttons"><%= render 'search_modal', adventure: @adventure %></div>
       </div>
 
-      <div class="container mt-3">
-        <% @results.each_with_index do |adventure, index| %>
-          <div class="card-product">
-            <% if adventure.photo.present? %>
-              <%= cl_image_tag adventure.photo.key %>
-            <% else %>
-              <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
-            <% end %>
-            <div class="card-product-infos", style="width:70%">
-              <div><%= link_to "#{adventure.title.length < 56 ? adventure.title : adventure.title[0..55] + "..."}", adventure_path(adventure) %>
-              </div>
-
-              <div>
-                <% adventure.avg_rating.round.times do %>
-                  <span style="font-size: 9pt" class="fas fa-star"></span>
-                <% end %>
-                <% (5 - adventure.avg_rating.round).times do  %>
-                  <span style="font-size: 9pt" class="far fa-star"></span>
-                <% end %>
-                <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
-              </div>
-                <p><%= "#{adventure.description[0..60]}..." %><br><%= link_to "(Read more)", adventure_path(adventure) %>
-                </p>
-            </div>
+      <!-- Map -->
+      <div class="row container-fluid-index center d-flex justify-content-between">
+        <div class="col-sm-12 col-md-6">
+          <div id="map"
+            style="width: 100%; height: 500px;"
+            data-markers="<%= @markers.to_json %>"
+            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
           </div>
-        <% end %>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+          <% @results.each_with_index do |adventure, index| %>
+            <div class="card-product">
+              <% if adventure.photo.present? %>
+                <%= cl_image_tag adventure.photo.key %>
+              <% else %>
+                <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+              <% end %>
+
+              <div class="card-product-infos", style="width:70%">
+                <div><%= link_to "#{adventure.title.length < 56 ? adventure.title : adventure.title[0..55] + "..."}", adventure_path(adventure) %>
+                </div>
+
+                <div>
+                  <% adventure.avg_rating.round.times do %>
+                    <span style="font-size: 9pt" class="fas fa-star"></span>
+                  <% end %>
+                  <% (5 - adventure.avg_rating.round).times do  %>
+                    <span style="font-size: 9pt" class="far fa-star"></span>
+                  <% end %>
+                  <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
+                </div>
+
+                  <p><%= "#{adventure.description[0..60]}..." %><br><%= link_to "(Read more)", adventure_path(adventure) %>
+                  </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
       </div>
     </div>
   </div>

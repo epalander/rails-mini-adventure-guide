@@ -1,15 +1,19 @@
 .btn-ghost {
   color: #4A4A4A;
-  border: 1px solid #4A4A4A;
-  padding: 8px 24px;
   border-radius: 50px;
-  font-weight: lighter;
+  border: 1px solid #4A4A4A;
   opacity: 0.6;
   transition: opacity 0.3s ease;
 }
 
+.yellow {
+  border: 2px solid #FFF152;
+  color: #FFF152;
+
+}
+
 .btn-ghost:hover, .btn:active {
-  background-color: $yellow;
+  background-color: #FFF152;
   color: $gray;
   transition: background-color 0.3s ease-in, color 0.3s ease-in;
 }
@@ -19,13 +23,13 @@
 }
 
 .btn-ghost:focus {
-  background-color: $yellow;
+  background-color: #FFF152;
 }
 
 .btn-primary {
   color: $gray;
   border-radius: 50px;
-  border: 3px solid;
+  border: 2px solid;
 }
 
 .filter-buttons {
