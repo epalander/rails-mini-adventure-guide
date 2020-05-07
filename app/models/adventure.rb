@@ -1,3 +1,5 @@
+require 'set'
+
 class Adventure < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_one_attached :photo
@@ -15,6 +17,14 @@ class Adventure < ApplicationRecord
       0
     else
       self.reviews.average(:rating)
+    end
+  end
+
+  def rand_n(n, max)
+    randoms = Set.new
+    loop do
+        randoms << rand(max)
+        return randoms.to_a if randoms.size >= n
     end
   end
 
