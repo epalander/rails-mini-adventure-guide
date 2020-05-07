@@ -19,6 +19,7 @@ const fitMapToMarkers = (map, markers) => {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/epalander/ck9v45yjd0msa1iql9fg5c5wp',
+
       center: [46.80, 8.22],
       zoom: 10
     });
