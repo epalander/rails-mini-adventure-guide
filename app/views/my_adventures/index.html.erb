@@ -1,33 +1,29 @@
 <div class="container">
 
-  <div class="container-adventure-index text-center mt-4 mb-4 pt-4 pb-4">
+  <div class="container-adventure-index text-center mt-4 pt-4 pb-4">
     <h1>My Adventures Dashboard</h1>
-      <ul id="dashboard-list">
-        <li><strong>Saved for tomorrrow:</strong> <%= @saved_adventures.count %></li>
-        <li><strong> Been there, Done that:</strong> <%= @saved_adventures.count %></li>
-        <li><strong>Adventures I've shared:</strong> <%= @writtenadventures.count %></li>
-        <li><strong>Reviews I've left:</strong> <%= @myreviews.count %></li>
-        <li><strong>Adventure points (Reviews=0.5, Shared Adventures = 1):</strong> <%= @myreviews.count.fdiv(2) + @writtenadventures.count %></li>
-        <li> <strong>Status:</strong>
+    <p>Leave reviews and share adventures to collect Adventure Points and level up your Adventurer Status.<p>
+        <h4>Total Adventure Points</h4>
+        <h5><%= @myreviews.count.fdiv(2) + @writtenadventures.count %></h5>
+         <h4>Adventurer Status:</h4>
           <% case @myreviews.count.fdiv(2) + @writtenadventures.count%>
             <% when 0..2 %>
-            <%= 'NEWBIE' %>
+              <h5> <%= 'NEWBIE' %></h5>
             <% when 3..20 %>
-              <%= 'INTERMEDIATE' %>
+              <h5><%= 'INTERMEDIATE' %></h5>
             <% when 21..50 %>
-              <%= 'ADVANCED' %>
+              <h5><%= 'ADVANCED' %></h5>
             <% else %>
-              <%= 'MASTER' %>
+              <h5><%= 'MASTER' %></h5>
             <% end %>
-          </li>
-      </ul>
   </div>
 
   <div class="container-adventure-index pt-4 pb-4">
-    <div class="container d-flex">
+    <div class="container">
 
-      <div class="container col-4">
-        <h1>SAVED</h1>
+      <div class="card mt-4 mb-4 p-4">
+        <h1>SAVED (<%= @saved_adventures.count %>)</h1>
+        <%= "You haven't saved any adventures yet." if @done_adventures.empty?  %>
         <% @saved_adventures.each do |a| %>
           <div class="card-product">
             <% if a.adventure.photo.present? %>
@@ -48,8 +44,9 @@
         <% end %>
       </div>
 
-      <div class="container col-4">
-        <h1>DONE</h1>
+      <div class="card mt-4 mb-4 p-4">
+        <h1>MY REVIEWS (<%= @myreviews.count %>)</h1>
+          <%= "Go on some adventures and leave some reviews." if @done_adventures.empty?  %>
           <% @done_adventures.each do |a| %>
             <div class="card-product">
               <% if a.adventure.photo.present? %>
@@ -65,8 +62,8 @@
       </div>
 
 
-      <div class="container col-4">
-        <h1>PUBLISHED</h1>
+      <div class="card mt-4 mb-4 p-4">
+        <h1>MY MINI ADVENTURES (<%= @writtenadventures.count %>)</h1>
         <% @writtenadventures.each do |a| %>
             <div class="card-product">
               <% if a.photo.present? %>
