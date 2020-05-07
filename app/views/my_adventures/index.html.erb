@@ -5,7 +5,7 @@
     <p>Leave reviews and share adventures to collect Adventure Points and level up your Adventurer Status.<p>
         <h4>Total Adventure Points</h4>
         <h5 style="font-family: Open Sans, sans-serif;"><%= @myreviews.count + 2 * @writtenadventures.count %></h5>
-         <h4>Adventurer Status:</h4>
+         <h4>Adventurer Status</h4>
           <% case @myreviews.count + 2 * @writtenadventures.count%>
             <% when 0..4 %>
               <h5 style="font-family: Open Sans, sans-serif;"> <%= 'NEWBIE' %></h5>
@@ -51,7 +51,7 @@
           <% @myreviews.each do |a| %>
             <div class="card-product">
               <% if a.photos.present? %>
-                <%= cl_image_tag a.adventure.photos[0].key %>
+                <%= cl_image_tag a.photos.first.key %>
               <% else %>
                 <img src="https://loremflickr.com/120/120/nature?random">
               <% end %>
