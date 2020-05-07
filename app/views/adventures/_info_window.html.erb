@@ -1,8 +1,9 @@
 
 
-<img class="info-window-image" src="https://loremflickr.com/120/120/nature?random=<%= rand(1..100) %>">
-<h6><%= adventure.title %></h6>
-<p><%= adventure.category.capitalize %></p>
+<img class="info-window-image mb-1" src="https://loremflickr.com/180/140/nature?random=<%= rand(1..100) %>">
+<h6 ><%= link_to adventure.title, adventure_path(adventure), class: "map-popup" %></h6>
+
+<%= adventure.category.capitalize %><br>
 
 <% adventure.avg_rating.round.times do %>
     <span class="fas fa-star"></span>
