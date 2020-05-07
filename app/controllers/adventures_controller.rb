@@ -99,10 +99,12 @@ class AdventuresController < ApplicationController
 
   def edit
     @adventure = Adventure.find(params[:id])
+    authorize @adventure
   end
 
   def update
     @adventure = Adventure.find(params[:id])
+    authorize @adventure
     if @adventure.update(adventure_params)
         redirect_to adventure_path(@adventure), notice: 'Adventure was successfully updated.'
     else
