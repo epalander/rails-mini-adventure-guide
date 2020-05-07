@@ -23,13 +23,13 @@
 
       <div class="card mt-4 mb-4 p-4">
         <h1>SAVED (<%= @myadventures.count %>)</h1>
-        <%= "You haven't saved any adventures yet." if @done_adventures.empty?  %>
+        <%= "You haven't saved any adventures yet." if @myadventures.empty?  %>
         <% @myadventures.each_with_index do |a, index| %>
           <div class="card-product">
             <% if a.adventure.photo.present? %>
               <%= cl_image_tag a.adventure.photo.key %>
             <% else %>
-              <img src="https://loremflickr.com/120/120/nature?random">
+              <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
             <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
@@ -48,12 +48,12 @@
       <div class="card mt-4 mb-4 p-4">
         <h1>MY REVIEWS (<%= @myreviews.count %>)</h1>
           <%= "Go on some adventures and leave some reviews." if @myreviews.empty?  %>
-          <% @myreviews.each do |a| %>
+          <% @myreviews.each_with_index do |a, index| %>
             <div class="card-product">
               <% if a.photos.present? %>
                 <%= cl_image_tag a.adventure.photos[0].key %>
               <% else %>
-                <img src="https://loremflickr.com/120/120/nature?random">
+                <img src="https://loremflickr.com/120/120/switzerland?random=<%= index.to_s %>">
               <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %>  </a>
@@ -81,12 +81,12 @@
 
       <div class="card mt-4 mb-4 p-4">
         <h1>MY MINI ADVENTURES (<%= @writtenadventures.count %>)</h1>
-        <% @writtenadventures.each do |a| %>
+        <% @writtenadventures.each_with_index do |a, index| %>
             <div class="card-product">
               <% if a.photo.present? %>
                 <%= cl_image_tag a.photo.key %>
               <% else %>
-                <img src="https://loremflickr.com/120/120/nature?random">
+                <img src="https://loremflickr.com/120/120/mountains?random=<%= index.to_s %>">
               <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.title, adventure_path(a) %></a>
