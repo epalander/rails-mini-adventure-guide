@@ -1,20 +1,20 @@
 <%= simple_form_for [@adventure, @review] do |f| %>
 
   <div class="form-inputs">
-    <%= f.input :tagline, label: 'Enter a title for your review', hint: 'e.g. Amazing adventure for the entire family' %>
+    <%= f.input :tagline, label: 'Give your review a tagline', hint: 'e.g. Amazing adventure for the entire family' %>
   </div>
 
   <div class="form-inputs">
-    <%= f.input :content, label: 'Enter a description of the adventure you would like to review', hint: 'Tell us a bit more the adventure about the path, points to stop or anything intersting on the way, etc. ' %>
+    <%= f.input :content, label: 'Write your review', hint: 'e.g. Tell us how your experience was, Any tips, tricks, points of interest, etc. ' %>
   </div>
 
   <div class="form-inputs">
-      <%= f.input :rating, label: 'How did you like the adventure', collection: [[1 , '1 - Not recommended'], [2, '2 - It was ok'], [3, '3 - Might go again'], [4, '4 - Great adventure'], [5, '5 - Amazing! Highly recommended']], hint: 'Please rate the adventure: 1 = not recommended to 5 = amazing', label_method: :second, value_method: :first  %>
+      <%= f.input :rating, label: 'How did you like the adventure?', collection: [[1 , '1 - Not recommended'], [2, '2 - It was ok'], [3, '3 - Might go again'], [4, '4 - Great adventure'], [5, '5 - Amazing! Highly recommended']], hint: 'Please rate the adventure: 1 = not recommended to 5 = amazing', label_method: :second, value_method: :first  %>
   </div>
 
   <div class="form-inputs">
-      <%= f.input :duration, collection: [15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 270, 300], label: 'How long did it take you to do this adventure?', hint: 'Please enter total minutes (1 hour = 60 minutes, 2 hours = 120 minutes, etc.)'  %>
-  </div>
+      <%= f.input :duration, collection: [[15, '15 mins'], [30, '30 mins'], [45, '45 mins'], [60, '1 hr'], [90, '1.5 hrs'], [120, '2 hrs'], [150, '2 hrs 30 mins'], [180, '3 hrs'], [210, '3 hrs 30 mins'], [240, '4 hrs'], [270, '4 hrs 30 mins'], [300, '5 hrs+']], label: 'How long did it take you to do this adventure?', label_method: :second, value_method: :first %>
+    </div>
 
   <div class="form-inputs">
       <%= f.input :youngest_age, label: "Recommended age of the youngest adventurer", collection: [[0 , 'under < 1 year (not able to walk well or at all)'], [1, '1-3 years (walkers in training)'], [2, '4-6 years (can walk well, but probably not far)'], [3, '7-11 years (moderate distances)'], [4, '12-15 years (moderate to long distances)'], [5, '16+ years (essentially mini adults)']], label_method: :second, value_method: :first %>
