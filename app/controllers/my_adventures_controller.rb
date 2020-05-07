@@ -32,12 +32,25 @@ class MyAdventuresController < ApplicationController
     end
   end
 
+  def edit
+    @my_adventure = MyAdventure.find(my_adventure_params[:id])
+  end
+
+  def update
+    @my_adventure = MyAdventure.find(my_adventure_params[:id])
+    if @my_adventure.update(my_adventure_params)
+        redirect_to my_adventures_path, notice: 'Been there. Done that!'
+    else
+      redirect_to my_adventures_path, notice: 'Something went wrong...!'
+    end
+  end
+
   def destroy
   end
 
   private
   def my_adventure_params
-    params.require(:my_adventure).permit(:user_id, :adventure_id, :authenticity_token, :commit)
+    params.require(:my_adventure).permit(:my_adventure_id, :user_id, :adventure_id, :authenticity_token, :commit)
   end
 
 end

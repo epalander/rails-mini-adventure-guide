@@ -1,70 +1,78 @@
+<!-- banner image -->
 <% if @adventure.photo.present? %>
   <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('<%= cl_image_path @adventure.photo.key %>'); color:#fdef01;">
 <% else %>
   <div class="banner-show" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.6)), url('https://loremflickr.com/500/200/landscape'); color:#fdef01;">
 <% end %>
-<div id="bookmark">
-   <%= simple_form_for(@my_adventure = MyAdventure.new(adventure_id: @adventure.id)) do |f| %>
+
+    <!-- bookmarking button -->
+    <div id="bookmark">
+      <%= simple_form_for(@my_adventure = MyAdventure.new(adventure_id: @adventure.id)) do |f| %>
         <%= f.input :adventure_id, value: params[:adventure_id], as: :hidden %>
-        <div class="form-actions btn btn-primary mt-4">
-          <%= f.button :submit , "Save this adventure!", remote: true %>
-        </div>
+          <div class="form-actions btn btn-primary mt-4">
+            <%= f.button :submit , "Save this adventure!", remote: true %>
+          </div>
       <% end %>
-</div>
-  <div class="container">
-    <h1><%= @adventure.title %></h1>
-      <% if @avg_rating == 0 %>
-         <%= link_to 'Be the first to review this adventure!', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
-      <% else %>
-         <% @avg_rating.round.times do  %>
-           <span class="fas fa-star"></span>
-         <% end %>
-         <% (5 - @avg_rating.round).times do  %>
-           <span class="far fa-star"></span>
-         <% end %>
-          <span>(<%= @avg_rating.round(1) %>)<span>
+    </div>
+
+    <!-- title and overall rating -->
+    <div class="container">
+      <h1><%= @adventure.title %></h1>
+        <% if @avg_rating == 0 %>
+           <%= link_to 'Be the first to review this adventure!', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
+        <% else %>
+          <% @avg_rating.round.times do  %>
+            <span class="fas fa-star"></span>
+          <% end %>
+          <% (5 - @avg_rating.round).times do  %>
+            <span class="far fa-star"></span>
+          <% end %>
+            <span>(<%= @avg_rating.round(1) %>)<span>
         <% end %>
+    </div>
   </div>
-</div>
 
 <div class="container">
-  <div class="container-adventure pb-3">
-    <div class="container-main ">
+  <!-- Icons Overview -->
+  <div class="row container-fluid-index center d-flex justify-content-between">
+    <div class="col-sm-12 col-md-12">
       <div class="icon-cards">
-          <p><i class="fas fa-award"></i>  <%= @adventure.category %></p>
-          <p><i class="fas fa-clock"></i>  <%= @adventure.avg_duration %> min</p>
-          <p><i class="fas fa-child"> </i>  From <%= @youngest_age %></p>
-          <p><i class="fas fa-parking"></i>  <%= @parking %></p>
-          <p><i class="fas fa-mountain"></i>  <%= @difficulty %></p>
-          <p><i class="fas fa-hiking"></i>  <%= @adventure.distance %> km</p>
-          <p><i class="fas fa-baby-carriage"></i>  <%= @stroller  %>
-          <p><i class="fas fa-bus"></i>  <%= @public_transport %></p>
+        <p><i class="fas fa-award"></i>  <%= @adventure.category %></p>
+        <p><i class="fas fa-clock"></i>  <%= @adventure.avg_duration %> min</p>
+        <p><i class="fas fa-child"> </i>  From <%= @youngest_age %></p>
+        <p><i class="fas fa-parking"></i>  <%= @parking %></p>
+        <p><i class="fas fa-mountain"></i>  <%= @difficulty %></p>
+        <p><i class="fas fa-hiking"></i>  <%= @adventure.distance %> km</p>
+        <p><i class="fas fa-baby-carriage"></i>  <%= @stroller  %>
+        <p><i class="fas fa-bus"></i>  <%= @public_transport %></p>
       </div>
     </div>
+  </div>
 
-    <div class="wrapper d-flex justify-content-between">
-      <div class="container mt-3">
-        <div id="map"
-          style="width: 100%; height: 500px;"
-          data-markers="<%= @markers.to_json %>"
-          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-        </div>
-        <h3>Location</h3>
-          <p><%= @adventure.address  %></p>
+  <!-- Map -->
+  <div class="row container-fluid-index center d-flex justify-content-between">
+    <div class="col-sm-12 col-md-6">
+      <div id="map"
+        style="width: 100%; height: 500px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
-
-      <div class="container mt-3 n">
-
-        <h3>Description</h3>
-          <p class="overflow"><%= "#{@adventure.description}" %></p>
-        <h3>Directions</h3>
-          <p><%= "#{@adventure.directions}" %></p>
-      </div>
-
-
+      <h3>Location</h3>
+        <p><%= @adventure.address %></p>
     </div>
 
-    <div class="container m-7">
+    <!-- Description & Directions -->
+    <div class="col-sm-12 col-md-6">
+      <h3>Description</h3>
+        <p class="overflow"><%= "#{@adventure.description}" %></p>
+      <h3>Directions</h3>
+        <p><%= "#{@adventure.directions}" %></p>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <div class="row container-fluid-index center d-flex justify-content-between">
+    <div class="col-sm-12 col-md-12">
       <h2>Reviews <span style=" font-size: 16pt">(<%= @ratings_count %> reviews)<span></h2>
       <% @newest_review_first.each_with_index do |review, index|  %>
         <div class="card-product">
@@ -73,6 +81,7 @@
           <% else %>
             <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
           <% end %>
+
           <div class="card-product-infos", style="width:85%;">
             <p><strong><%= review.tagline %></strong>
               <% review.rating.to_i.times do %>
@@ -81,35 +90,37 @@
               <% (5 - review.rating.to_i).times do  %>
                 <span style="font-size: 9pt" class="far fa-star"></span>
               <% end %>
-            <p><%= review.created_at.strftime("%m/%d/%Y") %> </p>
+            <p><%= review.created_at.strftime("%m/%d/%Y") %> | <%= "#{review.content[0..125]}..." %><%= render 'review_modal', review: review, index: index %></p>
 
-            <p><%= "#{review.content[0..125]}..." %><%= render 'review_modal', review: review, index: index %></p>
-
-              <% unless current_user.nil? %>
-                <% if policy(Review).edit? %>
-                  <%= link_to edit_review_path(review),
-                      method: :get do %>
+            <% unless current_user.nil? %>
+              <% if policy(Review).edit? %>
+                <%= link_to edit_review_path(review),
+                    method: :get do %>
                     <i style="font-size: 9pt" class=" fas fa-pencil-alt"></i>
-                  <% end %>
-                <% end %>
-                <% if policy(Review).destroy? %>
-                    |
-                  <%= link_to review_path(review),
-                      method: :delete,
-                      data: {confirm: "Are you sure you would like to delete the review?"} do %>
-                  <i style="font-size: 9pt" class="fas fa-trash-alt"></i>
-                  <% end %>
-                <% end %>
+                    <% end %>
               <% end %>
+
+              <% if policy(Review).destroy? %>
+                  | <%= link_to review_path(review),
+                    method: :delete,
+                    data: {confirm: "Are you sure you would like to delete the review?"} do %>
+                    <i style="font-size: 9pt" class="fas fa-trash-alt"></i>
+                    <% end %>
+              <% end %>
+            <% end %>
+
           </div>
         </div>
       <% end %>
     </div>
+  </div>
 
-    <div class="container mb-7">
-      <%= link_to 'Create a review', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
-      <%= link_to 'Edit the adventure', edit_adventure_path(@adventure), class: "btn btn-primary mt-4" %>
+  <!-- Links / Buttons -->
 
+  <div class="row container-fluid-index center d-flex justify-content-between">
+    <div class="col-sm-12 col-md-12">
+      <%= link_to 'Create a review', new_adventure_review_path(@adventure), class: "btn btn-primary mb-4 mt-2" %>
+      <%= link_to 'Edit the adventure', edit_adventure_path(@adventure), class: "btn btn-primary mb-4 mt-2" %>
     </div>
   </div>
 
