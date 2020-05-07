@@ -1,20 +1,20 @@
 <div class="container">
 
-  <div class="container-adventure-index text-center mt-4 pt-4 pb-4">
+  <div class="container-adventure-index text-center mt-4 pt-4 pb-4" style="background-color: rgb(195, 195,195);">
     <h1>My Adventures Dashboard</h1>
     <p>Leave reviews and share adventures to collect Adventure Points and level up your Adventurer Status.<p>
         <h4>Total Adventure Points</h4>
-        <h5><%= @myreviews.count + 2 * @writtenadventures.count %></h5>
+        <h5 style="font-family: Open Sans, sans-serif;"><%= @myreviews.count + 2 * @writtenadventures.count %></h5>
          <h4>Adventurer Status:</h4>
           <% case @myreviews.count + 2 * @writtenadventures.count%>
             <% when 0..4 %>
-              <h5> <%= 'NEWBIE' %></h5>
+              <h5 style="font-family: Open Sans, sans-serif;"> <%= 'NEWBIE' %></h5>
             <% when 5..40 %>
-              <h5><%= 'INTERMEDIATE' %></h5>
+              <h5 style="font-family: Open Sans, sans-serif;"><%= 'INTERMEDIATE' %></h5>
             <% when 41..100 %>
-              <h5><%= 'ADVANCED' %></h5>
+              <h5 style="font-family: Open Sans, sans-serif;"><%= 'ADVANCED' %></h5>
             <% else %>
-              <h5><%= 'MASTER' %></h5>
+              <h5 style="font-family: Open Sans, sans-serif;"><%= 'MASTER' %></h5>
             <% end %>
   </div>
 
@@ -33,13 +33,14 @@
             <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
-                <% check_box_tag 'a.adventure_id', a.done, a.done ? true : false %>
-                <p><%=
-                  check_box_tag 'done', true, a.done,
-                  onchange: "$(this).data('params', 'done=' + this.checked)",
-                  data: { remote: true, url: my_adventure_path(a), method: :patch }
-                %> Done </p>
               </div>
+            <% if policy(a).destroy? %>
+                  <%= link_to my_adventure_path(a),
+                        method: :delete,
+                        data: {confirm: "Are you sure you would like to unsave this adventure?"} do %>
+                <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
+              <% end %>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -49,14 +50,30 @@
           <%= "Go on some adventures and leave some reviews." if @myreviews.empty?  %>
           <% @myreviews.each do |a| %>
             <div class="card-product">
-              <% if a.photo.present? %>
-                <%= cl_image_tag a.adventure.photo[0].key %>
+              <% if a.photos.present? %>
+                <%= cl_image_tag a.adventure.photos[0].key %>
               <% else %>
                 <img src="https://loremflickr.com/120/120/nature?random">
               <% end %>
               <div class="card-product-infos", style="width:70%">
-                <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
+                <a><%= link_to a.adventure.title, adventure_path(a.adventure) %>  </a>
               </div>
+                <% unless current_user.nil? %>
+                  <% if policy(a).edit? %>
+                    <%= link_to edit_review_path(a),
+                       method: :get do %>
+                      <i style="font-size: 9pt; color: gray;" class=" fas fa-pencil-alt"></i>
+                    <% end %>
+                  <% end %>
+                  <% if policy(a).destroy? %>
+                      |
+                    <%= link_to review_path(a),
+                        method: :delete,
+                        data: {confirm: "Are you sure you would like to delete the review?"} do %>
+                    <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
           </div>
         <% end %>
       </div>
@@ -74,6 +91,15 @@
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.title, adventure_path(a) %></a>
               </div>
+
+              <% unless current_user.nil? %>
+                  <% if policy(a).edit? %>
+                    <%= link_to edit_adventure_path(a),
+                       method: :get do %>
+                      <i style="font-size: 9pt; color: gray;" class=" fas fa-pencil-alt"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
           </div>
         <% end %>
     </div>
