@@ -10,16 +10,21 @@
   position: relative;
 }
 
-.container-adventure-index {
+.container-fluid-index {
   background-color: white;
   margin-top: 0px;
   position: relative;
+  padding: 4px 0px;
 }
 
-.container-adventure-search {
+.container-fluid-show {
   background-color: white;
-  margin-top: 15px;
+  margin-top: -50px;
   position: relative;
+}
+
+.center {
+  margin: 0 auto;
 }
 
 .container-review {

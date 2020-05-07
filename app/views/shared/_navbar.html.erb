@@ -8,13 +8,12 @@
 
   <div>
     <h3><% if current_user.nil? %>
-          <%= "" %>
+        <%= "" %>
         <% elsif current_user.admin? %>
           <%= "God Mode" %>
         <% else %>
           <%= "Welcome!" %>
         <% end %>
-
      </h3>
   </div>
 
