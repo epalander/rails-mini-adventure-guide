@@ -22,4 +22,7 @@ class MyAdventurePolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+    user.admin? || record.user_id == user.id
+  end
 end

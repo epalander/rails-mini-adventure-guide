@@ -1,34 +1,30 @@
 <div class="container">
 
-  <div class="container-adventure-index text-center mt-4 mb-4 pt-4 pb-4">
+  <div class="container-adventure-index text-center mt-4 pt-4 pb-4" style="background-color: rgb(195, 195,195);">
     <h1>My Adventures Dashboard</h1>
-      <ul id="dashboard-list">
-        <li><strong>Saved for tomorrrow:</strong> <%= @saved_adventures.count %></li>
-        <li><strong> Been there, Done that:</strong> <%= @saved_adventures.count %></li>
-        <li><strong>Adventures I've shared:</strong> <%= @writtenadventures.count %></li>
-        <li><strong>Reviews I've left:</strong> <%= @myreviews.count %></li>
-        <li><strong>Adventure points (Reviews=0.5, Shared Adventures = 1):</strong> <%= @myreviews.count.fdiv(2) + @writtenadventures.count %></li>
-        <li> <strong>Status:</strong>
-          <% case @myreviews.count.fdiv(2) + @writtenadventures.count%>
-            <% when 0..2 %>
-            <%= 'NEWBIE' %>
-            <% when 3..20 %>
-              <%= 'INTERMEDIATE' %>
-            <% when 21..50 %>
-              <%= 'ADVANCED' %>
+    <p>Leave reviews and share adventures to collect Adventure Points and level up your Adventurer Status.<p>
+        <h4>Total Adventure Points</h4>
+        <h5 style="font-family: Open Sans, sans-serif;"><%= @myreviews.count + 2 * @writtenadventures.count %></h5>
+         <h4>Adventurer Status:</h4>
+          <% case @myreviews.count + 2 * @writtenadventures.count%>
+            <% when 0..4 %>
+              <h5 style="font-family: Open Sans, sans-serif;"> <%= 'NEWBIE' %></h5>
+            <% when 5..40 %>
+              <h5 style="font-family: Open Sans, sans-serif;"><%= 'INTERMEDIATE' %></h5>
+            <% when 41..100 %>
+              <h5 style="font-family: Open Sans, sans-serif;"><%= 'ADVANCED' %></h5>
             <% else %>
-              <%= 'MASTER' %>
+              <h5 style="font-family: Open Sans, sans-serif;"><%= 'MASTER' %></h5>
             <% end %>
-          </li>
-      </ul>
   </div>
 
   <div class="container-adventure-index pt-4 pb-4">
-    <div class="container d-flex">
+    <div class="container">
 
-      <div class="container col-4">
-        <h1>SAVED</h1>
-        <% @saved_adventures.each do |a| %>
+      <div class="card mt-4 mb-4 p-4">
+        <h1>SAVED (<%= @myadventures.count %>)</h1>
+        <%= "You haven't saved any adventures yet." if @done_adventures.empty?  %>
+        <% @myadventures.each_with_index do |a, index| %>
           <div class="card-product">
             <% if a.adventure.photo.present? %>
               <%= cl_image_tag a.adventure.photo.key %>
@@ -37,36 +33,54 @@
             <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
-                <% check_box_tag 'a.adventure_id', a.done, a.done ? true : false %>
-                <p><%=
-                  check_box_tag 'done', true, a.done,
-                  onchange: "$(this).data('params', 'done=' + this.checked)",
-                  data: { remote: true, url: my_adventure_path(a), method: :patch }
-                %> Done </p>
               </div>
+            <% if policy(a).destroy? %>
+                  <%= link_to my_adventure_path(a),
+                        method: :delete,
+                        data: {confirm: "Are you sure you would like to unsave this adventure?"} do %>
+                <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
+              <% end %>
+            <% end %>
           </div>
         <% end %>
       </div>
 
-      <div class="container col-4">
-        <h1>DONE</h1>
-          <% @done_adventures.each do |a| %>
+      <div class="card mt-4 mb-4 p-4">
+        <h1>MY REVIEWS (<%= @myreviews.count %>)</h1>
+          <%= "Go on some adventures and leave some reviews." if @myreviews.empty?  %>
+          <% @myreviews.each do |a| %>
             <div class="card-product">
-              <% if a.adventure.photo.present? %>
-                <%= cl_image_tag a.adventure.photo.key %>
+              <% if a.photos.present? %>
+                <%= cl_image_tag a.adventure.photos[0].key %>
               <% else %>
                 <img src="https://loremflickr.com/120/120/nature?random">
               <% end %>
               <div class="card-product-infos", style="width:70%">
-                <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
+                <a><%= link_to a.adventure.title, adventure_path(a.adventure) %>  </a>
               </div>
+                <% unless current_user.nil? %>
+                  <% if policy(a).edit? %>
+                    <%= link_to edit_review_path(a),
+                       method: :get do %>
+                      <i style="font-size: 9pt; color: gray;" class=" fas fa-pencil-alt"></i>
+                    <% end %>
+                  <% end %>
+                  <% if policy(a).destroy? %>
+                      |
+                    <%= link_to review_path(a),
+                        method: :delete,
+                        data: {confirm: "Are you sure you would like to delete the review?"} do %>
+                    <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
           </div>
         <% end %>
       </div>
 
 
-      <div class="container col-4">
-        <h1>PUBLISHED</h1>
+      <div class="card mt-4 mb-4 p-4">
+        <h1>MY MINI ADVENTURES (<%= @writtenadventures.count %>)</h1>
         <% @writtenadventures.each do |a| %>
             <div class="card-product">
               <% if a.photo.present? %>
@@ -77,6 +91,15 @@
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.title, adventure_path(a) %></a>
               </div>
+
+              <% unless current_user.nil? %>
+                  <% if policy(a).edit? %>
+                    <%= link_to edit_adventure_path(a),
+                       method: :get do %>
+                      <i style="font-size: 9pt; color: gray;" class=" fas fa-pencil-alt"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
           </div>
         <% end %>
     </div>
