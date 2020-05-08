@@ -10,8 +10,7 @@
       <%= simple_form_for(@my_adventure = MyAdventure.new(adventure_id: @adventure.id)) do |f| %>
         <%= f.input :adventure_id, value: params[:adventure_id], as: :hidden %>
           <div class="form-actions m-4" style="color: $yellow;">
-            <i class="fas fa-heart"></i>
-            <%= f.button :submit , "Save for later!", class: "btn btn-default", remote: true %>
+            <i class="fas fa-heart"></i> <%= f.button :submit, "Save for later", class: "btn btn-default", style: "color: white;", remote: true %>
           </div>
       <% end %>
     </div>
@@ -80,7 +79,7 @@
           <% if review.photos.present? %>
             <%= cl_image_tag review.photos.first.key %>
           <% else %>
-            <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
+            <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
           <% end %>
 
           <div class="card-product-infos", style="width:85%;">
@@ -92,8 +91,8 @@
                 <span style="font-size: 9pt" class="far fa-star"></span>
               <% end %>
             <p><%= review.created_at.strftime("%m/%d/%Y") %> | <%= "#{review.content[0..125]}..." %><%= render 'review_modal', review: review, index: index %></p>
-
               <% unless current_user.nil? %>
+              <% if current_user.admin? %>
                 <% if policy(review).edit? %>
                   <%= link_to edit_review_path(review),
                       method: :get do %>
@@ -108,6 +107,7 @@
                   <i style="font-size: 9pt" class="fas fa-trash-alt"></i>
                   <% end %>
                 <% end %>
+              <% end %>
             <% end %>
 
           </div>
@@ -116,9 +116,7 @@
     </div>
   </div>
 
-
   <!-- Links / Buttons -->
-
   <div class="row container-fluid-index center d-flex justify-content-between">
     <div class="col-sm-12 col-md-12">
       <%= link_to 'Create a review', new_adventure_review_path(@adventure), class: "btn btn-primary mb-4 mt-2" %>

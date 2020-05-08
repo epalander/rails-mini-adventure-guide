@@ -3,7 +3,7 @@ class AdventuresController < ApplicationController
   def index
     @adventures = Adventure.all
 
-    @top_adventures = @adventures.sort_by { |a| a.avg_rating }.last(5)
+    @top_adventures = @adventures.sort_by { |a| a.avg_rating }.last(5).reverse
 
     @adventures_geo = Adventure.geocoded  # returns Adventures with coordinates
     # @adventures = Adventures.where.not(latitude: nil, longitude: nil)
@@ -21,6 +21,11 @@ class AdventuresController < ApplicationController
   def search
     @results = Adventure.all
     authorize @results
+    @ar = []
+    while @ar.length <= @results.length
+      @ar << rand(300)
+      @ar.uniq!
+    end
     @params = search_params
     @results = @results.search_by_title_description_address_and_category(search_params[:query]) if search_params[:query].present?
     @results = @results.filter_by_parking if search_params[:parking] == "true"

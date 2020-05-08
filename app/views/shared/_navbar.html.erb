@@ -1,5 +1,4 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="navbar-nav">
     <%= link_to "/", class: "navbar-brand" do %>
       <%= image_tag "logo_smcompass1.png", class: "avatar"%>
       <% end %>
@@ -15,12 +14,16 @@
          <%= "Welcome!" %>
       <% end %>
     </h3>
-  </div>
+
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
        <%= link_to "Share an adventure!", new_adventure_path, class: "nav-link btn btn-ghost mr-2" %>
+      </li>
+      <li class="nav-item">
         <%= link_to "Home", "/" , class: "nav-link" %>
+      </li>
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <%= image_tag "menu_icon.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
