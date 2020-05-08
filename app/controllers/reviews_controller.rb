@@ -27,9 +27,9 @@ class ReviewsController < ApplicationController
   end
 
   def update
-
+    authorize @review
     if @review.update(review_params)
-      redirect_to adventure_path(@review.adventure), notice: 'Your review was successfully updated.'
+      redirect_to my_adventures_path, notice: 'Your review was successfully updated.'
     else
       render :edit
     end

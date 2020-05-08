@@ -14,7 +14,7 @@ class ReviewPolicy < ApplicationPolicy
     user.admin? || record.user_id == user.id
   end
 
-  def edit?
+  def update?
     user.admin? || record.user_id == user.id
   end
 end
