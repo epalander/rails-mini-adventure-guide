@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row container-fluid-index center d-flex justify-content-between mt-3">
+  <div class="row container-fluid-index center d-flex justify-content-between">
     <div class="col-sm-12 col-md-12">
       <h1 style="text-align: center">Search Results</h1>
 
@@ -13,17 +13,15 @@
 
       <!-- Map -->
       <div class="row container-fluid-index center d-flex justify-content-between">
-        <div class="col-sm-12 col-md-12">
+        <div class="col-sm-12 col-md-6">
           <div id="map"
-            style="width: 100%; height: 400px;"
+            style="width: 100%; height: 500px;"
             data-markers="<%= @markers.to_json %>"
             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
           </div>
         </div>
-      </div>
 
-      <div class="row container-fluid-index center d-flex justify-content-between">
-        <div class="col-sm-12 col-md-12">
+        <div class="col-sm-12 col-md-6">
           <% @results.each_with_index do |adventure, index| %>
             <div class="card-product">
               <% if adventure.photo.present? %>
@@ -46,8 +44,7 @@
                   <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
                 </div>
 
-                  <p><%= "#{adventure.description[0..100]}..." %> <%= link_to "(Read more)", adventure_path(adventure) %>
-
+                  <p><%= "#{adventure.description[0..60]}..." %> <%= link_to "(Read more)", adventure_path(adventure) %>
                   </p>
               </div>
             </div>
