@@ -10,8 +10,7 @@
       <%= simple_form_for(@my_adventure = MyAdventure.new(adventure_id: @adventure.id)) do |f| %>
         <%= f.input :adventure_id, value: params[:adventure_id], as: :hidden %>
           <div class="form-actions m-4" style="color: $yellow;">
-            <i class="fas fa-heart"></i>
-            <%= f.button :submit , "Save for later!", class: "btn btn-default", remote: true %>
+            <i class="fas fa-heart"></i> <%= f.button :submit, "Save for later", class: "btn btn-default", style: "color: white;", remote: true %>
           </div>
       <% end %>
     </div>
@@ -117,7 +116,6 @@
   </div>
 
   <!-- Links / Buttons -->
-
   <div class="row container-fluid-index center d-flex justify-content-between">
     <div class="col-sm-12 col-md-12">
       <%= link_to 'Create a review', new_adventure_review_path(@adventure), class: "btn btn-primary mb-4 mt-2" %>
