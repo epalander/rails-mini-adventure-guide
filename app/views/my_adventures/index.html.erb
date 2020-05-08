@@ -1,20 +1,20 @@
 <div class="container">
 
-  <div class="container-adventure-index text-center mt-4 pt-4 pb-4" style="background-color: rgb(195, 195,195);">
+  <div class="container-adventure-index text-center mt-4 pt-4 pb-4" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.2)), url(https://images.pexels.com/photos/130111/pexels-photo-130111.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260); color: rgb(220, 220, 220); box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);">
     <h1>My Adventures Dashboard</h1>
     <p>Leave reviews and share adventures to collect Adventure Points and level up your Adventurer Status.<p>
         <h4>Total Adventure Points</h4>
         <h5 style="font-family: Open Sans, sans-serif;"><%= @myreviews.count + 2 * @writtenadventures.count %></h5>
-         <h4>Adventurer Status:</h4>
+         <h4>Adventurer Status</h4>
           <% case @myreviews.count + 2 * @writtenadventures.count%>
             <% when 0..4 %>
-              <h5 style="font-family: Open Sans, sans-serif;"> <%= 'NEWBIE' %></h5>
+              <h5 style="font-family: Open Sans, sans-serif;"> <%= 'Newbie' %></h5>
             <% when 5..40 %>
-              <h5 style="font-family: Open Sans, sans-serif;"><%= 'INTERMEDIATE' %></h5>
+              <h5 style="font-family: Open Sans, sans-serif;"><%= 'Intermediate' %></h5>
             <% when 41..100 %>
-              <h5 style="font-family: Open Sans, sans-serif;"><%= 'ADVANCED' %></h5>
+              <h5 style="font-family: Open Sans, sans-serif;"><%= 'Advanced' %></h5>
             <% else %>
-              <h5 style="font-family: Open Sans, sans-serif;"><%= 'MASTER' %></h5>
+              <h5 style="font-family: Open Sans, sans-serif;"><%= 'Master' %></h5>
             <% end %>
   </div>
 
@@ -51,7 +51,7 @@
           <% @myreviews.each do |a| %>
             <div class="card-product">
               <% if a.photos.present? %>
-                <%= cl_image_tag a.adventure.photos[0].key %>
+                <%= cl_image_tag a.photos.first.key %>
               <% else %>
                 <img src="https://loremflickr.com/120/120/nature?random">
               <% end %>

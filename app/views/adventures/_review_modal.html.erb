@@ -15,9 +15,9 @@
       </div>
       <div class="modal-body">
         <div class="review-information">
-          <h4>Content:</h4>
+          <h4>Content</h4>
           <%= review.content %>
-          <h4>Photos:</h4>
+          <h4>Photos</h4>
           <% if review.photos.present? %>
             <% review.photos.each do |photo| %>
             <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
