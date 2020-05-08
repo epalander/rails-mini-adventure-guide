@@ -106,7 +106,7 @@
               <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.title, adventure_path(a) %></a>
-                <p><%= a.reviews.empty? ? "(No reviews yet) " : "(#{a.reviews.count})" %>
+                <p><%= a.reviews.empty? ? "(No reviews yet) " : "(#{a.reviews.count} reviews)" %>
                   <% a.avg_rating.round.times do %>
                     <span style="font-size: 9pt" class="fas fa-star"></span>
                   <% end %>
