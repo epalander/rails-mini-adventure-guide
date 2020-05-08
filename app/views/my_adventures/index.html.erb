@@ -33,6 +33,14 @@
             <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
+                <p><% a.adventure.avg_rating.round.times do %>
+                    <span style="font-size: 9pt" class="fas fa-star"></span>
+                  <% end %>
+                  <% (5 - a.adventure.avg_rating.round).times do  %>
+                    <span style="font-size: 9pt" class="far fa-star"></span>
+                  <% end %>
+                    <span style="font-size: 9pt"> (<%= a.adventure.avg_rating.round(1) %>) | Category: <%= a.adventure.category %></span>
+                </p>
               </div>
             <% if policy(a).destroy? %>
                   <%= link_to my_adventure_path(a),
@@ -57,6 +65,14 @@
               <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %>  </a>
+                <p>My rating: <% a.rating.times do %>
+                    <span style="font-size: 9pt" class="fas fa-star"></span>
+                  <% end %>
+                  <% (5 - a.rating).times do  %>
+                    <span style="font-size: 9pt" class="far fa-star"></span>
+                  <% end %>
+                    <span style="font-size: 9pt"> (<%= a.rating %>) | Category: <%= a.adventure.category %></span>
+                </p>
               </div>
                 <% unless current_user.nil? %>
                   <% if policy(a).edit? %>
@@ -90,6 +106,15 @@
               <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.title, adventure_path(a) %></a>
+                <p><%= a.reviews.empty? ? "(No reviews yet) " : "(#{a.reviews.count} reviews)" %>
+                  <% a.avg_rating.round.times do %>
+                    <span style="font-size: 9pt" class="fas fa-star"></span>
+                  <% end %>
+                  <% (5 - a.avg_rating.round).times do  %>
+                    <span style="font-size: 9pt" class="far fa-star"></span>
+                  <% end %>
+                    <span style="font-size: 9pt"> (<%= a.avg_rating.round(1) %>) | Category: <%= a.category %></span>
+                </p>
               </div>
 
               <% unless current_user.nil? %>
