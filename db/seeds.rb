@@ -122,6 +122,9 @@ planetReview1 = Review.create!(rating: 5, tagline: "Very fun! I would do it agai
 stoosRidgeReview1 = Review.create!(rating: 5, tagline: "Best day of our Swiss trip!", content: "We took the train from Lucerne to Schwyz, bus to Stoos and then caught the sky cable car to the top of Fronalpstock for the most beautiful view. We caught lunch at the restaurant there (not spectacular, but filling) and hiked for about three hours before catching the funicular back down. The views are spectacular and it is well worth the money. Great, but athletic, hike up and down the alps!", user_id: user7.id, adventure_id: stoosRidge.id, difficulty: 2, duration: 120, youngest_age: 3)
 stoosRidgeReview2 = Review.create!(rating: 4, tagline: "Like standing on top of the world!", content: "A must see vista that will take your breath away. Accessible to all via the mountain chair lifts this incredible outlook has to be seen to be believed. No camera filters needed!", user_id: user5.id, adventure_id: stoosRidge.id, difficulty: 2, duration: 120, youngest_age: 3)
 
+alpineFloraReview1 = Review.create!(rating: 5, tagline: "Lovley Hike", content: "Lovely place to go.  Unfortunately we went on a cloudy day.  But still had a beautiful time hiking down the the panorama path.", user_id: user6.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
+alpineFloraReview2 = Review.create!(rating: 5, tagline: "Amazing Views", content: "Rigi the tourist place and one hour away from Zurich. Take a chair lift and train to reach the mountain. Amazing views of Lake and whole Switzerland. It's quiet chilly up their. Do bring warm clothes.", user_id: user7.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
+
 puts "Finished!"
 
 ### HOW TO SEED WITH CLOUDINARY...don't do this or find a better way.
