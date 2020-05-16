@@ -26,71 +26,71 @@ user8 = User.create!(email: "reviewer5@happy.edu", password: "zurich383", admin:
 user9 = User.create!(email: "reviewer6@sleepy.edu", password: "zurich383", admin: false)
 user10 = User.create!(email: "reviewer7@dopey.edu", password: "zurich383", admin: false)
 
-puts "Seeding other adventures from adventures seed"
-ADVENTURES.each do |adventure_args|
-  new_adv = Adventure.new(adventure_args)
-  new_adv.user_id = User.all.sample.id
-  new_adv.save!
-end
+# puts "Seeding other adventures from adventures seed"
+# ADVENTURES.each do |adventure_args|
+#   new_adv = Adventure.new(adventure_args)
+#   new_adv.user_id = User.all.sample.id
+#   new_adv.save!
+# end
 
-puts "Seeding My Adventures"
-myadv1 = MyAdventure.create!(user_id: User.first.id, adventure_id: Adventure.first.id, done: true)
-myadv2 = MyAdventure.create!(user_id: (User.first.id + 1), adventure_id: (Adventure.first.id + 1), done: false)
-myadv3 = MyAdventure.create!(user_id: (User.first.id + 1), adventure_id: Adventure.first.id, done: true)
-myadv4 = MyAdventure.create!(user_id: User.first.id, adventure_id: (Adventure.first.id + 2), done: false)
+# puts "Seeding My Adventures"
+# myadv1 = MyAdventure.create!(user_id: User.first.id, adventure_id: Adventure.first.id, done: true)
+# myadv2 = MyAdventure.create!(user_id: (User.first.id + 1), adventure_id: (Adventure.first.id + 1), done: false)
+# myadv3 = MyAdventure.create!(user_id: (User.first.id + 1), adventure_id: Adventure.first.id, done: true)
+# myadv4 = MyAdventure.create!(user_id: User.first.id, adventure_id: (Adventure.first.id + 2), done: false)
 
-good_adjective = %w{adventurous amazing awesome breath-taking excellent fabulous fantastic gorgeous incredible ineffable outstanding perfect remarkable spectaular splendid stellar stupendous unbelievable wonderous}
-bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrible unfortunate depressing disappointing ugly}
+# good_adjective = %w{adventurous amazing awesome breath-taking excellent fabulous fantastic gorgeous incredible ineffable outstanding perfect remarkable spectaular splendid stellar stupendous unbelievable wonderous}
+# bad_adjective = %w{boring bad sad not\ great not\ good not\ expected hard terrible unfortunate depressing disappointing ugly}
 
-puts "Seeding reviews for each adventure"
+# puts "Seeding reviews for each adventure"
 
-def gen_review_content(adj)
-  noun = %w{activity adventure memory trip experience fun time}
-  phrases = ["We saw a #{Faker::Creature::Animal.name}!!!", "It was a #{adj.sample} #{noun.sample}.", "#{Faker::Creature::Animal.name.capitalize}s were everywhere!", "The #{%w{kids adults dogs grandparents cousins}.sample} had a #{adj.sample} time.", "We had #{%w{lunch dinner breakfast a\ picnic a\ snack a\ bite}.sample}.", "#{%w{I We The\ kids The\ grandparents The\ dogs}.sample} felt #{adj.sample} afterwards.", "It was #{adj.sample} through and through."]
-  ending_pre =[]
-  3.times { ending_pre << Faker::TvShows::DrWho.quote }
-  ending = ending_pre.join(' ')
-  content = phrases.sample(3).join(' ') + " " + ending + " " + phrases.sample(3).join(' ')
-  return content[0..599]
-end
+# def gen_review_content(adj)
+#   noun = %w{activity adventure memory trip experience fun time}
+#   phrases = ["We saw a #{Faker::Creature::Animal.name}!!!", "It was a #{adj.sample} #{noun.sample}.", "#{Faker::Creature::Animal.name.capitalize}s were everywhere!", "The #{%w{kids adults dogs grandparents cousins}.sample} had a #{adj.sample} time.", "We had #{%w{lunch dinner breakfast a\ picnic a\ snack a\ bite}.sample}.", "#{%w{I We The\ kids The\ grandparents The\ dogs}.sample} felt #{adj.sample} afterwards.", "It was #{adj.sample} through and through."]
+#   ending_pre =[]
+#   3.times { ending_pre << Faker::TvShows::DrWho.quote }
+#   ending = ending_pre.join(' ')
+#   content = phrases.sample(3).join(' ') + " " + ending + " " + phrases.sample(3).join(' ')
+#   return content[0..599]
+# end
 
-adventures = Adventure.all
+# adventures = Adventure.all
 
-users = User.all
+# users = User.all
 
-adventures.each do |adventure|
-  num_good = rand(3..5)
-  num_bad = rand(0..2)
-  reviewer_pool = users[2..-1].sample(num_good + num_bad)
-  good_reviewers = reviewer_pool[0..(num_good-1)]
-  bad_reviewers = reviewer_pool[num_good..-1]
-  good_reviewers.each do |reviewer|
-    good_review_args = {
-      rating:rand(3..5),
-      tagline: ["#{good_adjective.sample.capitalize} #{adventure.category} #{%w{for with}.sample} #{%w{kids the\ family}.sample}", "Could not be more #{good_adjective.sample.upcase}!", "#{%w{Simply Just}.sample} #{good_adjective.sample}", "#{good_adjective.sample.capitalize}!"].sample,
-      content: gen_review_content(good_adjective),
-      user_id: reviewer.id,
-      adventure_id: adventure.id,
-      difficulty: rand(1..3),
-      duration: [(adventure.avg_duration - rand(0..15)), (adventure.avg_duration + rand(0..20))].sample,
-      youngest_age: adventure.youngest_age < 2 ? rand(0..2) : rand(3..5)
-    }
-    Review.create!(good_review_args)
-  end
-  bad_reviewers.each do |reviewer|
-    bad_review_args = {
-      rating:rand(1..2),
-      tagline:["#{%w{omg jeez ugh}.sample}...#{bad_adjective.sample} #{%w{activity adventure memories memory trip experience experiences times time}.sample}", "Don't go!", "Just don't.", "Everyone was crying.", "#{%w{omg jeez ugh fml}.sample.capitalize}!", bad_adjective.sample.upcase].sample,
-      content: gen_review_content(bad_adjective),
-      user_id: reviewer.id,
-      adventure_id: adventure.id,
-      difficulty: 3,
-      duration: adventure.avg_duration + rand(20..60),
-      youngest_age: [4, 5].sample,
-    }
-    Review.create!(bad_review_args)
-  end
-end
+# adventures.each do |adventure|
+#   num_good = rand(3..5)
+#   num_bad = rand(0..2)
+#   reviewer_pool = users[2..-1].sample(num_good + num_bad)
+#   good_reviewers = reviewer_pool[0..(num_good-1)]
+#   bad_reviewers = reviewer_pool[num_good..-1]
+#   good_reviewers.each do |reviewer|
+#     good_review_args = {
+#       rating:rand(3..5),
+#       tagline: ["#{good_adjective.sample.capitalize} #{adventure.category} #{%w{for with}.sample} #{%w{kids the\ family}.sample}", "Could not be more #{good_adjective.sample.upcase}!", "#{%w{Simply Just}.sample} #{good_adjective.sample}", "#{good_adjective.sample.capitalize}!"].sample,
+#       content: gen_review_content(good_adjective),
+#       user_id: reviewer.id,
+#       adventure_id: adventure.id,
+#       difficulty: rand(1..3),
+#       duration: [(adventure.avg_duration - rand(0..15)), (adventure.avg_duration + rand(0..20))].sample,
+#       youngest_age: adventure.youngest_age < 2 ? rand(0..2) : rand(3..5)
+#     }
+#     Review.create!(good_review_args)
+#   end
+#   bad_reviewers.each do |reviewer|
+#     bad_review_args = {
+#       rating:rand(1..2),
+#       tagline:["#{%w{omg jeez ugh}.sample}...#{bad_adjective.sample} #{%w{activity adventure memories memory trip experience experiences times time}.sample}", "Don't go!", "Just don't.", "Everyone was crying.", "#{%w{omg jeez ugh fml}.sample.capitalize}!", bad_adjective.sample.upcase].sample,
+#       content: gen_review_content(bad_adjective),
+#       user_id: reviewer.id,
+#       adventure_id: adventure.id,
+#       difficulty: 3,
+#       duration: adventure.avg_duration + rand(20..60),
+#       youngest_age: [4, 5].sample,
+#     }
+#     Review.create!(bad_review_args)
+#   end
+# end
 
 puts "Seeding original adventures"
 rigifile = URI.open('https://img1.oastatic.com/img2/37379725/max/t.jpg')
