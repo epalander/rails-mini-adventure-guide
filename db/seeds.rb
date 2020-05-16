@@ -123,7 +123,7 @@ stoosRidgeReview1 = Review.create!(rating: 5, tagline: "Best day of our Swiss tr
 stoosRidgeReview2 = Review.create!(rating: 4, tagline: "Like standing on top of the world!", content: "A must see vista that will take your breath away. Accessible to all via the mountain chair lifts this incredible outlook has to be seen to be believed. No camera filters needed!", user_id: user5.id, adventure_id: stoosRidge.id, difficulty: 2, duration: 120, youngest_age: 3)
 
 alpineFloraReview1 = Review.create!(rating: 4, tagline: "Good for little kids and non-hikers", content: "The path is stroller and wheelchair accessible, with fantastic views and lots of flowers during the height of summer. We like this one for visitors on a budget and short on time, since it’s close to Zurich, relatively inexpensive, and easy to access with public transportation. We also love Flumserberg because on many days when Zurich is socked in with fog, you’ll find sunny skies here.", user_id: user7.id, adventure_id: alpineFlora.id, difficulty: 1, duration: 45, youngest_age: 2)
-alpineFloraReview2 = Review.create!(rating: 4, tagline: "Amazing Views", content: "Rigi the tourist place and one hour away from Zurich. Take a chair lift and train to reach the mountain. Amazing views of Lake and whole Switzerland. It's quiet chilly up their. Do bring warm clothes.", user_id: user7.id, adventure_id: rigi.id, difficulty: 1, duration: 60, youngest_age: 2)
+
 
 puts "Finished!"
 
