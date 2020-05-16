@@ -128,6 +128,7 @@ stoosRidgeReview2 = Review.create!(rating: 4, tagline: "Like standing on top of 
 
 alpineFloraReview1 = Review.create!(rating: 4, tagline: "Good for little kids and non-hikers", content: "The path is stroller and wheelchair accessible, with fantastic views and lots of flowers during the height of summer. We like this one for visitors on a budget and short on time, since it’s close to Zurich, relatively inexpensive, and easy to access with public transportation. We also love Flumserberg because on many days when Zurich is socked in with fog, you’ll find sunny skies here.", user_id: user7.id, adventure_id: alpineFlora.id, difficulty: 1, duration: 45, youngest_age: 2)
 
+pfaffikerseeReview1 = Review.create!(rating: 4, tagline: "Perfect for the kids", content: "Pfäffikersee is a beautiful lake east of Zurich with a protected nature preserve along much of the lakeshore. There is a great path around the lake for walking or biking, with lots of fun distractions for the kids, including Jucker Farm, swimming in the lake, and a lakeside playground in Pfäffikon. We’ve also been camping at the Pfäffikersee a couple times and we always bring our bikes so we can ride over to Jucker Farm for meals. We’re ridden there in all seasons and it’s always pretty.", user_id: user8.id, adventure_id: pfaffikersee.id, difficulty: 1, duration: 120, youngest_age: 1)
 
 puts "Finished!"
 
