@@ -20,6 +20,14 @@ class Adventure < ApplicationRecord
     end
   end
 
+  def avg_difficulty
+    if self.reviews.empty?
+      self.difficulty
+    else
+      (self.difficulty + self.reviews.sum(:difficulty)).fdiv(self.reviews.count + 1).round
+    end
+  end
+
   def rand_n(n, max)
     randoms = Set.new
     loop do
