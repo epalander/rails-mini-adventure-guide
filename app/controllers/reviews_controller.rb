@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
   def destroy
     authorize @review
     @review.destroy
-    redirect_to adventure_path(@review.adventure), notice: "Your review was deleted"
+    redirect_to my_adventures_path, notice: "Your review was deleted"
   end
 
   private
