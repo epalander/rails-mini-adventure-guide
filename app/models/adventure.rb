@@ -37,13 +37,15 @@ class Adventure < ApplicationRecord
         avg_rating: 0,
         avg_difficulty: level[self.difficulty],
         avg_age: age[self.youngest_age],
-        avg_duration: self.avg_duration
+        avg_duration: self.avg_duration,
+        num_ratings: 0
       }
     else
       stats = {
         avg_rating: self.reviews.average(:rating),
         avg_difficulty: level[(self.difficulty + self.reviews.sum(:difficulty)).fdiv(self.reviews.count + 1).round],
         avg_age: age[(self.youngest_age + self.reviews.sum(:youngest_age)).fdiv(self.reviews.count + 1).round],
+        num_ratings: self.reviews.count,
         avg_duration: 0 ##program this later...
       }
     end
