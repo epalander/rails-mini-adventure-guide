@@ -53,25 +53,23 @@ class AdventuresController < ApplicationController
 
     authorize @adventure
 
-    @avg_rating = @adventure.avg_rating
+    @avg_rating = @adventure.crowdsource_stats[:avg_rating]
 
     # number of ratings
-    ratings = []
-    @adventure.reviews.each do |review|
-      ratings << review.rating.to_i
-    end
-    @ratings_count = ratings.count
+    # ratings = []
+    # @adventure.reviews.each do |review|
+    #   ratings << review.rating.to_i
+    # end
+    @ratings_count = @adventure.reviews.count
 
 
     # show right value in the icon overview on the show page
-    @age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
-    @level = ["Easy", "Moderate", "Challenging"]
     @stroller = @adventure.stroller_friendly ? 'Stroller friendly' : 'Not for strollers'
     @parking = @adventure.parking ? 'Available' : 'Not available'
     @public_transport = @adventure.public_transport ? 'Available' : 'Not available'
-    # @difficulty = @adventure.difficulty == "1" ? 'Easy' : (@adventure.difficulty == "2" ? "Moderate" : 'Challenging')
-    @youngest_age = @age[@adventure.youngest_age]
-    @difficulty = @level[@adventure.avg_difficulty - 1]
+
+    @youngest_age = @adventure.crowdsource_stats[:youngest_age]
+    @difficulty = @adventure.crowdsource_stats[:avg_difficulty]
 
     # marker for the map
     @markers = [{

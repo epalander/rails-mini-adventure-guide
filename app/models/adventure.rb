@@ -20,11 +20,32 @@ class Adventure < ApplicationRecord
     end
   end
 
-  def avg_difficulty
+  # def avg_difficulty
+  #   if self.reviews.empty?
+  #     self.difficulty
+  #   else
+  #     (self.difficulty + self.reviews.sum(:difficulty)).fdiv(self.reviews.count + 1).round
+  #   end
+  # end
+
+  def crowdsource_stats
+    age = ["under < 1 year", "1-3 years", "4-6 years", "7-11 years", "12-15 years", "16+ years"]
+    level = ["Easy", "Moderate", "Challenging"]
+
     if self.reviews.empty?
-      self.difficulty
+      stats = {
+        avg_rating: 0,
+        avg_difficulty: level[self.difficulty],
+        avg_age: age[self.youngest_age],
+        avg_duration: self.avg_duration
+      }
     else
-      (self.difficulty + self.reviews.sum(:difficulty)).fdiv(self.reviews.count + 1).round
+      stats = {
+        avg_rating: self.reviews.average(:rating),
+        avg_difficulty: level[(self.difficulty + self.reviews.sum(:difficulty)).fdiv(self.reviews.count + 1).round],
+        avg_age: age[(self.youngest_age + self.reviews.sum(:youngest_age)).fdiv(self.reviews.count + 1).round],
+        avg_duration: 0 ##program this later...
+      }
     end
   end
 
