@@ -27,7 +27,9 @@
           <% @results.each_with_index do |adventure, index| %>
             <div class="card-product">
               <% if adventure.photo.present? %>
+                <%= link_to adventure_path(adventure) do %>
                 <%= cl_image_tag adventure.photo.key %>
+                <% end %>
               <% else %>
                 <img src="https://loremflickr.com/120/120/mountains?random=<%= @ar[index].to_s %>">
               <% end %>
