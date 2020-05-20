@@ -35,7 +35,9 @@
       <% @top_adventures.each_with_index do |adventure, index| %>
         <div class="card-product">
           <% if adventure.photo.present? %>
+            <%= link_to adventure_path(adventure) do %>
             <%= cl_image_tag adventure.photo.key %>
+            <% end %>
           <% else %>
             <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
           <% end %>
