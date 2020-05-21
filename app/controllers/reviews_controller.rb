@@ -39,13 +39,13 @@ class ReviewsController < ApplicationController
   def destroy
     authorize @review
     @review.destroy
-    redirect_to adventure_path(@review.adventure), notice: "Your review was deleted"
+    redirect_to my_adventures_path, notice: "Your review was deleted"
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:tagline, :content, :rating, :user_id, :adventure_id, :duration, :youngest_age, photos: [])
+    params.require(:review).permit(:tagline, :content, :rating, :user_id, :adventure_id, :duration, :difficulty, :youngest_age, photos: [])
   end
 
   def set_review

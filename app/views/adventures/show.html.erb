@@ -18,16 +18,16 @@
     <!-- title and overall rating -->
     <div class="container">
       <h1><%= @adventure.title %></h1>
-        <% if @avg_rating == 0 %>
+        <% if @stats[:avg_rating] == 0 %>
            <%= link_to 'Be the first to review this adventure!', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
         <% else %>
-          <% @avg_rating.round.times do  %>
+          <% @stats[:avg_rating].round.times do  %>
             <span class="fas fa-star"></span>
           <% end %>
-          <% (5 - @avg_rating.round).times do  %>
+          <% (5 - @stats[:avg_rating].round).times do  %>
             <span class="far fa-star"></span>
           <% end %>
-            <span>(<%= @avg_rating.round(1) %>)<span>
+            <span>(<%= @stats[:avg_rating].round(1) %>)<span>
         <% end %>
     </div>
   </div>
@@ -38,10 +38,10 @@
     <div class="col-sm-12 col-md-12">
       <div class="icon-cards">
         <p><i class="fas fa-award"></i>  <%= @adventure.category %></p>
-        <p><i class="fas fa-clock"></i>  <%= @adventure.avg_duration %> min</p>
-        <p><i class="fas fa-child"> </i>  From <%= @youngest_age %></p>
+        <p><i class="fas fa-clock"></i>  <%= @stats[:avg_duration] %></p>
+        <p><i class="fas fa-child"> </i>  From <%= @stats[:avg_age] %></p>
         <p><i class="fas fa-parking"></i>  <%= @parking %></p>
-        <p><i class="fas fa-mountain"></i>  <%= @difficulty %></p>
+        <p><i class="fas fa-mountain"></i>  <%= @stats[:avg_difficulty] %></p>
         <p><i class="fas fa-hiking"></i>  <%= @adventure.distance %> km</p>
         <p><i class="fas fa-baby-carriage"></i>  <%= @stroller  %>
         <p><i class="fas fa-bus"></i>  <%= @public_transport %></p>
@@ -73,7 +73,7 @@
   <!-- Reviews -->
   <div class="row container-fluid-index center d-flex justify-content-between">
     <div class="col-sm-12 col-md-12">
-      <h2>Reviews <span style=" font-size: 16pt">(<%= @ratings_count %> reviews)<span></h2>
+      <h2>Reviews <span style=" font-size: 16pt">(<%= @stats[:num_ratings] %> reviews)<span></h2>
       <% @newest_review_first.each_with_index do |review, index|  %>
         <div class="card-product">
           <% if review.photos.present? %>
