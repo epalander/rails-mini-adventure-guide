@@ -1,47 +1,51 @@
 /* Extra small devices (phones, 600px and down) */
-// @media only screen and (max-width: 600px) {...}
+@media only screen and (max-width: 600px) {
+  .card-product-infos a {
+    font-size: 10px;
+  }
+
+  .card-product-infos p {
+    font-size: 10px;
+  }
+  .card-product-infos .fa-star:before {
+    font-size: 10px;
+  }
+
+  .card-product-infos p {
+    display: none;
+  }
+
+  .btn-ghost {
+    padding: 2px 4px;
+    font-size: 60%;
+    line-height: 1;
+  }
+}
+
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-.card-product p {
-  font-size: 50%;
-}
-
-.card-product-infos a {
-    font-size: 50%;
+  .card-product-infos a {
+    font-size: 10px;
   }
 
-  .card-product-infos .fas.fa-star  {
-    font-size: 50%;
-  }
-
-  .btn-responsive {
-    padding:2px 4px;
-    font-size:70%;
-    line-height: 1;
-    border-radius:3px;
+  .card-product-infos p {
+    font-size: 10px;
   }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .card-product p {
-  font-size: 50%;
+    font-size: 50%;
   }
 
   .card-product-infos a {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .card-product-infos p {
     font-size: 12px;
-  }
-
-  .btn-responsive {
-    padding:2px 4px;
-    font-size:80%;
-    line-height: 1;
-    border-radius:3px;
   }
 }
 
