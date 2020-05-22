@@ -1,8 +1,8 @@
 <div class="container">
 
   <div class="container-adventure-index text-center mt-4 pt-4 pb-4" style="background-image: linear-gradient(rgba(0,0,0,0.0),rgba(0,0,0,0.2)), url(https://images.pexels.com/photos/130111/pexels-photo-130111.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260); color: rgb(220, 220, 220); box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);">
-    <h1>My Adventures Dashboard</h1>
-    <p>Leave reviews and share adventures to collect Adventure Points and level up your Adventurer Status.<p>
+    <h2>My Adventures Dashboard</h2>
+    <p class="myadventures">Leave reviews and share adventures to collect Adventure Points and level up your Adventurer Status.<p>
         <h4>Total Adventure Points</h4>
         <h5 style="font-family: Open Sans, sans-serif;"><%= @myreviews.count + 2 * @writtenadventures.count %></h5>
          <h4>Adventurer Status</h4>
@@ -22,7 +22,7 @@
     <div class="container">
 
       <div class="card mt-4 mb-4 p-4">
-        <h1>SAVED (<%= @myadventures.count %>)</h1>
+        <h2>SAVED (<%= @myadventures.count %>)</h2>
         <%= "You haven't saved any adventures yet." if @myadventures.empty?  %>
         <% @myadventures.each_with_index do |a, index| %>
           <div class="card-product">
@@ -56,10 +56,10 @@
       </div>
 
       <div class="card mt-4 mb-4 p-4">
-        <h1>MY REVIEWS (<%= @myreviews.count %>)</h1>
+        <h2>MY REVIEWS (<%= @myreviews.count %>)</h2>
           <%= "Go on some adventures and leave some reviews." if @myreviews.empty?  %>
           <% @myreviews.each_with_index do |a, index| %>
-            <div class="card-product">
+            <div class="card-product double-icon">
               <% if a.photos.present? %>
                 <%= link_to adventure_path(a.adventure) do %>
                 <%= cl_image_tag a.photos.first.key %>
@@ -72,10 +72,10 @@
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %>  </a>
                 <p>My rating: <% a.rating.times do %>
-                    <span style="font-size: 9pt" class="fas fa-star"></span>
+                    <span style="font-size: 9pt" class="fas fa-star two"></span>
                   <% end %>
                   <% (5 - a.rating).times do  %>
-                    <span style="font-size: 9pt" class="far fa-star"></span>
+                    <span style="font-size: 9pt" class="far fa-star two"></span>
                   <% end %>
                     <span style="font-size: 9pt"> (<%= a.rating %>) | Category: <%= a.adventure.category %></span>
                 </p>
@@ -102,7 +102,7 @@
 
 
       <div class="card mt-4 mb-4 p-4">
-        <h1>MY MINI ADVENTURES (<%= @writtenadventures.count %>)</h1>
+        <h2>MY MINI ADVENTURES (<%= @writtenadventures.count %>)</h2>
         <% @writtenadventures.each_with_index do |a, index| %>
             <div class="card-product">
               <% if a.photo.present? %>

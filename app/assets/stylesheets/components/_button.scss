@@ -6,6 +6,11 @@
   transition: opacity 0.3s ease;
 }
 
+.nav-btn {
+  width: 177px !important;
+  text-align: center;
+}
+
 .yellow {
   border: 2px solid #FFF152;
   color: #FFF152;
@@ -43,3 +48,8 @@
   padding: 0;
 }
 
+.btn-responsive {
+  white-space: normal !important;
+  word-wrap: break-word;
+  font-size: 3vh;
+}
