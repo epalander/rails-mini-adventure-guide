@@ -33,17 +33,16 @@
       <!-- top 5 cards -->
       <h2>Top 5 Mini Adventures</h2>
       <% @top_adventures.each_with_index do |adventure, index| %>
+        <%= link_to adventure_path(adventure), id: 'card-link-text' do %>
         <div class="card-product">
           <% if adventure.photo.present? %>
-            <%= link_to adventure_path(adventure) do %>
             <%= cl_image_tag adventure.photo.key %>
-            <% end %>
           <% else %>
             <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
           <% end %>
 
           <div class="card-product-infos", style="width:70%">
-            <div><%= link_to adventure.title, adventure_path(adventure) %>
+            <div><%= adventure.title %>
               <p><% adventure.avg_rating.round.times do %>
                 <span style="font-size: 9pt" class="fas fa-star"></span>
               <% end %>
@@ -55,6 +54,7 @@
             </div>
           </div>
         </div>
+        <% end %>
       <% end %>
     </div>
   </div>
