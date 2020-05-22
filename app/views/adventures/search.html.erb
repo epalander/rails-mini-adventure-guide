@@ -5,10 +5,10 @@
 
       <!-- Search filters -->
       <div class="d-flex justify-content-center">
-        <div class="filter-buttons"><%= link_to "Parking Available", @params.merge(parking: true), class: "btn btn-ghost" %></div>
-        <div class="filter-buttons"><%= link_to "Public Transport Accessible", @params.merge(public_transport: true), class: "btn btn-ghost" %></div>
-        <div class="filter-buttons"><%= link_to "Stroller Friendly", @params.merge(stroller_friendly: true), class: "btn btn-ghost" %></div>
-        <div class="filter-buttons"><%= render 'search_modal', adventure: @adventure %></div>
+        <div class="filter-buttons btn-responsive"><%= link_to "Parking Available", @params.merge(parking: true), class: "btn btn-ghost" %></div>
+        <div class="filter-buttons btn-responsive"><%= link_to "Public Transport Accessible", @params.merge(public_transport: true), class: "btn btn-ghost" %></div>
+        <div class="filter-buttons btn-responsive"><%= link_to "Stroller Friendly", @params.merge(stroller_friendly: true), class: "btn btn-ghost" %></div>
+        <div class="filter-buttons btn-responsive"><%= render 'search_modal', adventure: @adventure %></div>
       </div>
 
       <!-- Map -->
@@ -46,9 +46,9 @@
                   <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
                 </div>
 
-                  <p><%= "#{adventure.description[0..100]}..." %> <%= link_to "(Read more)", adventure_path(adventure) %>
+                <p><%= "#{adventure.description[0..100]}..." %> <%= link_to "(Read more)", adventure_path(adventure) %>
+                </p>
 
-                  </p>
               </div>
             </div>
           <% end %>

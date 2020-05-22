@@ -1,0 +1,93 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .card-product-infos a {
+    font-size: 10px;
+  }
+
+  .card-product-infos p {
+    font-size: 10px;
+  }
+
+  // Search
+  .btn-ghost {
+    padding: 2px 4px;
+    font-size: 60%;
+    line-height: 1;
+  }
+
+  // My Adventure
+  .myadventures {
+    padding-right: 8pt;
+    padding-left: 8pt;
+  }
+
+  .card-product-infos .fa-star:before {
+    font-size: 10px;
+  }
+
+  .card-product .fa-pencil-alt:before {
+    padding-right: 8pt;
+  }
+
+  .card-product .fa-trash-alt:before {
+    padding-right: 8pt;
+  }
+
+  .double-icon .fa-pencil-alt:before {
+    padding-right: 0pt;
+  }
+  .double-icon .fa-trash-alt:before {
+    padding-right: 8pt;
+  }
+
+  .card-product-infos p {
+    display: none;
+  }
+
+
+
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .card-product-infos a {
+    font-size: 10px;
+  }
+
+  .card-product-infos p {
+    font-size: 10px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .card-product p {
+    font-size: 50%;
+  }
+
+  .card-product-infos a {
+    font-size: 12px;
+  }
+
+  .card-product-infos p {
+    font-size: 12px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .card-product-infos a {
+    font-size: 14px;
+  }
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.2;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
