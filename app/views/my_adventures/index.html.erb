@@ -25,31 +25,37 @@
         <h2>SAVED (<%= @myadventures.count %>)</h2>
         <%= "You haven't saved any adventures yet." if @myadventures.empty?  %>
         <% @myadventures.each_with_index do |a, index| %>
+          <%= link_to adventure_path(a.adventure), id: 'card-link-text' do %>
           <div class="card-product">
             <% if a.adventure.photo.present? %>
               <%= cl_image_tag a.adventure.photo.key %>
             <% else %>
               <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
             <% end %>
-              <div class="card-product-infos", style="width:70%">
-                <a><%= link_to a.adventure.title, adventure_path(a.adventure) %></a>
+
+            <div class="card-product-infos", style="width:70%">
+              <div><%= a.adventure.title %>
                 <p><% a.adventure.avg_rating.round.times do %>
-                    <span style="font-size: 9pt" class="fas fa-star"></span>
-                  <% end %>
-                  <% (5 - a.adventure.avg_rating.round).times do  %>
-                    <span style="font-size: 9pt" class="far fa-star"></span>
-                  <% end %>
-                    <span style="font-size: 9pt"> (<%= a.adventure.avg_rating.round(1) %>) | Category: <%= a.adventure.category %></span>
+                  <span style="font-size: 9pt" class="fas fa-star"></span>
+                <% end %>
+                <% (5 - a.adventure.avg_rating.round).times do  %>
+                  <span style="font-size: 9pt" class="far fa-star"></span>
+                <% end %>
+                <span style="font-size: 9pt"> (<%= a.adventure.avg_rating.round(1) %>) | Category: <%= a.adventure.category %></span>
                 </p>
               </div>
-            <% if policy(a).destroy? %>
+            </div>
+            <div>
+        <% if policy(a).destroy? %>
                   <%= link_to my_adventure_path(a),
                         method: :delete,
                         data: {confirm: "Are you sure you would like to unsave this adventure?"} do %>
                 <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
               <% end %>
             <% end %>
+        </div>
           </div>
+        <% end %>
         <% end %>
       </div>
 
@@ -59,9 +65,13 @@
           <% @myreviews.each_with_index do |a, index| %>
             <div class="card-product double-icon">
               <% if a.photos.present? %>
+                <%= link_to adventure_path(a.adventure) do %>
                 <%= cl_image_tag a.photos.first.key %>
+                <% end %>
               <% else %>
+                <%= link_to adventure_path(a.adventure) do %>
                 <img src="https://loremflickr.com/120/120/switzerland?random=<%= index.to_s %>">
+                <% end %>
               <% end %>
               <div class="card-product-infos", style="width:70%">
                 <a><%= link_to a.adventure.title, adventure_path(a.adventure) %>  </a>
@@ -100,7 +110,9 @@
         <% @writtenadventures.each_with_index do |a, index| %>
             <div class="card-product">
               <% if a.photo.present? %>
+                <%= link_to adventure_path(a) do %>
                 <%= cl_image_tag a.photo.key %>
+                <% end %>
               <% else %>
                 <img src="https://loremflickr.com/120/120/mountains?random=<%= index.to_s %>">
               <% end %>

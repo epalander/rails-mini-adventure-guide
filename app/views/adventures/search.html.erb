@@ -25,32 +25,31 @@
       <div class="row container-fluid-index center d-flex justify-content-between">
         <div class="col-sm-12 col-md-12">
           <% @results.each_with_index do |adventure, index| %>
-            <div class="card-product">
-              <% if adventure.photo.present? %>
-                <%= cl_image_tag adventure.photo.key %>
-              <% else %>
-                <img src="https://loremflickr.com/120/120/mountains?random=<%= @ar[index].to_s %>">
-              <% end %>
+            <%= link_to adventure_path(adventure), id: 'card-link-text' do %>
+              <div class="card-product">
+                <% if adventure.photo.present? %>
+                  <%= cl_image_tag adventure.photo.key %>
+                <% else %>
+                  <img src="https://loremflickr.com/120/120/mountains?random=<%= @ar[index].to_s %>">
+                <% end %>
 
-              <div class="card-product-infos", style="width:70%">
-                <div style="font-size: 13px"><%= link_to "#{adventure.title.length < 50 ? adventure.title : adventure.title[0..49] + "..."}", adventure_path(adventure) %>
+                <div class="card-product-infos", style="width:70%">
+                  <div style="font-size: 13px"><%= "#{adventure.title.length < 50 ? adventure.title : adventure.title[0..49] + "..."}" %>
+                  </div>
+
+                  <div>
+                    <% adventure.avg_rating.round.times do %>
+                      <span style="font-size: 9pt" class="fas fa-star"></span>
+                    <% end %>
+                    <% (5 - adventure.avg_rating.round).times do  %>
+                      <span style="font-size: 9pt" class="far fa-star"></span>
+                    <% end %>
+                    <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
+                  </div>
+                    <p><%= "#{adventure.description[0..100]}..." %> (Read more)</p>
                 </div>
-
-                <div>
-                  <% adventure.avg_rating.round.times do %>
-                    <span style="font-size: 9pt" class="fas fa-star"></span>
-                  <% end %>
-                  <% (5 - adventure.avg_rating.round).times do  %>
-                    <span style="font-size: 9pt" class="far fa-star"></span>
-                  <% end %>
-                  <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
-                </div>
-
-                <p><%= "#{adventure.description[0..100]}..." %> <%= link_to "(Read more)", adventure_path(adventure) %>
-                </p>
-
               </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
 

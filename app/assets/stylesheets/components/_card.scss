@@ -13,7 +13,7 @@
 }
 
 .card-product img {
-  height: 100%;
+  height: 20vh;
   width: 120px;
   object-fit: cover;
 }
@@ -48,4 +48,13 @@
   flex-grow: 1;
   text-align: center;
   font: 8px;
+}
+
+#card-link-text {
+  color: rgb(100, 100, 100);
+  font-weight: bold;
+}
+
+#card-link-text:hover {
+  text-decoration: none;
 }
