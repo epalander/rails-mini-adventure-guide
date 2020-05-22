@@ -33,29 +33,30 @@
       <!-- top 5 cards -->
       <h2>Top 5 Mini Adventures</h2>
       <% @top_adventures.each_with_index do |adventure, index| %>
-        <div class="card-product">
-          <% if adventure.photo.present? %>
-            <%= link_to adventure_path(adventure) do %>
-            <%= cl_image_tag adventure.photo.key %>
+        <%= link_to adventure_path(adventure), id: 'card-link-text' do %>
+          <div class="card-product">
+            <% if adventure.photo.present? %>
+              <%= cl_image_tag adventure.photo.key %>
+            <% else %>
+              <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
             <% end %>
-          <% else %>
-            <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
-          <% end %>
 
-          <div class="card-product-infos", style="width:70%">
-            <div><%= link_to adventure.title, adventure_path(adventure) %>
-              <p><% adventure.avg_rating.round.times do %>
-                <span style="font-size: 9pt" class="fas fa-star"></span>
-              <% end %>
-              <% (5 - adventure.avg_rating.round).times do  %>
-                <span style="font-size: 9pt" class="far fa-star"></span>
-              <% end %>
-              <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
-              </p>
+            <div class="card-product-infos", style="width:70%">
+              <div><%= adventure.title %>
+                <p><% adventure.avg_rating.round.times do %>
+                  <span style="font-size: 9pt" class="fas fa-star"></span>
+                <% end %>
+                <% (5 - adventure.avg_rating.round).times do  %>
+                  <span style="font-size: 9pt" class="far fa-star"></span>
+                <% end %>
+                <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
 </div>
+<!-- Joyce test git push -->
