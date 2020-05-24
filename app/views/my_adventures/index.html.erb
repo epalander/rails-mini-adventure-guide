@@ -33,7 +33,8 @@
               <% else %>
                 <img src="https://loremflickr.com/120/120/nature?random=<%= index.to_s %>">
               <% end %>
-          <% end %>
+              <% end %>
+
 
               <div class="card-product-infos", style="width:70%">
                 <div><%= a.adventure.title %>
@@ -52,11 +53,12 @@
                 <%= link_to my_adventure_path(a),
                   method: :delete,
                   data: {confirm: "Are you sure you would like to unsave this adventure?"} do %>
-                <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
+                  <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
+                <% end %>
               <% end %>
-            <% end %>
             </div>
-        <% end %>
+          <% end %>
+
       </div>
 
       <div class="card mt-4 mb-4 p-4">
