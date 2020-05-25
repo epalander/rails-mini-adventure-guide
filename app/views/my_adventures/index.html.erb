@@ -63,6 +63,7 @@
       <div class="card mt-4 mb-4 p-4">
         <h2>MY REVIEWS (<%= @myreviews.count %>)</h2>
           <%= "Go on some adventures and leave some reviews." if @myreviews.empty?  %>
+
           <% @myreviews.each_with_index do |a, index| %>
             <div class="card-product double-icon">
               <% if a.photos.present? %>
@@ -141,7 +142,7 @@
           </div>
         <% end %>
     </div>
-
+    </div>
+  </div>
   </div>
 
-</div>
