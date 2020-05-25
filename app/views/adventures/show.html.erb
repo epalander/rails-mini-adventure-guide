@@ -17,7 +17,7 @@
 
     <!-- title and overall rating -->
     <div class="container">
-      <h1><%= @adventure.title %></h1>
+      <h1 class="show-title"><%= @adventure.title %></h1>
         <% if @stats[:avg_rating] == 0 %>
            <%= link_to 'Be the first to review this adventure!', new_adventure_review_path(@adventure), class: "btn btn-primary mt-4" %>
         <% else %>
