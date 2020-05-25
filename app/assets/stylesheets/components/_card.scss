@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   margin: 10px;
+  width: 100vw;
   position: relative;
 }
 
@@ -58,8 +59,9 @@
 
 .my-adv-card-icon i {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  width: 10px;
+  height: 10px;
+  right: 64px;
 }
 
 #card-link-text:hover {
