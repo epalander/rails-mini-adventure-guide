@@ -53,6 +53,13 @@
 #card-link-text {
   color: rgb(100, 100, 100);
   font-weight: bold;
+  position: relative;
+}
+
+#card-link-text i {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 #card-link-text:hover {

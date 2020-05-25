@@ -43,17 +43,16 @@
                 </p>
               </div>
             </div>
-          <% end %>
-
-          <div class="card-icon">
             <% if policy(a).destroy? %>
               <%= link_to my_adventure_path(a),
                  method: :delete,
                  data: {confirm: "Are you sure you would like to unsave this adventure?"} do %>
-                  <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
+                  <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt my-adv-card-icon"></i>
               <% end %>
             <% end %>
-          </div>
+          <% end %>
+
+
         <% end %>
       </div>
 
