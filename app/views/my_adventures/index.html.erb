@@ -25,7 +25,7 @@
         <h2>SAVED (<%= @myadventures.count %>)</h2>
         <%= "You haven't saved any adventures yet." if @myadventures.empty?  %>
         <% @myadventures.each_with_index do |a, index| %>
-          <%= link_to adventure_path(a.adventure), class: "card-product" do %>
+          <%= link_to adventure_path(a.adventure), class: "card-product", id: "card-link-text" do %>
             <% if a.adventure.photo.present? %>
               <%= cl_image_tag a.adventure.photo.key %>
             <% else %>
@@ -44,13 +44,16 @@
               </div>
             </div>
           <% end %>
-          <% if policy(a).destroy? %>
-                  <%= link_to my_adventure_path(a),
-                        method: :delete,
-                        data: {confirm: "Are you sure you would like to unsave this adventure?"} do %>
-                <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
+
+          <div class="card-icon">
+            <% if policy(a).destroy? %>
+              <%= link_to my_adventure_path(a),
+                 method: :delete,
+                 data: {confirm: "Are you sure you would like to unsave this adventure?"} do %>
+                  <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
               <% end %>
             <% end %>
+          </div>
         <% end %>
       </div>
 
