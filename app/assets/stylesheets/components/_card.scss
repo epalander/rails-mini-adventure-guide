@@ -59,9 +59,17 @@
 
 .my-adv-card-icon i {
   position: absolute;
-  width: 10px;
-  height: 10px;
   right: 64px;
+}
+
+#review-delete-icon {
+  position: absolute;
+  right: 80px;
+}
+
+#review-edit-icon {
+  position: absolute;
+  right: 56px
 }
 
 #card-link-text:hover {
