@@ -15,13 +15,17 @@
     line-height: 1;
   }
 
+  .show-title {
+    font-size: 32px;
+  }
+
   // My Adventure
   .myadventures {
     padding-right: 8pt;
     padding-left: 8pt;
   }
 
-  .card-product-infos .fa-star:before {
+  .card-product {
     font-size: 10px;
   }
 
@@ -43,9 +47,6 @@
   .card-product-infos p {
     display: none;
   }
-
-
-
 }
 
 
@@ -62,16 +63,16 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .card-product p {
-    font-size: 50%;
-  }
 
+  .card-product-infos {
+    font-size: 13px;
+  }
   .card-product-infos a {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .card-product-infos p {
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 
