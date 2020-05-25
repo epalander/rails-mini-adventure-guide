@@ -114,38 +114,43 @@
       <div class="card mt-4 mb-4 p-4">
         <h2>MY MINI ADVENTURES (<%= @writtenadventures.count %>)</h2>
         <% @writtenadventures.each_with_index do |a, index| %>
-            <div class="card-product">
+          <div class="d-inline-flex align-items-center">
+            <%= link_to adventure_path(a), class: "card-product", id: "card-link-text" do %>
+
               <% if a.photo.present? %>
-                <%= link_to adventure_path(a) do %>
                 <%= cl_image_tag a.photo.key %>
-                <% end %>
               <% else %>
                 <img src="https://loremflickr.com/120/120/mountains?random=<%= index.to_s %>">
               <% end %>
+
               <div class="card-product-infos", style="width:70%">
-                <a><%= link_to a.title, adventure_path(a) %></a>
-                <p><%= a.reviews.empty? ? "(No reviews yet) " : "(#{a.reviews.count} reviews)" %>
-                  <% a.avg_rating.round.times do %>
-                    <span style="font-size: 9pt" class="fas fa-star"></span>
-                  <% end %>
-                  <% (5 - a.avg_rating.round).times do  %>
-                    <span style="font-size: 9pt" class="far fa-star"></span>
-                  <% end %>
-                    <span style="font-size: 9pt"> (<%= a.avg_rating.round(1) %>) | Category: <%= a.category %></span>
-                </p>
+                <div>
+                  <%= a.title %>
+                  <p><%= a.reviews.empty? ? "(No reviews yet) " : "(#{a.reviews.count} reviews)" %>
+                    <% a.avg_rating.round.times do %>
+                      <span style="font-size: 9pt" class="fas fa-star"></span>
+                    <% end %>
+                    <% (5 - a.avg_rating.round).times do  %>
+                      <span style="font-size: 9pt" class="far fa-star"></span>
+                    <% end %>
+                      <span style="font-size: 9pt"> (<%= a.avg_rating.round(1) %>) | Category: <%= a.category %></span>
+                  </p>
+                </div>
               </div>
 
-              <% unless current_user.nil? %>
+                <% unless current_user.nil? %>
                   <% if policy(a).edit? %>
                     <%= link_to edit_adventure_path(a),
+                      class: "my-adv-card-icon",
                        method: :get do %>
                       <i style="font-size: 9pt; color: gray;" class=" fas fa-pencil-alt"></i>
                     <% end %>
                   <% end %>
                 <% end %>
+            <% end %>
           </div>
         <% end %>
-    </div>
+      </div>
     </div>
   </div>
   </div>
