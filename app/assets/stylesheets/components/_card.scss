@@ -14,7 +14,7 @@
 }
 
 .card-product img {
-  height: 20vh;
+  // height: 20vh; <--This line makes the image shrink and grow depending on size of window
   width: 120px;
   object-fit: cover;
 }
