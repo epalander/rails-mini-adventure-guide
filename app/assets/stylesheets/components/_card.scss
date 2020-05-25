@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   margin: 10px;
+  position: relative;
 }
 
 .card-product:hover {
@@ -53,10 +54,9 @@
 #card-link-text {
   color: rgb(100, 100, 100);
   font-weight: bold;
-  position: relative;
 }
 
-#card-link-text i {
+.my-adv-card-icon i {
   position: absolute;
   top: 10px;
   right: 10px;
