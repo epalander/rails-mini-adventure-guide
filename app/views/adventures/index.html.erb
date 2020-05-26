@@ -33,8 +33,7 @@
       <!-- top 5 cards -->
       <h2>Top 5 Mini Adventures</h2>
       <% @top_adventures.each_with_index do |adventure, index| %>
-        <%= link_to adventure_path(adventure), id: 'card-link-text' do %>
-          <div class="card-product">
+        <%= link_to adventure_path(adventure), class: "card-product", style: "width:95%", id: 'card-link-text' do %>
             <% if adventure.photo.present? %>
               <%= cl_image_tag adventure.photo.key %>
             <% else %>
@@ -53,7 +52,6 @@
                 </p>
               </div>
             </div>
-          </div>
         <% end %>
       <% end %>
     </div>

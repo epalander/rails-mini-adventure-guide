@@ -75,7 +75,7 @@
     <div class="col-sm-12 col-md-12">
       <h2>Reviews <span style=" font-size: 16pt">(<%= @stats[:num_ratings] %> reviews)<span></h2>
       <% @newest_review_first.each_with_index do |review, index|  %>
-        <div class="card-product">
+        <div class="card-product" style="width:95%">
           <% if review.photos.present? %>
             <%= cl_image_tag review.photos.first.key %>
           <% else %>
