@@ -6,6 +6,8 @@
   display: flex;
   align-items: center;
   margin: 10px;
+  width: 100vw;
+  position: relative;
 }
 
 .card-product:hover {
@@ -13,7 +15,7 @@
 }
 
 .card-product img {
-  height: 20vh;
+  // height: 20vh; <--This line makes the image shrink and grow depending on size of window
   width: 120px;
   object-fit: cover;
 }
@@ -53,6 +55,21 @@
 #card-link-text {
   color: rgb(100, 100, 100);
   font-weight: bold;
+}
+
+.my-adv-card-icon i {
+  position: absolute;
+  right: 64px;
+}
+
+#review-delete-icon {
+  position: absolute;
+  right: 80px;
+}
+
+#review-edit-icon {
+  position: absolute;
+  right: 56px
 }
 
 #card-link-text:hover {

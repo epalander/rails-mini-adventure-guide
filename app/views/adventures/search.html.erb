@@ -25,8 +25,7 @@
       <div class="row container-fluid-index center d-flex justify-content-between">
         <div class="col-sm-12 col-md-12">
           <% @results.each_with_index do |adventure, index| %>
-            <%= link_to adventure_path(adventure), id: 'card-link-text' do %>
-              <div class="card-product">
+            <%= link_to adventure_path(adventure), class: 'card-product', style: "width:95%", id: 'card-link-text' do %>
                 <% if adventure.photo.present? %>
                   <%= cl_image_tag adventure.photo.key %>
                 <% else %>
@@ -46,9 +45,10 @@
                     <% end %>
                     <span style="font-size: 9pt"> (<%= adventure.avg_rating.round(1) %>) | Category: <%= adventure.category %></span>
                   </div>
+
                     <p><%= "#{adventure.description[0..100]}..." %> (Read more)</p>
                 </div>
-              </div>
+
             <% end %>
           <% end %>
         </div>
