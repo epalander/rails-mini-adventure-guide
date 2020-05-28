@@ -35,7 +35,7 @@ class MyAdventuresController < ApplicationController
   end
 
   def update
-    @my_adventure = MyAdventure.find(my_adventure_params[:id])
+    @my_adventure = MyAdventure.find(params[:id])
     if @my_adventure.update(my_adventure_params)
         redirect_to my_adventures_path, notice: 'Been there. Done that!'
     else
@@ -52,7 +52,7 @@ class MyAdventuresController < ApplicationController
 
   private
   def my_adventure_params
-    params.require(:my_adventure).permit(:my_adventure_id, :user_id, :adventure_id, :authenticity_token, :commit)
+    params.require(:my_adventure).permit(:my_adventure_id, :user_id, :adventure_id, :authenticity_token, :commit, :done)
   end
 
 end

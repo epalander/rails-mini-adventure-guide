@@ -48,6 +48,12 @@
                 </div>
               </div>
 
+                <div class="done-button">
+                  <%= form_for(a) do |f| %>
+                  <%= f.hidden_field :done, value: true %>
+                  <%= f.submit 'Mark Adventure as Done' %>
+                  <% end %>
+                </div>
               <% if policy(a).destroy? %>
                 <%= link_to my_adventure_path(a), class: "my-adv-card-icon",
                   method: :delete,
@@ -59,6 +65,59 @@
           </div>
         <% end %>
       </div>
+
+            <div class="card mt-4 mb-4 p-4">
+        <h2>MY COMPLETED ADVENTURES (<%= @myreviews.count %>)</h2>
+        <%= "Go on some adventures and leave some reviews." if @myreviews.empty?  %>
+
+        <% @myreviews.each_with_index do |a, index| %>
+          <div class="d-inline-flex align-items-center">
+            <%= link_to adventure_path(a.adventure), class: "card-product", id: "card-link-text" do %>
+              <% if a.photos.present? %>
+                <%= cl_image_tag a.photos.first.key %>
+              <% else %>
+                <img src="https://loremflickr.com/120/120/switzerland?random=<%= index.to_s %>">
+              <% end %>
+
+              <div class="card-product-infos", style="width:70%">
+                <div>
+                  <%= a.adventure.title %>
+                  <p>My rating: <% a.rating.times do %>
+                      <span style="font-size: 9pt" class="fas fa-star two"></span>
+                    <% end %>
+                    <% (5 - a.rating).times do  %>
+                      <span style="font-size: 9pt" class="far fa-star two"></span>
+                    <% end %>
+                      <span style="font-size: 9pt"> (<%= a.rating %>) | Category: <%= a.adventure.category %></span>
+                  </p>
+                </div>
+              </div>
+
+                <% unless current_user.nil? %>
+                  <% if policy(a).edit? %>
+                    <%= link_to edit_review_path(a),
+                      id: "review-edit-icon",
+                      method: :get do %>
+                      <i style="font-size: 9pt; color: gray;" class=" fas fa-pencil-alt"></i>
+                    <% end %>
+                  <% end %>
+
+                  <% if policy(a).destroy? %>
+                    <%= link_to review_path(a),
+                      id: "review-delete-icon",
+                      method: :delete,
+                      data: {confirm: "Are you sure you would like to delete the review?"} do %>
+                      <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+
+
 
       <div class="card mt-4 mb-4 p-4">
         <h2>MY REVIEWS (<%= @myreviews.count %>)</h2>
