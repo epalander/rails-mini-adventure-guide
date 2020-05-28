@@ -26,12 +26,6 @@
         <%= "You haven't saved any adventures yet." if @saved_adventures.empty?  %>
 
         <% @saved_adventures.each_with_index do |a, index| %>
-          <div class="done-button">
-            <%= form_for(a) do |f| %>
-            <%= f.hidden_field :done, value: true %>
-            <%= f.submit 'Mark Adventure as Done' %>
-            <% end %>
-          </div>
           <div class="d-inline-flex align-items-center">
             <%= link_to adventure_path(a.adventure), class: "card-product", id: "card-link-text" do %>
               <% if a.adventure.photo.present? %>
@@ -53,6 +47,13 @@
                   </p>
                 </div>
               </div>
+
+                <div class="done-button">
+                  <%= form_for(a) do |f| %>
+                  <%= f.hidden_field :done, value: true %>
+                  <%= f.submit 'Mark Adventure as Done' %>
+                  <% end %>
+                </div>
               <% if policy(a).destroy? %>
                 <%= link_to my_adventure_path(a), class: "my-adv-card-icon",
                   method: :delete,
@@ -72,8 +73,8 @@
         <% @done_adventures.each_with_index do |a, index| %>
           <div class="d-inline-flex align-items-center">
             <%= link_to adventure_path(a.adventure), class: "card-product", id: "card-link-text" do %>
-              <% if a.photos.present? %>
-                <%= cl_image_tag a.photos.first.key %>
+              <% if a.adventure.photo.key.present? %>
+                <%= cl_image_tag a.adventure.photo.key %>
               <% else %>
                 <img src="https://loremflickr.com/120/120/switzerland?random=<%= index.to_s %>">
               <% end %>
@@ -81,13 +82,13 @@
               <div class="card-product-infos", style="width:70%">
                 <div>
                   <%= a.adventure.title %>
-                  <p>My rating: <% a.rating.times do %>
-                      <span style="font-size: 9pt" class="fas fa-star two"></span>
-                    <% end %>
-                    <% (5 - a.rating).times do  %>
-                      <span style="font-size: 9pt" class="far fa-star two"></span>
-                    <% end %>
-                      <span style="font-size: 9pt"> (<%= a.rating %>) | Category: <%= a.adventure.category %></span>
+                  <p><% a.adventure.avg_rating.round.times do %>
+                    <span style="font-size: 9pt" class="fas fa-star"></span>
+                  <% end %>
+                  <% (5 - a.adventure.avg_rating.round).times do  %>
+                    <span style="font-size: 9pt" class="far fa-star"></span>
+                  <% end %>
+                  <span style="font-size: 9pt"> (<%= a.adventure.avg_rating.round(1) %>) | Category: <%= a.adventure.category %></span>
                   </p>
                 </div>
               </div>
@@ -114,6 +115,9 @@
           </div>
         <% end %>
       </div>
+
+
+
 
       <div class="card mt-4 mb-4 p-4">
         <h2>MY REVIEWS (<%= @myreviews.count %>)</h2>
