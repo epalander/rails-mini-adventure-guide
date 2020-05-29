@@ -25,13 +25,13 @@
         <h2>SAVED (<%= @saved_adventures.count %>)</h2>
         <%= "You haven't saved any adventures yet." if @saved_adventures.empty?  %>
         <% @saved_adventures.each_with_index do |a, index| %>
-          <div class="done-button">
-            <%= form_for(a) do |f| %>
-            <%= f.hidden_field :done, value: true %>
-            <%= f.submit 'Mark Adventure as Done' %>
-            <% end %>
-          </div>
           <div class="d-inline-flex align-items-center">
+            <div class="done-button">
+              <%= form_for(a) do |f| %>
+              <%= f.hidden_field :done, value: true %>
+              <%= f.submit 'Mark Adventure as Done' %>
+              <% end %>
+            </div>
             <%= link_to adventure_path(a.adventure), class: "card-product", id: "card-link-text" do %>
               <% if a.adventure.photo.present? %>
                 <%= cl_image_tag(a.adventure.photo.key, width:120, height:120) %>
