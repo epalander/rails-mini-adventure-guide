@@ -77,7 +77,7 @@
       <% @newest_review_first.each_with_index do |review, index|  %>
         <div class="card-product" style="width:95%">
           <% if review.photos.present? %>
-            <%= cl_image_tag review.photos.first.key %>
+            <%= cl_image_tag(review.photos.first.key, width:120, height:120) %>
           <% else %>
             <img src="https://loremflickr.com/120/120/forest?random=<%= index.to_s %>">
           <% end %>
