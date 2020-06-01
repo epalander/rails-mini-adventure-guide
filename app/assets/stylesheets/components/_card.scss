@@ -80,6 +80,12 @@
   font-size: 8pt;
   opacity: 0.6;
   transition: opacity 0.3s ease;
-  position: relative;
-  float: right;
+  position: absolute;
+  left: 170px;
+  bottom: 45px;
+  z-index: 1;
+}
+
+.done-button:hover {
+  opacity: 1;
 }
