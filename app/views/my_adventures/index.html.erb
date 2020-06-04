@@ -91,25 +91,6 @@
                   </p>
                 </div>
               </div>
-
-                <% unless current_user.nil? %>
-                  <% if policy(a).edit? %>
-                    <%= link_to edit_review_path(a),
-                      id: "review-edit-icon",
-                      method: :get do %>
-                      <i style="font-size: 9pt; color: gray;" class=" fas fa-pencil-alt"></i>
-                    <% end %>
-                  <% end %>
-
-                  <% if policy(a).destroy? %>
-                    <%= link_to review_path(a),
-                      id: "review-delete-icon",
-                      method: :delete,
-                      data: {confirm: "Are you sure you would like to delete the review?"} do %>
-                      <i style="font-size: 9pt; color: gray;" class="fas fa-trash-alt"></i>
-                    <% end %>
-                  <% end %>
-                <% end %>
             <% end %>
           </div>
         <% end %>
