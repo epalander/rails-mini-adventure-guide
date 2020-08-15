@@ -15,16 +15,16 @@ User.destroy_all
 
 
 puts "Seeding users"
-user1 = User.create!(email: "lalala@gmail.com", password: "hellocucumber", admin: true)
-user2 = User.create!(email: "somebody@gmail.com", password: "password123", admin: false)
-user3 = User.create!(email: "dallas@hotmail.com", password: "yeehaw2020", admin: false)
-user4 = User.create!(email: "reviewer1@adventurer.org", password: "zurich383", admin: false)
-user5 = User.create!(email: "reviewer2@gmx.de", password: "zurich383", admin: false)
-user6 = User.create!(email: "reviewer3@grumpy.edu", password: "zurich383", admin: false)
-user7 = User.create!(email: "reviewer4@sneezy.edu", password: "zurich383", admin: false)
-user8 = User.create!(email: "reviewer5@happy.edu", password: "zurich383", admin: false)
-user9 = User.create!(email: "reviewer6@sleepy.edu", password: "zurich383", admin: false)
-user10 = User.create!(email: "reviewer7@dopey.edu", password: "zurich383", admin: false)
+user1 = User.create!(username: "lalala", first_name: "Lala", last_name: "La", email: "lalala@gmail.com", password: "hellocucumber", admin: true)
+user2 = User.create!(username: "somebody", first_name: "Some", last_name: "Body", email: "somebody@gmail.com", password: "password123", admin: false)
+user3 = User.create!(username: "dallas", first_name: "Garth", last_name: "Tex", email: "dallas@hotmail.com", password: "yeehaw2020", admin: false)
+user4 = User.create!(username: "reviewer", first_name: "John", last_name: "Smith", email: "reviewer1@adventurer.org", password: "zurich383", admin: false)
+user5 = User.create!(username: "reviewer2", first_name: "Allen", last_name: "Johnson", email: "reviewer2@gmx.de", password: "zurich383", admin: false)
+user6 = User.create!(username: "reviewer3", first_name: "Bob", last_name: "Miller", email: "reviewer3@grumpy.edu", password: "zurich383", admin: false)
+user7 = User.create!(username: "reviewer4", first_name: "Isadora", last_name: "Duncan", email: "reviewer4@sneezy.edu", password: "zurich383", admin: false)
+user8 = User.create!(username: "reviewer5", first_name: "Paloma", last_name: "Picasso", email: "reviewer5@happy.edu", password: "zurich383", admin: false)
+user9 = User.create!(username: "reviewer6", first_name: "Twila", last_name: "Tharp", email: "reviewer6@sleepy.edu", password: "zurich383", admin: false)
+user10 = User.create!(username: "reviewer7", first_name: "Joe", last_name: "Biden", email: "reviewer7@dopey.edu", password: "zurich383", admin: false)
 
 # puts "Seeding other adventures from adventures seed"
 # ADVENTURES.each do |adventure_args|
