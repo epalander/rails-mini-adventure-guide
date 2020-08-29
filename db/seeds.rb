@@ -15,8 +15,8 @@ User.destroy_all
 
 
 puts "Seeding users"
-#user1 = User.create!(username: "lalala", first_name: "Lala", last_name: "La", email: "lalala@gmail.com", password: "hellocucumber", admin: true)
-#user2 = User.create!(username: "somebody", first_name: "Some", last_name: "Body", email: "somebody@gmail.com", password: "password123", admin: false)
+user1 = User.create!(username: "lalala", first_name: "Lala", last_name: "La", email: "lalala@gmail.com", password: "hellocucumber", admin: true)
+user2 = User.create!(username: "somebody", first_name: "Some", last_name: "Body", email: "somebody@gmail.com", password: "password123", admin: false)
 user3 = User.create!(username: "dallas", first_name: "Garth", last_name: "Tex", email: "dallas@hotmail.com", password: "yeehaw2020", admin: false)
 user4 = User.create!(username: "reviewer", first_name: "John", last_name: "Smith", email: "reviewer1@adventurer.org", password: "zurich383", admin: false)
 user5 = User.create!(username: "reviewer2", first_name: "Allen", last_name: "Johnson", email: "reviewer2@gmx.de", password: "zurich383", admin: false)
