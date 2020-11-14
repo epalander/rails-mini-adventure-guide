@@ -4,6 +4,8 @@
   <h3 class="mb-0 p-1">
       <%= link_to "/", class: "navbar-brand" do %>
         <%= image_tag "logo_smcompass1.png", class: "avatar"%>
+        <%# This is for demonstration purposes only %>
+        <%= react_component("HelloWorld", { greeting: "Hello from react-rails." }) %>
         <% end %>
         <% if current_user.nil? %>
           <%= "" %>
