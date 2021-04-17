@@ -52,3 +52,37 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
+#header-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#bookmark {
+  //   margin-bottom: 1.3em;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+#star-rating {
+  font-size: 0.8rem;
+  display: inline-block;
+  align-self: flex-end;
+  padding-bottom: 1.75em;
+  padding-left: 0.5rem;
+}
+
+#adventure-title {
+  display: flex;
+}
+
+.show-title {
+  padding-bottom: 0.5rem;
+}
+
+#middle-container {
+  display: grid;
+  grid-row: 1fr 1fr;
+  grid-gap: 1em;
+}
+
