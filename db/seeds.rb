@@ -93,7 +93,7 @@ user10 = User.create!(username: "reviewer7", first_name: "Joe", last_name: "Bide
 # end
 
 puts "Seeding original adventures"
-rigifile = URI.open('https://img1.oastatic.com/img2/37379725/max/t.jpg')
+rigifile = URI.open('https://img1.oastatic.com/img2/26246850/max/.jpg')
 rigi = Adventure.create!(user_id: user1.id, title:"Classic Rigi Hike", address:"Rigi Kulm, 6410 Arth", description: "One of the top 5 hikes around Mount Rigi!  This is an easy walk that doesn't present any particular challenges. It's all downhill and there's a decrease in altitude of around 300 metres. The section between Rigi Kulm and Rigi Staffel features an asphalt path. This easy high-altitude walk features magnificent views out over the Swiss plateau to the Black Forest, the Vosges mountains and the Alps, as well as a breathtaking bird's-eye view over the Lake Lucerne and Lake Zug. Minimum effort for maximum reward – the entire trail is a light descent. The panoramic view from the lookout at Kaenzeli is simply fantastic. Even Queen Victoria of England had nothing but praise for this spectacular location when she visited back in 1868.", category:"hiking trail", distance: 4, avg_duration: 60, stroller_friendly: true, youngest_age: 2, difficulty: 1, parking: true, public_transport: true, directions: "You can reach Rigi Kulm station by cogwheel train from Vitznau or Goldau.  Rigi Kulm (1748 m) – Rigi Staffel (1604 m) – Staffelhoehe (1565 m) – Kaenzeli (1464 m) – Rigi Kaltbad (1436 m)")
 rigi.photo.attach(io: rigifile, filename: 'rigi.jpeg', content_type: 'image/jpeg')
 
