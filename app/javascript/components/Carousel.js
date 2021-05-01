@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import CarouselSlide from './CarouselSlide';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Slide from '@material-ui/core/Slide';
 import {useStyles} from './carouselStyles'
 
 function Arrow(props) {
     const { direction, clickFunction } = props;
-    const icon = direction === 'left' ? <FaChevronLeft /> : <FaChevronRight />;
 
-    return <div onClick={clickFunction}>{icon}</div>;
+    return <div onClick={clickFunction}>"Test"</div>;
 }
 
 export default function Carousel(props) {
